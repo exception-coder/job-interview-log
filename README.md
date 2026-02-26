@@ -1,2 +1,2 @@
-# job-interview-log
+# jobDTO-interview-log
 2025求职

@@ -1,4 +1,4 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.1.2 Chrome/138.0.7204.243 Electron/37.4.0 Safari/537.36" version="28.1.2" pages="12">
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.3.6 Chrome/140.0.7339.249 Electron/38.8.0 Safari/537.36" version="29.3.6" pages="13">
   <diagram name="分布式CDN架构图" id="nEhnu-TtwcVdOmNZ_K1I">
     <mxGraphModel dx="1917" dy="593" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -444,6 +444,130 @@
         </mxCell>
         <mxCell id="vFSGCQRBVVTY5IAFzFgK-14" value="双活集群A2" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;shadow=1;" vertex="1" parent="1">
           <mxGeometry x="545" y="630" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="C9bvw1I_162XB6esZUjM" name="npe_get_jobs">
+    <mxGraphModel dx="1018" dy="703" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--52" parent="1" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;shadow=1;fillColor=#f8cecc;strokeColor=#b85450;" value="" vertex="1">
+          <mxGeometry height="110" width="360" x="540" y="880" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;shadow=1;glass=0;" value="" vertex="1">
+          <mxGeometry height="290" width="360" x="130" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--3" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;b&gt;&lt;i&gt;Playwright&lt;/i&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="130" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;" value="通用反检测伪装&lt;div&gt;Stealth Scripts&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="200" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;" value="模拟人类行为&lt;div&gt;Human Behavior Simulator&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="200" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;" value="JS捕获与分析模块&lt;div&gt;JS Capture Manager&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="200" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#f8cecc;strokeColor=#b85450;" value="Boss站点JS拦截" vertex="1">
+          <mxGeometry height="60" width="120" x="354" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;shadow=1;" value="" vertex="1">
+          <mxGeometry height="290" width="360" x="540" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;shadow=1;" value="" vertex="1">
+          <mxGeometry height="290" width="360" x="960" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;" value="岗位采集" vertex="1">
+          <mxGeometry height="60" width="120" x="620" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;" value="智能过滤" vertex="1">
+          <mxGeometry height="60" width="120" x="620" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;" value="自动投递" vertex="1">
+          <mxGeometry height="60" width="120" x="770" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--15" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;b&gt;&lt;i&gt;投递&lt;/i&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="540" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--16" parent="1" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;shadow=1;fillColor=#f8cecc;strokeColor=#b85450;" value="" vertex="1">
+          <mxGeometry height="110" width="360" x="130" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--17" parent="1" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;shadow=1;fillColor=#f8cecc;strokeColor=#b85450;" value="" vertex="1">
+          <mxGeometry height="110" width="360" x="540" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--20" parent="1" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;shadow=1;fillColor=#f8cecc;strokeColor=#b85450;" value="" vertex="1">
+          <mxGeometry height="110" width="360" x="540" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--21" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;" value="登录" vertex="1">
+          <mxGeometry height="60" width="120" x="620" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--24" parent="1" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;shadow=1;fillColor=#f8cecc;strokeColor=#b85450;" value="" vertex="1">
+          <mxGeometry height="110" width="360" x="540" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--40" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;" value="岗位集合接口监控" vertex="1">
+          <mxGeometry height="35" width="80" x="250" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--41" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;" value="Page异常处理&lt;div&gt;健康检查、重试、降级&lt;/div&gt;" vertex="1">
+          <mxGeometry height="35" width="80" x="150" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--42" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;" value="聚合检索" vertex="1">
+          <mxGeometry height="35" width="80" x="560" y="697.5" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--43" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;" value="黑名单" vertex="1">
+          <mxGeometry height="35" width="80" x="560" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--44" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;" value="薪资过滤" vertex="1">
+          <mxGeometry height="35" width="80" x="660" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--48" parent="1" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;shadow=1;fillColor=#f8cecc;strokeColor=#b85450;" value="" vertex="1">
+          <mxGeometry height="110" width="360" x="960" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--64" edge="1" parent="1" source="cB4upK4ZGkxV-Mm1txw--49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;shadow=1;" target="cB4upK4ZGkxV-Mm1txw--63">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="930" y="585" />
+              <mxPoint x="930" y="755" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--49" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;" value="岗位匹配度识别" vertex="1">
+          <mxGeometry height="35" width="80" x="980" y="567" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--50" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;" value="聊天记录分析是否被拒" vertex="1">
+          <mxGeometry height="35" width="80" x="1080" y="567" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--51" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;" value="投递配置" vertex="1">
+          <mxGeometry height="35" width="80" x="560" y="910" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--54" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;" value="保持登录&lt;div&gt;Cookie持久化&lt;/div&gt;" vertex="1">
+          <mxGeometry height="35" width="80" x="570" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--55" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;" value="简历图片发送" vertex="1">
+          <mxGeometry height="35" width="80" x="660" y="910" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--56" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;" value="岗位技能分析" vertex="1">
+          <mxGeometry height="35" width="80" x="1180" y="567" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--57" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;" value="招呼语生成" vertex="1">
+          <mxGeometry height="35" width="80" x="980" y="615" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--58" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;" value="项目描述优化" vertex="1">
+          <mxGeometry height="35" width="80" x="1080" y="615" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--60" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;" value="模版引擎" vertex="1">
+          <mxGeometry height="60" width="120" x="1140" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--61" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;" value="多模型管理" vertex="1">
+          <mxGeometry height="60" width="120" x="990" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--62" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;" value="验证器" vertex="1">
+          <mxGeometry height="60" width="120" x="990" y="375" as="geometry" />
+        </mxCell>
+        <mxCell id="cB4upK4ZGkxV-Mm1txw--63" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font style=&quot;color: rgb(255, 0, 0);&quot;&gt;已进行匹配识别岗位不要重复匹配&lt;/font&gt;" vertex="1">
+          <mxGeometry height="70" width="100" x="1010" y="720" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

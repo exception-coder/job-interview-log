@@ -19,26 +19,69 @@
       </div>
     </header>
 
+    <!-- 知识点模态框 -->
+    <div v-if="showKnowledgeModal" class="knowledge-modal-overlay" @click="closeKnowledgeModal">
+      <div class="knowledge-modal" @click.stop>
+        <button class="modal-close" @click="closeKnowledgeModal">✕</button>
+        <h2 class="modal-title">{{ selectedKnowledge?.title }}</h2>
+        
+        <!-- 标签页切换 -->
+        <div class="modal-tabs">
+          <button 
+            class="tab-btn" 
+            :class="{ active: activeTab === 'description' }"
+            @click="activeTab = 'description'"
+          >
+            📖 知识讲解
+          </button>
+          <button 
+            class="tab-btn" 
+            :class="{ active: activeTab === 'code' }"
+            @click="activeTab = 'code'"
+          >
+            💻 代码示例
+          </button>
+        </div>
+        
+        <!-- 内容区域 -->
+        <div class="modal-content-wrapper">
+          <!-- 知识讲解 -->
+          <div v-show="activeTab === 'description'" class="modal-content description-content">
+            {{ selectedKnowledge?.description }}
+          </div>
+          
+          <!-- 代码示例 -->
+          <div v-show="activeTab === 'code'" class="modal-content code-content">
+            <pre><code class="language-java" v-html="highlightCode(selectedKnowledge?.code || '')"></code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <main class="main-content">
       <!-- 分类卡片网格 -->
       <transition name="fade" mode="out-in">
-        <div v-if="!selectedCategory && !selectedArticle" class="category-grid">
+        <div v-if="!selectedCategory && !selectedArticle && !showPanorama" key="categories" class="category-grid">
           <div 
             v-for="category in filteredCategories" 
             :key="category.id"
             class="category-card"
             :style="{ animationDelay: `${category.id.length * 20}ms` }"
-            @click="selectCategory(category)"
           >
-            <div class="card-icon">{{ category.icon }}</div>
-            <h2 class="card-title">{{ category.name }}</h2>
-            <p class="card-count">{{ category.children?.length || 0 }} 个知识点</p>
+            <div class="card-content" @click="selectCategory(category)">
+              <div class="card-icon">{{ category.icon }}</div>
+              <h2 class="card-title">{{ category.name }}</h2>
+              <p class="card-count">{{ category.children?.length || 0 }} 个知识点</p>
+            </div>
+            <button class="panorama-btn" @click.stop="showPanoramaView(category)">
+              🗺️ 全景
+            </button>
             <div class="card-hover-effect"></div>
           </div>
         </div>
 
         <!-- 知识点列表 -->
-        <div v-else-if="selectedCategory && !selectedArticle" class="knowledge-points">
+        <div v-else-if="selectedCategory && !selectedArticle && !showPanorama" key="points" class="knowledge-points">
           <div class="points-header">
             <button class="back-btn" @click="backToCategories">
               <span>←</span> 返回分类
@@ -65,7 +108,7 @@
         </div>
 
         <!-- 文章内容 -->
-        <div v-else-if="selectedArticle" class="article-view">
+        <div v-else-if="selectedArticle && !showPanorama" key="article" class="article-view">
           <div class="article-header">
             <button class="back-btn" @click="backToPoints">
               <span>←</span> 返回列表
@@ -86,6 +129,33 @@
             <div class="markdown-body" v-html="renderedContent"></div>
           </article>
         </div>
+
+        <!-- 全景视图 -->
+        <div v-else-if="showPanorama" key="panorama" class="panorama-view">
+          <div class="panorama-header">
+            <button class="back-btn" @click="closePanorama">
+              <span>←</span> 返回
+            </button>
+            <h2 class="panorama-title">{{ panoramaCategory?.name }} - 知识架构全景</h2>
+          </div>
+
+          <div class="architecture-diagram">
+            <div v-for="layer in architectureLayers" :key="layer.name" class="arch-layer">
+              <h3 class="layer-title">{{ layer.name }}</h3>
+              <div class="layer-blocks">
+                <div 
+                  v-for="block in layer.blocks" 
+                  :key="block.id"
+                  class="knowledge-block"
+                  @click="showKnowledgeDetail(block)"
+                >
+                  <div class="block-title">{{ block.title }}</div>
+                  <div class="block-subtitle">{{ block.subtitle }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </transition>
     </main>
   </div>
@@ -95,6 +165,8 @@
 import { ref, computed } from 'vue'
 import MarkdownIt from 'markdown-it'
 import { knowledgeTree, type KnowledgeNode } from './data/knowledgeTree'
+import { useHighlight } from './composables/useHighlight'
+import { getPanoramaConfig } from './data/panorama'
 
 const md = new MarkdownIt({
   html: true,
@@ -103,9 +175,17 @@ const md = new MarkdownIt({
   breaks: true
 })
 
+// 使用代码高亮 composable
+const { highlightCode } = useHighlight()
+
 const searchQuery = ref('')
 const selectedCategory = ref<KnowledgeNode | null>(null)
 const selectedArticle = ref<KnowledgeNode | null>(null)
+const showPanorama = ref(false)
+const panoramaCategory = ref<KnowledgeNode | null>(null)
+const showKnowledgeModal = ref(false)
+const selectedKnowledge = ref<{ title: string; description: string; code: string } | null>(null)
+const activeTab = ref<'description' | 'code'>('description')
 
 const currentDate = new Date().toLocaleDateString('zh-CN', {
   year: 'numeric',
@@ -150,6 +230,163 @@ const handleSearch = () => {
   // 搜索逻辑已在 computed 中处理
 }
 
+const showPanoramaView = (category: KnowledgeNode) => {
+  panoramaCategory.value = category
+  showPanorama.value = true
+}
+
+const closePanorama = () => {
+  showPanorama.value = false
+  panoramaCategory.value = null
+}
+
+const showKnowledgeDetail = async (block: any) => {
+  // 如果有 contentFile 字段，动态加载内容
+  if (block.contentFile) {
+    try {
+      // 动态导入内容文件
+      const contentModule = await import(`./data/content/${block.contentFile}`)
+      // 获取导出的内容对象（假设导出名称遵循 xxxContent 格式）
+      const contentKey = Object.keys(contentModule).find(key => key.endsWith('Content'))
+      if (contentKey) {
+        const content = contentModule[contentKey]
+        selectedKnowledge.value = {
+          title: block.title,
+          description: content.description || '暂无内容',
+          code: content.code || '// 暂无代码示例'
+        }
+      } else {
+        throw new Error('Content not found in module')
+      }
+    } catch (error) {
+      console.error('Failed to load content file:', block.contentFile, error)
+      selectedKnowledge.value = {
+        title: block.title,
+        description: '内容加载失败',
+        code: '// 内容加载失败'
+      }
+    }
+  }
+  // 如果已经有 description 和 code 字段，直接使用
+  else if (block.description && block.code) {
+    selectedKnowledge.value = {
+      title: block.title,
+      description: block.description,
+      code: block.code
+    }
+  } else if (block.content) {
+    // 如果只有 content 字段，自动拆分
+    const content = block.content
+    
+    // 查找 "**代码示例：**" 或类似的标记
+    const codeMarkers = ['**代码示例：**', '**代码示例:**', '代码示例：', '代码示例:']
+    let splitIndex = -1
+    let marker = ''
+    
+    for (const m of codeMarkers) {
+      const index = content.indexOf(m)
+      if (index !== -1) {
+        splitIndex = index
+        marker = m
+        break
+      }
+    }
+    
+    if (splitIndex !== -1) {
+      // 找到了代码示例标记，拆分
+      const description = content.substring(0, splitIndex).trim()
+      const code = content.substring(splitIndex + marker.length).trim()
+      
+      selectedKnowledge.value = {
+        title: block.title,
+        description: description,
+        code: code
+      }
+    } else {
+      // 没有找到标记，全部作为描述
+      selectedKnowledge.value = {
+        title: block.title,
+        description: content,
+        code: '// 暂无代码示例'
+      }
+    }
+  } else {
+    // 没有任何内容
+    selectedKnowledge.value = {
+      title: block.title,
+      description: '暂无内容',
+      code: '// 暂无代码示例'
+    }
+  }
+  
+  activeTab.value = 'description' // 默认显示知识讲解
+  showKnowledgeModal.value = true
+}
+
+const closeKnowledgeModal = () => {
+  showKnowledgeModal.value = false
+  selectedKnowledge.value = null
+}
+
+// 架构层次数据
+const architectureLayers = computed(() => {
+  if (!panoramaCategory.value) return []
+  
+  // 从 panorama 配置中获取数据
+  const config = getPanoramaConfig(panoramaCategory.value.id)
+  
+  if (config) {
+    // 使用新架构的配置
+    return config.layers
+  }
+  
+  // 通用处理：为其他分类自动生成全景图
+  // 将知识点列表按每10个一组分层展示
+  if (panoramaCategory.value.children && panoramaCategory.value.children.length > 0) {
+    const children = panoramaCategory.value.children
+    const layers = []
+    const itemsPerLayer = 10
+    
+    for (let i = 0; i < children.length; i += itemsPerLayer) {
+      const layerItems = children.slice(i, Math.min(i + itemsPerLayer, children.length))
+      
+      layers.push({
+        name: `知识点 ${i + 1}-${Math.min(i + itemsPerLayer, children.length)} (共${children.length}个)`,
+        blocks: layerItems.map(item => ({
+          id: item.id,
+          title: item.name,
+          subtitle: `点击查看详情`,
+          description: `**${item.name}**
+
+这是关于"${item.name}"的知识点。
+
+**核心要点：**
+- 理解基本概念和原理
+- 掌握使用场景和最佳实践
+- 了解常见问题和解决方案
+
+**面试建议：**
+- 准备相关的实际案例
+- 理解底层实现原理
+- 能够对比相关技术的优缺点`,
+          code: `// TODO: 补充具体的代码示例
+// 这里展示${item.name}的基本用法
+
+public class Demo {
+    public static void main(String[] args) {
+        // 示例代码
+        System.out.println("${item.name}");
+    }
+}`
+        }))
+      })
+    }
+    
+    return layers
+  }
+  
+  return []
+})
 const renderedContent = computed(() => {
   if (!selectedArticle.value) return ''
   
@@ -689,4 +926,368 @@ public class BestPractice {
     padding: 32px 24px;
   }
 }
+
+/* 全景按钮样式 */
+.panorama-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.category-card {
+  position: relative;
+}
+
+.category-card:hover .panorama-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.panorama-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.card-content {
+  cursor: pointer;
+}
+
+/* 全景视图样式 */
+.panorama-view {
+  padding: 40px;
+  animation: fadeIn 0.5s ease;
+}
+
+.panorama-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.panorama-title {
+  font-size: 32px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 架构图样式 */
+.architecture-diagram {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.arch-layer {
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.arch-layer:hover {
+  transform: translateY(-4px);
+}
+
+.layer-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 3px solid var(--accent-primary);
+  display: inline-block;
+}
+
+.layer-blocks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.knowledge-block {
+  background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.knowledge-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.knowledge-block:hover::before {
+  transform: scaleY(1);
+}
+
+.knowledge-block:hover {
+  transform: translateX(8px);
+  border-color: var(--accent-primary);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.2);
+}
+
+.block-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.block-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  opacity: 0.8;
+}
+
+/* 知识点模态框样式 */
+.knowledge-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.knowledge-modal {
+  background: var(--bg-secondary);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 900px;
+  width: 90%;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.modal-close:hover {
+  background: var(--accent-primary);
+  color: white;
+  transform: rotate(90deg);
+}
+
+.modal-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  padding-right: 50px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 标签页样式 */
+.modal-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.tab-btn {
+  padding: 12px 24px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+}
+
+.tab-btn.active {
+  color: var(--accent-primary);
+  border-bottom-color: var(--accent-primary);
+}
+
+/* 内容区域 */
+.modal-content-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.modal-content {
+  color: var(--text-primary);
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+/* 知识讲解样式 */
+.description-content {
+  white-space: pre-line;
+  padding: 20px;
+}
+
+.description-content strong {
+  color: var(--accent-primary);
+  font-weight: 600;
+  display: block;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+/* 代码示例样式 */
+.code-content {
+  padding: 0;
+}
+
+.code-content pre {
+  margin: 0;
+  padding: 24px;
+  background: #1e1e1e;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+.code-content code {
+  font-family: 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #d4d4d4;
+  display: block;
+}
+
+/* Java 代码语法高亮 */
+.code-content :deep(.keyword) {
+  color: #569cd6;
+  font-weight: 600;
+}
+
+.code-content :deep(.string) {
+  color: #ce9178;
+}
+
+.code-content :deep(.comment) {
+  color: #6a9955;
+  font-style: italic;
+}
+
+.code-content :deep(.number) {
+  color: #b5cea8;
+}
+
+.code-content :deep(.function) {
+  color: #dcdcaa;
+}
+
+.code-content :deep(.class-name) {
+  color: #4ec9b0;
+}
+
+/* 滚动条样式 */
+.modal-content-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content-wrapper::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+}
+
+.modal-content-wrapper::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+.modal-content-wrapper::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .panorama-view {
+    padding: 20px;
+  }
+  
+  .layer-blocks {
+    grid-template-columns: 1fr;
+  }
+  
+  .knowledge-modal {
+    margin: 20px;
+    padding: 30px 20px;
+    max-width: calc(100% - 40px);
+  }
+  
+  .modal-title {
+    font-size: 22px;
+  }
+}
+
 </style>

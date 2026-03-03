@@ -1,0 +1,3666 @@
+<template>
+  <div class="card-grid-layout">
+    <header class="app-header">
+      <div class="header-content">
+        <div class="logo-section">
+          <span class="logo-icon">☕</span>
+          <h1 class="app-title">Java 知识库</h1>
+        </div>
+        <div class="search-section">
+          <input 
+            type="text" 
+            v-model="searchQuery" 
+            placeholder="搜索知识点..."
+            class="global-search"
+            @input="handleSearch"
+          />
+          <span class="search-icon">🔍</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- 知识点模态框 -->
+    <div v-if="showKnowledgeModal" class="knowledge-modal-overlay" @click="closeKnowledgeModal">
+      <div class="knowledge-modal" @click.stop>
+        <button class="modal-close" @click="closeKnowledgeModal">✕</button>
+        <h2 class="modal-title">{{ selectedKnowledge?.title }}</h2>
+        
+        <!-- 标签页切换 -->
+        <div class="modal-tabs">
+          <button 
+            class="tab-btn" 
+            :class="{ active: activeTab === 'description' }"
+            @click="activeTab = 'description'"
+          >
+            📖 知识讲解
+          </button>
+          <button 
+            class="tab-btn" 
+            :class="{ active: activeTab === 'code' }"
+            @click="activeTab = 'code'"
+          >
+            💻 代码示例
+          </button>
+        </div>
+        
+        <!-- 内容区域 -->
+        <div class="modal-content-wrapper">
+          <!-- 知识讲解 -->
+          <div v-show="activeTab === 'description'" class="modal-content description-content">
+            {{ selectedKnowledge?.description }}
+          </div>
+          
+          <!-- 代码示例 -->
+          <div v-show="activeTab === 'code'" class="modal-content code-content">
+            <pre><code class="language-java" v-html="highlightCode(selectedKnowledge?.code || '')"></code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <main class="main-content">
+      <!-- 分类卡片网格 -->
+      <transition name="fade" mode="out-in">
+        <div v-if="!selectedCategory && !selectedArticle && !showPanorama" key="categories" class="category-grid">
+          <div 
+            v-for="category in filteredCategories" 
+            :key="category.id"
+            class="category-card"
+            :style="{ animationDelay: `${category.id.length * 20}ms` }"
+          >
+            <div class="card-content" @click="selectCategory(category)">
+              <div class="card-icon">{{ category.icon }}</div>
+              <h2 class="card-title">{{ category.name }}</h2>
+              <p class="card-count">{{ category.children?.length || 0 }} 个知识点</p>
+            </div>
+            <button class="panorama-btn" @click.stop="showPanoramaView(category)">
+              🗺️ 全景
+            </button>
+            <div class="card-hover-effect"></div>
+          </div>
+        </div>
+
+        <!-- 知识点列表 -->
+        <div v-else-if="selectedCategory && !selectedArticle && !showPanorama" key="points" class="knowledge-points">
+          <div class="points-header">
+            <button class="back-btn" @click="backToCategories">
+              <span>←</span> 返回分类
+            </button>
+            <div class="category-info">
+              <span class="category-icon-large">{{ selectedCategory.icon }}</span>
+              <h2 class="category-title">{{ selectedCategory.name }}</h2>
+            </div>
+          </div>
+
+          <div class="points-grid">
+            <div 
+              v-for="(point, index) in selectedCategory.children" 
+              :key="point.id"
+              class="point-card"
+              :style="{ animationDelay: `${index * 50}ms` }"
+              @click="selectArticle(point)"
+            >
+              <div class="point-number">{{ String(index + 1).padStart(2, '0') }}</div>
+              <h3 class="point-title">{{ point.name }}</h3>
+              <div class="point-arrow">→</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 文章内容 -->
+        <div v-else-if="selectedArticle && !showPanorama" key="article" class="article-view">
+          <div class="article-header">
+            <button class="back-btn" @click="backToPoints">
+              <span>←</span> 返回列表
+            </button>
+            <div class="article-breadcrumb">
+              <span @click="backToCategories" class="breadcrumb-link">{{ selectedCategory?.name }}</span>
+              <span class="breadcrumb-sep">/</span>
+              <span class="breadcrumb-current">{{ selectedArticle.name }}</span>
+            </div>
+          </div>
+
+          <article class="article-content">
+            <h1 class="article-title">{{ selectedArticle.name }}</h1>
+            <div class="article-meta">
+              <span class="meta-tag">{{ selectedCategory?.name }}</span>
+              <span class="meta-date">最后更新: {{ currentDate }}</span>
+            </div>
+            <div class="markdown-body" v-html="renderedContent"></div>
+          </article>
+        </div>
+
+        <!-- 全景视图 -->
+        <div v-else-if="showPanorama" key="panorama" class="panorama-view">
+          <div class="panorama-header">
+            <button class="back-btn" @click="closePanorama">
+              <span>←</span> 返回
+            </button>
+            <h2 class="panorama-title">{{ panoramaCategory?.name }} - 知识架构全景</h2>
+          </div>
+
+          <div class="architecture-diagram">
+            <div v-for="layer in architectureLayers" :key="layer.name" class="arch-layer">
+              <h3 class="layer-title">{{ layer.name }}</h3>
+              <div class="layer-blocks">
+                <div 
+                  v-for="block in layer.blocks" 
+                  :key="block.id"
+                  class="knowledge-block"
+                  @click="showKnowledgeDetail(block)"
+                >
+                  <div class="block-title">{{ block.title }}</div>
+                  <div class="block-subtitle">{{ block.subtitle }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </transition>
+    </main>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+import MarkdownIt from 'markdown-it'
+import { knowledgeTree, type KnowledgeNode } from './data/knowledgeTree'
+
+const md = new MarkdownIt({
+  html: true,
+  linkify: true,
+  typographer: true,
+  breaks: true
+})
+
+const searchQuery = ref('')
+const selectedCategory = ref<KnowledgeNode | null>(null)
+const selectedArticle = ref<KnowledgeNode | null>(null)
+const showPanorama = ref(false)
+const panoramaCategory = ref<KnowledgeNode | null>(null)
+const showKnowledgeModal = ref(false)
+const selectedKnowledge = ref<{ title: string; description: string; code: string } | null>(null)
+const activeTab = ref<'description' | 'code'>('description')
+
+const currentDate = new Date().toLocaleDateString('zh-CN', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+})
+
+const filteredCategories = computed(() => {
+  if (!searchQuery.value.trim()) {
+    return knowledgeTree
+  }
+  
+  const query = searchQuery.value.toLowerCase()
+  return knowledgeTree.filter(category => {
+    const matchCategory = category.name.toLowerCase().includes(query)
+    const matchChildren = category.children?.some(child => 
+      child.name.toLowerCase().includes(query)
+    )
+    return matchCategory || matchChildren
+  })
+})
+
+const selectCategory = (category: KnowledgeNode) => {
+  selectedCategory.value = category
+  selectedArticle.value = null
+}
+
+const selectArticle = (article: KnowledgeNode) => {
+  selectedArticle.value = article
+}
+
+const backToCategories = () => {
+  selectedCategory.value = null
+  selectedArticle.value = null
+}
+
+const backToPoints = () => {
+  selectedArticle.value = null
+}
+
+const handleSearch = () => {
+  // 搜索逻辑已在 computed 中处理
+}
+
+const showPanoramaView = (category: KnowledgeNode) => {
+  panoramaCategory.value = category
+  showPanorama.value = true
+}
+
+const closePanorama = () => {
+  showPanorama.value = false
+  panoramaCategory.value = null
+}
+
+const showKnowledgeDetail = (block: any) => {
+  // 如果已经有 description 和 code 字段，直接使用
+  if (block.description && block.code) {
+    selectedKnowledge.value = {
+      title: block.title,
+      description: block.description,
+      code: block.code
+    }
+  } else if (block.content) {
+    // 如果只有 content 字段，自动拆分
+    const content = block.content
+    
+    // 查找 "**代码示例：**" 或类似的标记
+    const codeMarkers = ['**代码示例：**', '**代码示例:**', '代码示例：', '代码示例:']
+    let splitIndex = -1
+    let marker = ''
+    
+    for (const m of codeMarkers) {
+      const index = content.indexOf(m)
+      if (index !== -1) {
+        splitIndex = index
+        marker = m
+        break
+      }
+    }
+    
+    if (splitIndex !== -1) {
+      // 找到了代码示例标记，拆分
+      const description = content.substring(0, splitIndex).trim()
+      const code = content.substring(splitIndex + marker.length).trim()
+      
+      selectedKnowledge.value = {
+        title: block.title,
+        description: description,
+        code: code
+      }
+    } else {
+      // 没有找到标记，全部作为描述
+      selectedKnowledge.value = {
+        title: block.title,
+        description: content,
+        code: '// 暂无代码示例'
+      }
+    }
+  } else {
+    // 没有任何内容
+    selectedKnowledge.value = {
+      title: block.title,
+      description: '暂无内容',
+      code: '// 暂无代码示例'
+    }
+  }
+  
+  activeTab.value = 'description' // 默认显示知识讲解
+  showKnowledgeModal.value = true
+}
+
+const closeKnowledgeModal = () => {
+  showKnowledgeModal.value = false
+  selectedKnowledge.value = null
+}
+
+// 简单的代码高亮函数
+const highlightCode = (code: string) => {
+  if (!code) return ''
+  
+  // Java 关键字
+  const keywords = [
+    'public', 'private', 'protected', 'static', 'final', 'class', 'interface',
+    'extends', 'implements', 'void', 'int', 'long', 'double', 'float', 'boolean',
+    'String', 'return', 'if', 'else', 'for', 'while', 'do', 'switch', 'case',
+    'break', 'continue', 'new', 'this', 'super', 'try', 'catch', 'finally',
+    'throw', 'throws', 'import', 'package', 'synchronized', 'volatile',
+    'transient', 'native', 'abstract', 'default', 'enum', 'assert'
+  ]
+  
+  let highlighted = code
+  
+  // 高亮关键字
+  keywords.forEach(keyword => {
+    const regex = new RegExp(`\\b${keyword}\\b`, 'g')
+    highlighted = highlighted.replace(regex, `<span class="keyword">${keyword}</span>`)
+  })
+  
+  // 高亮字符串
+  highlighted = highlighted.replace(/"([^"]*)"/g, '<span class="string">"$1"</span>')
+  
+  // 高亮注释
+  highlighted = highlighted.replace(/\/\/(.*?)$/gm, '<span class="comment">//$1</span>')
+  highlighted = highlighted.replace(/\/\*([\s\S]*?)\*\//g, '<span class="comment">/*$1*/</span>')
+  
+  // 高亮数字
+  highlighted = highlighted.replace(/\b(\d+)\b/g, '<span class="number">$1</span>')
+  
+  return highlighted
+}
+
+// 架构层次数据
+const architectureLayers = computed(() => {
+  if (!panoramaCategory.value) return []
+  
+  // 根据不同分类返回不同的架构数据
+  if (panoramaCategory.value.id === 'java-concurrent') {
+    return [
+      // ... Java并发的完整架构数据保持不变
+      {
+        name: '线程基础',
+        blocks: [
+          {
+            id: 'thread-types',
+            title: '线程类型',
+            subtitle: 'Daemon/User/Virtual',
+            description: `**守护线程 (Daemon Thread)**
+- 后台服务线程，JVM退出时自动终止
+- 典型应用：GC线程、监控线程
+- 设置方法：thread.setDaemon(true)
+
+**用户线程 (User Thread)**
+- 前台工作线程，必须显式结束
+- JVM等待所有用户线程结束才退出
+- 默认创建的线程都是用户线程
+
+**虚拟线程 (Virtual Thread - JDK 21+)**
+- 轻量级线程，由JVM调度而非OS
+- 可创建百万级线程，占用内存极小
+- 适用场景：高并发I/O密集型任务
+- 创建方式：Thread.startVirtualThread(() -> {...})
+- 优势：简化异步编程，提高资源利用率`,
+            code: `// 1. 守护线程示例
+Thread daemonThread = new Thread(() -> {
+    while (true) {
+        System.out.println("守护线程运行中...");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            break;
+        }
+    }
+});
+// 必须在start()之前设置为守护线程
+daemonThread.setDaemon(true);
+daemonThread.start();
+
+// 2. 用户线程示例（默认）
+Thread userThread = new Thread(() -> {
+    System.out.println("用户线程执行任务");
+    // JVM会等待此线程执行完毕
+});
+userThread.start();
+
+// 3. 虚拟线程示例（JDK 21+）
+// 方式1：使用Thread.startVirtualThread()
+Thread.startVirtualThread(() -> {
+    System.out.println("虚拟线程执行任务");
+});
+
+// 方式2：使用Thread.ofVirtual()
+Thread virtualThread = Thread.ofVirtual()
+    .name("virtual-worker")
+    .start(() -> {
+        System.out.println("命名的虚拟线程");
+    });
+
+// 方式3：使用Executors创建虚拟线程池
+ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();
+executor.submit(() -> {
+    System.out.println("虚拟线程池中的任务");
+});`
+          },
+          {
+            id: 'thread-states',
+            title: '线程状态',
+            subtitle: 'NEW/RUNNABLE/BLOCKED/WAITING/TERMINATED',
+            content: `
+**线程6种状态**
+1. NEW：新建未启动
+2. RUNNABLE：可运行（包含运行中和就绪）
+3. BLOCKED：阻塞等待监视器锁
+4. WAITING：无限期等待另一个线程
+5. TIMED_WAITING：有时限的等待
+6. TERMINATED：已终止
+
+**状态转换关键点**
+- start() → RUNNABLE
+- synchronized → BLOCKED
+- wait()/join() → WAITING
+- sleep()/wait(timeout) → TIMED_WAITING
+
+**代码示例：**
+
+public class ThreadStateDemo {
+    public static void main(String[] args) throws InterruptedException {
+        Object lock = new Object();
+        
+        // 1. NEW状态：线程创建但未启动
+        Thread t1 = new Thread(() -> {});
+        System.out.println("t1状态: " + t1.getState()); // NEW
+        
+        // 2. RUNNABLE状态：线程正在运行或等待CPU调度
+        Thread t2 = new Thread(() -> {
+            while (true) {
+                // 持续运行
+            }
+        });
+        t2.start();
+        Thread.sleep(100);
+        System.out.println("t2状态: " + t2.getState()); // RUNNABLE
+        
+        // 3. BLOCKED状态：等待获取监视器锁
+        Thread t3 = new Thread(() -> {
+            synchronized (lock) {
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {}
+            }
+        });
+        Thread t4 = new Thread(() -> {
+            synchronized (lock) { // 等待t3释放锁
+                System.out.println("获取到锁");
+            }
+        });
+        t3.start();
+        Thread.sleep(100);
+        t4.start();
+        Thread.sleep(100);
+        System.out.println("t4状态: " + t4.getState()); // BLOCKED
+        
+        // 4. WAITING状态：无限期等待
+        Thread t5 = new Thread(() -> {
+            synchronized (lock) {
+                try {
+                    lock.wait(); // 无限期等待
+                } catch (InterruptedException e) {}
+            }
+        });
+        t5.start();
+        Thread.sleep(100);
+        System.out.println("t5状态: " + t5.getState()); // WAITING
+        
+        // 5. TIMED_WAITING状态：有时限的等待
+        Thread t6 = new Thread(() -> {
+            try {
+                Thread.sleep(5000); // 等待5秒
+            } catch (InterruptedException e) {}
+        });
+        t6.start();
+        Thread.sleep(100);
+        System.out.println("t6状态: " + t6.getState()); // TIMED_WAITING
+        
+        // 6. TERMINATED状态：线程执行完毕
+        Thread t7 = new Thread(() -> {
+            System.out.println("任务完成");
+        });
+        t7.start();
+        t7.join(); // 等待t7执行完毕
+        System.out.println("t7状态: " + t7.getState()); // TERMINATED
+    }
+}
+            `
+          },
+          {
+            id: 'thread-creation',
+            title: '线程创建',
+            subtitle: 'Thread/Runnable/Callable',
+            content: `
+**三种创建方式**
+1. 继承Thread类
+2. 实现Runnable接口（推荐）
+3. 实现Callable接口（可返回结果）
+
+**最佳实践**
+- 优先使用线程池而非直接创建线程
+- Runnable解耦任务和线程
+- Callable配合Future获取异步结果
+
+**代码示例：**
+
+// 方式1：继承Thread类（不推荐，Java单继承限制）
+class MyThread extends Thread {
+    @Override
+    public void run() {
+        System.out.println("Thread方式: " + Thread.currentThread().getName());
+    }
+}
+// 使用
+MyThread thread1 = new MyThread();
+thread1.start();
+
+// 方式2：实现Runnable接口（推荐，更灵活）
+class MyRunnable implements Runnable {
+    @Override
+    public void run() {
+        System.out.println("Runnable方式: " + Thread.currentThread().getName());
+    }
+}
+// 使用
+Thread thread2 = new Thread(new MyRunnable());
+thread2.start();
+
+// Lambda简化写法
+Thread thread3 = new Thread(() -> {
+    System.out.println("Lambda方式: " + Thread.currentThread().getName());
+});
+thread3.start();
+
+// 方式3：实现Callable接口（可返回结果和抛出异常）
+class MyCallable implements Callable<String> {
+    @Override
+    public String call() throws Exception {
+        Thread.sleep(1000);
+        return "Callable返回结果: " + Thread.currentThread().getName();
+    }
+}
+// 使用FutureTask包装Callable
+FutureTask<String> futureTask = new FutureTask<>(new MyCallable());
+Thread thread4 = new Thread(futureTask);
+thread4.start();
+// 获取返回结果（会阻塞直到任务完成）
+String result = futureTask.get();
+System.out.println(result);
+
+// 最佳实践：使用线程池
+ExecutorService executor = Executors.newFixedThreadPool(5);
+
+// 提交Runnable任务
+executor.submit(() -> {
+    System.out.println("线程池执行Runnable任务");
+});
+
+// 提交Callable任务并获取Future
+Future<Integer> future = executor.submit(() -> {
+    Thread.sleep(1000);
+    return 42;
+});
+Integer value = future.get(); // 获取结果
+System.out.println("Callable结果: " + value);
+
+// 关闭线程池
+executor.shutdown();
+            `
+          }
+        ]
+      },
+      {
+        name: '同步机制',
+        blocks: [
+          {
+            id: 'synchronized',
+            title: 'synchronized',
+            subtitle: '内置锁/监视器锁',
+            content: `
+**synchronized关键字**
+- 保证原子性、可见性、有序性
+- 可修饰方法或代码块
+- 底层：Monitor对象实现
+- 锁升级：偏向锁→轻量级锁→重量级锁
+
+**使用场景**
+- 简单的互斥同步
+- 不需要超时或中断的场景
+
+**代码示例：**
+
+public class SynchronizedDemo {
+    private int count = 0;
+    private final Object lock = new Object();
+    
+    // 1. 修饰实例方法（锁是this对象）
+    public synchronized void incrementMethod() {
+        count++;
+        System.out.println("方法锁: " + count);
+    }
+    
+    // 2. 修饰静态方法（锁是Class对象）
+    public static synchronized void staticMethod() {
+        System.out.println("静态方法锁: " + Thread.currentThread().getName());
+    }
+    
+    // 3. 修饰代码块（锁是指定对象）
+    public void incrementBlock() {
+        synchronized (lock) {
+            count++;
+            System.out.println("代码块锁: " + count);
+        }
+    }
+    
+    // 4. 修饰this对象
+    public void incrementThis() {
+        synchronized (this) {
+            count++;
+            System.out.println("this锁: " + count);
+        }
+    }
+    
+    // 5. 修饰Class对象
+    public void incrementClass() {
+        synchronized (SynchronizedDemo.class) {
+            count++;
+            System.out.println("Class锁: " + count);
+        }
+    }
+    
+    // 实际应用：单例模式（双重检查锁定）
+    private static volatile SynchronizedDemo instance;
+    
+    public static SynchronizedDemo getInstance() {
+        if (instance == null) { // 第一次检查，避免不必要的同步
+            synchronized (SynchronizedDemo.class) {
+                if (instance == null) { // 第二次检查，确保只创建一次
+                    instance = new SynchronizedDemo();
+                }
+            }
+        }
+        return instance;
+    }
+    
+    // 测试示例
+    public static void main(String[] args) {
+        SynchronizedDemo demo = new SynchronizedDemo();
+        
+        // 创建多个线程并发访问
+        for (int i = 0; i < 5; i++) {
+            new Thread(() -> {
+                demo.incrementMethod();
+                demo.incrementBlock();
+            }).start();
+        }
+    }
+}
+            `
+          },
+          {
+            id: 'volatile',
+            title: 'volatile',
+            subtitle: '可见性/禁止重排序',
+            content: `
+**volatile关键字**
+- 保证可见性和有序性
+- 不保证原子性
+- 禁止指令重排序
+- 适用于状态标志、双重检查锁定
+
+**实现原理**
+- 内存屏障（Memory Barrier）
+- 强制刷新到主内存
+- 禁止编译器优化
+
+**代码示例：**
+
+public class VolatileDemo {
+    // 1. 状态标志示例（最常见用法）
+    private volatile boolean running = true;
+    
+    public void startTask() {
+        new Thread(() -> {
+            System.out.println("任务开始执行...");
+            while (running) { // volatile保证可见性
+                // 执行任务
+            }
+            System.out.println("任务停止");
+        }).start();
+    }
+    
+    public void stopTask() {
+        running = false; // 修改立即对其他线程可见
+    }
+    
+    // 2. 双重检查锁定（DCL）单例模式
+    private static volatile VolatileDemo instance;
+    
+    public static VolatileDemo getInstance() {
+        if (instance == null) {
+            synchronized (VolatileDemo.class) {
+                if (instance == null) {
+                    // volatile防止指令重排序
+                    // 对象创建分三步：1.分配内存 2.初始化对象 3.引用指向内存
+                    // 没有volatile可能发生重排序导致返回未初始化的对象
+                    instance = new VolatileDemo();
+                }
+            }
+        }
+        return instance;
+    }
+    
+    // 3. volatile不保证原子性示例
+    private volatile int count = 0;
+    
+    public void increment() {
+        // count++不是原子操作，分为三步：
+        // 1. 读取count的值
+        // 2. 将值加1
+        // 3. 写回count
+        // volatile只保证读写的可见性，不保证整个操作的原子性
+        count++; // 多线程下会出现问题！
+    }
+    
+    // 正确做法：使用synchronized或AtomicInteger
+    private int safeCount = 0;
+    
+    public synchronized void safeIncrement() {
+        safeCount++; // synchronized保证原子性
+    }
+    
+    // 或使用原子类
+    private AtomicInteger atomicCount = new AtomicInteger(0);
+    
+    public void atomicIncrement() {
+        atomicCount.incrementAndGet(); // 原子操作
+    }
+    
+    // 4. 禁止重排序示例
+    private int a = 0;
+    private volatile boolean flag = false;
+    
+    // 线程1
+    public void writer() {
+        a = 1;           // 操作1
+        flag = true;     // 操作2（volatile写）
+        // volatile写之前的操作不会被重排序到volatile写之后
+    }
+    
+    // 线程2
+    public void reader() {
+        if (flag) {      // 操作3（volatile读）
+            int i = a;   // 操作4
+            // volatile读之后的操作不会被重排序到volatile读之前
+            // 保证能读到a=1
+            System.out.println("a的值: " + i);
+        }
+    }
+    
+    // 测试示例
+    public static void main(String[] args) throws InterruptedException {
+        VolatileDemo demo = new VolatileDemo();
+        
+        // 测试状态标志
+        demo.startTask();
+        Thread.sleep(2000);
+        demo.stopTask();
+        
+        // 测试原子性问题
+        for (int i = 0; i < 10; i++) {
+            new Thread(() -> {
+                for (int j = 0; j < 1000; j++) {
+                    demo.increment(); // 不安全
+                    demo.safeIncrement(); // 安全
+                    demo.atomicIncrement(); // 安全
+                }
+            }).start();
+        }
+    }
+}
+            `
+          },
+          {
+            id: 'lock',
+            title: 'Lock接口',
+            subtitle: 'ReentrantLock/ReadWriteLock',
+            content: `
+**Lock vs synchronized**
+- 更灵活的锁获取和释放
+- 支持公平锁和非公平锁
+- 支持中断和超时
+- 支持多个条件变量
+
+**常用实现**
+- ReentrantLock：可重入锁
+- ReadWriteLock：读写锁
+- StampedLock：乐观读锁
+
+**代码示例：**
+
+import java.util.concurrent.locks.*;
+
+public class LockDemo {
+    private final ReentrantLock lock = new ReentrantLock();
+    private int count = 0;
+    
+    // 1. ReentrantLock基本使用
+    public void increment() {
+        lock.lock(); // 获取锁
+        try {
+            count++;
+            System.out.println("count: " + count);
+        } finally {
+            lock.unlock(); // 必须在finally中释放锁
+        }
+    }
+    
+    // 2. tryLock()尝试获取锁（非阻塞）
+    public boolean tryIncrement() {
+        if (lock.tryLock()) { // 尝试获取锁，立即返回
+            try {
+                count++;
+                return true;
+            } finally {
+                lock.unlock();
+            }
+        }
+        return false; // 获取锁失败
+    }
+    
+    // 3. tryLock(timeout)带超时的获取锁
+    public boolean tryIncrementWithTimeout() throws InterruptedException {
+        if (lock.tryLock(3, TimeUnit.SECONDS)) { // 等待3秒
+            try {
+                count++;
+                return true;
+            } finally {
+                lock.unlock();
+            }
+        }
+        return false; // 超时未获取到锁
+    }
+    
+    // 4. lockInterruptibly()可中断的锁
+    public void incrementInterruptibly() throws InterruptedException {
+        lock.lockInterruptibly(); // 可响应中断
+        try {
+            count++;
+        } finally {
+            lock.unlock();
+        }
+    }
+    
+    // 5. 公平锁vs非公平锁
+    private final ReentrantLock fairLock = new ReentrantLock(true); // 公平锁
+    private final ReentrantLock unfairLock = new ReentrantLock(false); // 非公平锁（默认）
+    
+    // 6. Condition条件变量（类似wait/notify）
+    private final Condition notFull = lock.newCondition();
+    private final Condition notEmpty = lock.newCondition();
+    private final int[] buffer = new int[10];
+    private int putIndex = 0, takeIndex = 0, size = 0;
+    
+    public void put(int value) throws InterruptedException {
+        lock.lock();
+        try {
+            while (size == buffer.length) {
+                notFull.await(); // 队列满，等待
+            }
+            buffer[putIndex] = value;
+            putIndex = (putIndex + 1) % buffer.length;
+            size++;
+            notEmpty.signal(); // 通知消费者
+        } finally {
+            lock.unlock();
+        }
+    }
+    
+    public int take() throws InterruptedException {
+        lock.lock();
+        try {
+            while (size == 0) {
+                notEmpty.await(); // 队列空，等待
+            }
+            int value = buffer[takeIndex];
+            takeIndex = (takeIndex + 1) % buffer.length;
+            size--;
+            notFull.signal(); // 通知生产者
+            return value;
+        } finally {
+            lock.unlock();
+        }
+    }
+    
+    // 7. ReadWriteLock读写锁
+    private final ReadWriteLock rwLock = new ReentrantReadWriteLock();
+    private final Lock readLock = rwLock.readLock();
+    private final Lock writeLock = rwLock.writeLock();
+    private String data = "";
+    
+    // 读操作（多个线程可同时读）
+    public String read() {
+        readLock.lock();
+        try {
+            System.out.println(Thread.currentThread().getName() + " 读取数据");
+            return data;
+        } finally {
+            readLock.unlock();
+        }
+    }
+    
+    // 写操作（独占，其他读写都要等待）
+    public void write(String newData) {
+        writeLock.lock();
+        try {
+            System.out.println(Thread.currentThread().getName() + " 写入数据");
+            data = newData;
+        } finally {
+            writeLock.unlock();
+        }
+    }
+    
+    // 8. StampedLock乐观读锁（JDK 8+）
+    private final StampedLock stampedLock = new StampedLock();
+    private double x, y;
+    
+    // 乐观读
+    public double distanceFromOrigin() {
+        long stamp = stampedLock.tryOptimisticRead(); // 乐观读
+        double currentX = x, currentY = y;
+        if (!stampedLock.validate(stamp)) { // 检查是否有写操作
+            stamp = stampedLock.readLock(); // 升级为悲观读锁
+            try {
+                currentX = x;
+                currentY = y;
+            } finally {
+                stampedLock.unlockRead(stamp);
+            }
+        }
+        return Math.sqrt(currentX * currentX + currentY * currentY);
+    }
+    
+    // 写锁
+    public void move(double deltaX, double deltaY) {
+        long stamp = stampedLock.writeLock();
+        try {
+            x += deltaX;
+            y += deltaY;
+        } finally {
+            stampedLock.unlockWrite(stamp);
+        }
+    }
+}
+            `
+          }
+        ]
+      },
+      {
+        name: '线程池',
+        blocks: [
+          {
+            id: 'executor',
+            title: 'Executor框架',
+            subtitle: 'ThreadPoolExecutor',
+            content: `
+**核心参数**
+- corePoolSize：核心线程数
+- maximumPoolSize：最大线程数
+- keepAliveTime：空闲线程存活时间
+- workQueue：任务队列
+- threadFactory：线程工厂
+- handler：拒绝策略
+
+**工作流程**
+1. 任务数 < 核心线程数：创建新线程
+2. 核心线程满：加入队列
+3. 队列满：创建新线程至最大值
+4. 达到最大值：执行拒绝策略
+
+**代码示例：**
+
+import java.util.concurrent.*;
+
+public class ThreadPoolDemo {
+    
+    // 1. 手动创建线程池（推荐方式）
+    public static ThreadPoolExecutor createThreadPool() {
+        return new ThreadPoolExecutor(
+            5,                      // corePoolSize: 核心线程数
+            10,                     // maximumPoolSize: 最大线程数
+            60L,                    // keepAliveTime: 空闲线程存活时间
+            TimeUnit.SECONDS,       // 时间单位
+            new LinkedBlockingQueue<>(100),  // workQueue: 任务队列
+            new ThreadFactory() {   // threadFactory: 线程工厂
+                private AtomicInteger count = new AtomicInteger(1);
+                @Override
+                public Thread newThread(Runnable r) {
+                    Thread thread = new Thread(r);
+                    thread.setName("custom-pool-" + count.getAndIncrement());
+                    return thread;
+                }
+            },
+            new ThreadPoolExecutor.CallerRunsPolicy()  // handler: 拒绝策略
+        );
+    }
+    
+    // 2. 四种拒绝策略
+    public static void demonstrateRejectionPolicies() {
+        // AbortPolicy: 抛出异常（默认）
+        ThreadPoolExecutor pool1 = new ThreadPoolExecutor(
+            1, 1, 0L, TimeUnit.SECONDS,
+            new LinkedBlockingQueue<>(1),
+            new ThreadPoolExecutor.AbortPolicy()
+        );
+        
+        // CallerRunsPolicy: 调用者线程执行
+        ThreadPoolExecutor pool2 = new ThreadPoolExecutor(
+            1, 1, 0L, TimeUnit.SECONDS,
+            new LinkedBlockingQueue<>(1),
+            new ThreadPoolExecutor.CallerRunsPolicy()
+        );
+        
+        // DiscardPolicy: 静默丢弃
+        ThreadPoolExecutor pool3 = new ThreadPoolExecutor(
+            1, 1, 0L, TimeUnit.SECONDS,
+            new LinkedBlockingQueue<>(1),
+            new ThreadPoolExecutor.DiscardPolicy()
+        );
+        
+        // DiscardOldestPolicy: 丢弃最老的任务
+        ThreadPoolExecutor pool4 = new ThreadPoolExecutor(
+            1, 1, 0L, TimeUnit.SECONDS,
+            new LinkedBlockingQueue<>(1),
+            new ThreadPoolExecutor.DiscardOldestPolicy()
+        );
+    }
+    
+    // 3. 使用示例
+    public static void main(String[] args) throws Exception {
+        ThreadPoolExecutor executor = createThreadPool();
+        
+        // 提交Runnable任务
+        executor.execute(() -> {
+            System.out.println(Thread.currentThread().getName() + " 执行任务");
+        });
+        
+        // 提交Callable任务并获取结果
+        Future<String> future = executor.submit(() -> {
+            Thread.sleep(1000);
+            return "任务结果";
+        });
+        String result = future.get(); // 阻塞获取结果
+        System.out.println("结果: " + result);
+        
+        // 批量提交任务
+        List<Callable<Integer>> tasks = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            int taskId = i;
+            tasks.add(() -> {
+                Thread.sleep(1000);
+                return taskId * taskId;
+            });
+        }
+        List<Future<Integer>> futures = executor.invokeAll(tasks);
+        
+        // 获取所有结果
+        for (Future<Integer> f : futures) {
+            System.out.println("结果: " + f.get());
+        }
+        
+        // 监控线程池状态
+        System.out.println("活跃线程数: " + executor.getActiveCount());
+        System.out.println("核心线程数: " + executor.getCorePoolSize());
+        System.out.println("最大线程数: " + executor.getMaximumPoolSize());
+        System.out.println("当前池大小: " + executor.getPoolSize());
+        System.out.println("队列任务数: " + executor.getQueue().size());
+        System.out.println("已完成任务数: " + executor.getCompletedTaskCount());
+        
+        // 优雅关闭
+        executor.shutdown(); // 不再接受新任务，等待已提交任务完成
+        // executor.shutdownNow(); // 立即停止，返回未执行的任务列表
+        
+        // 等待所有任务完成
+        if (!executor.awaitTermination(60, TimeUnit.SECONDS)) {
+            executor.shutdownNow(); // 超时强制关闭
+        }
+    }
+    
+    // 4. 动态调整线程池参数
+    public static void adjustThreadPool(ThreadPoolExecutor executor) {
+        // 动态设置核心线程数
+        executor.setCorePoolSize(10);
+        
+        // 动态设置最大线程数
+        executor.setMaximumPoolSize(20);
+        
+        // 动态设置空闲时间
+        executor.setKeepAliveTime(120, TimeUnit.SECONDS);
+        
+        // 允许核心线程超时
+        executor.allowCoreThreadTimeOut(true);
+    }
+    
+    // 5. 自定义线程池监控
+    public static class MonitoredThreadPool extends ThreadPoolExecutor {
+        public MonitoredThreadPool(int corePoolSize, int maximumPoolSize,
+                                   long keepAliveTime, TimeUnit unit,
+                                   BlockingQueue<Runnable> workQueue) {
+            super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue);
+        }
+        
+        @Override
+        protected void beforeExecute(Thread t, Runnable r) {
+            System.out.println("任务开始执行: " + t.getName());
+        }
+        
+        @Override
+        protected void afterExecute(Runnable r, Throwable t) {
+            System.out.println("任务执行完成");
+            if (t != null) {
+                System.err.println("任务执行异常: " + t.getMessage());
+            }
+        }
+        
+        @Override
+        protected void terminated() {
+            System.out.println("线程池已关闭");
+        }
+    }
+}
+            `
+          },
+          {
+            id: 'common-pools',
+            title: '常用线程池',
+            subtitle: 'Fixed/Cached/Scheduled',
+            content: `
+**Executors工厂方法**
+- newFixedThreadPool：固定大小
+- newCachedThreadPool：缓存线程池
+- newSingleThreadExecutor：单线程
+- newScheduledThreadPool：定时任务
+
+**注意事项**
+- 生产环境建议手动创建ThreadPoolExecutor
+- 避免使用无界队列导致OOM
+
+**代码示例：**
+
+import java.util.concurrent.*;
+
+public class CommonThreadPoolsDemo {
+    
+    // 1. FixedThreadPool - 固定大小线程池
+    public static void fixedThreadPoolDemo() {
+        // 创建固定5个线程的线程池
+        ExecutorService fixedPool = Executors.newFixedThreadPool(5);
+        
+        // 等价于：
+        // new ThreadPoolExecutor(5, 5, 0L, TimeUnit.MILLISECONDS,
+        //     new LinkedBlockingQueue<Runnable>());
+        
+        // 提交10个任务
+        for (int i = 0; i < 10; i++) {
+            int taskId = i;
+            fixedPool.execute(() -> {
+                System.out.println("FixedPool-任务" + taskId + 
+                    " 线程: " + Thread.currentThread().getName());
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {}
+            });
+        }
+        
+        fixedPool.shutdown();
+        
+        // 缺点：使用无界队列LinkedBlockingQueue，可能导致OOM
+    }
+    
+    // 2. CachedThreadPool - 缓存线程池
+    public static void cachedThreadPoolDemo() {
+        // 创建可缓存的线程池
+        ExecutorService cachedPool = Executors.newCachedThreadPool();
+        
+        // 等价于：
+        // new ThreadPoolExecutor(0, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS,
+        //     new SynchronousQueue<Runnable>());
+        
+        // 特点：线程数量不固定，空闲60秒后回收
+        for (int i = 0; i < 10; i++) {
+            int taskId = i;
+            cachedPool.execute(() -> {
+                System.out.println("CachedPool-任务" + taskId + 
+                    " 线程: " + Thread.currentThread().getName());
+            });
+        }
+        
+        cachedPool.shutdown();
+        
+        // 缺点：最大线程数Integer.MAX_VALUE，可能创建大量线程导致OOM
+    }
+    
+    // 3. SingleThreadExecutor - 单线程池
+    public static void singleThreadExecutorDemo() {
+        // 创建单线程的线程池
+        ExecutorService singlePool = Executors.newSingleThreadExecutor();
+        
+        // 等价于：
+        // new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS,
+        //     new LinkedBlockingQueue<Runnable>());
+        
+        // 保证所有任务按顺序执行
+        for (int i = 0; i < 5; i++) {
+            int taskId = i;
+            singlePool.execute(() -> {
+                System.out.println("SinglePool-任务" + taskId + 
+                    " 线程: " + Thread.currentThread().getName());
+            });
+        }
+        
+        singlePool.shutdown();
+        
+        // 适用场景：需要保证任务顺序执行
+    }
+    
+    // 4. ScheduledThreadPool - 定时任务线程池
+    public static void scheduledThreadPoolDemo() {
+        // 创建定时任务线程池
+        ScheduledExecutorService scheduledPool = 
+            Executors.newScheduledThreadPool(3);
+        
+        // 延迟执行（延迟3秒后执行一次）
+        scheduledPool.schedule(() -> {
+            System.out.println("延迟任务执行");
+        }, 3, TimeUnit.SECONDS);
+        
+        // 固定频率执行（延迟1秒后，每2秒执行一次）
+        scheduledPool.scheduleAtFixedRate(() -> {
+            System.out.println("固定频率任务: " + System.currentTimeMillis());
+        }, 1, 2, TimeUnit.SECONDS);
+        
+        // 固定延迟执行（任务结束后延迟2秒再执行下一次）
+        scheduledPool.scheduleWithFixedDelay(() -> {
+            System.out.println("固定延迟任务: " + System.currentTimeMillis());
+            try {
+                Thread.sleep(1000); // 模拟任务耗时
+            } catch (InterruptedException e) {}
+        }, 1, 2, TimeUnit.SECONDS);
+        
+        // 注意：定时任务不会自动关闭，需要手动关闭
+        // scheduledPool.shutdown();
+    }
+    
+    // 5. WorkStealingPool - 工作窃取线程池（JDK 8+）
+    public static void workStealingPoolDemo() {
+        // 创建工作窃取线程池（基于ForkJoinPool）
+        ExecutorService workStealingPool = 
+            Executors.newWorkStealingPool();
+        
+        // 默认并行度为CPU核心数
+        // 等价于：new ForkJoinPool(Runtime.getRuntime().availableProcessors())
+        
+        for (int i = 0; i < 10; i++) {
+            int taskId = i;
+            workStealingPool.submit(() -> {
+                System.out.println("WorkStealing-任务" + taskId + 
+                    " 线程: " + Thread.currentThread().getName());
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {}
+            });
+        }
+        
+        workStealingPool.shutdown();
+        
+        // 特点：每个线程有自己的任务队列，空闲线程可以窃取其他线程的任务
+    }
+    
+    // 6. 生产环境推荐：自定义线程池
+    public static ThreadPoolExecutor createProductionThreadPool() {
+        return new ThreadPoolExecutor(
+            10,                     // 核心线程数：根据业务设置
+            20,                     // 最大线程数：核心线程数的2倍
+            60L,                    // 空闲时间：60秒
+            TimeUnit.SECONDS,
+            new ArrayBlockingQueue<>(100),  // 有界队列，防止OOM
+            new ThreadFactory() {
+                private AtomicInteger count = new AtomicInteger(1);
+                @Override
+                public Thread newThread(Runnable r) {
+                    Thread thread = new Thread(r);
+                    thread.setName("business-pool-" + count.getAndIncrement());
+                    thread.setUncaughtExceptionHandler((t, e) -> {
+                        System.err.println("线程异常: " + t.getName() + ", " + e.getMessage());
+                    });
+                    return thread;
+                }
+            },
+            new ThreadPoolExecutor.CallerRunsPolicy()  // 调用者运行策略
+        );
+    }
+    
+    public static void main(String[] args) {
+        fixedThreadPoolDemo();
+        cachedThreadPoolDemo();
+        singleThreadExecutorDemo();
+        scheduledThreadPoolDemo();
+        workStealingPoolDemo();
+        
+        // 使用生产环境推荐的线程池
+        ThreadPoolExecutor productionPool = createProductionThreadPool();
+        // ... 使用线程池
+        productionPool.shutdown();
+    }
+}
+            `
+          }
+        ]
+      },
+      {
+        name: '并发工具',
+        blocks: [
+          {
+            id: 'atomic',
+            title: '原子类',
+            subtitle: 'AtomicInteger/AtomicReference',
+            content: `
+**原子操作类**
+- 基本类型：AtomicInteger、AtomicLong
+- 引用类型：AtomicReference
+- 数组类型：AtomicIntegerArray
+- 字段更新器：AtomicIntegerFieldUpdater
+
+**实现原理**
+- CAS（Compare-And-Swap）
+- Unsafe类的native方法
+- 自旋+CAS实现无锁并发
+
+**代码示例：**
+
+import java.util.concurrent.atomic.*;
+
+public class AtomicDemo {
+    
+    // 1. AtomicInteger - 原子整数
+    private AtomicInteger count = new AtomicInteger(0);
+    
+    public void atomicIntegerDemo() {
+        // 获取当前值
+        int value = count.get();
+        
+        // 设置新值
+        count.set(10);
+        
+        // 原子递增（i++）
+        int oldValue = count.getAndIncrement(); // 返回旧值
+        int newValue = count.incrementAndGet(); // 返回新值
+        
+        // 原子递减（i--）
+        count.getAndDecrement(); // 返回旧值
+        count.decrementAndGet(); // 返回新值
+        
+        // 原子加法
+        count.addAndGet(5);      // 加5并返回新值
+        count.getAndAdd(5);      // 加5并返回旧值
+        
+        // CAS操作：比较并交换
+        boolean success = count.compareAndSet(10, 20);
+        // 如果当前值是10，则设置为20，返回true；否则返回false
+        
+        // 获取并更新
+        int result = count.getAndUpdate(x -> x * 2); // 乘以2
+        
+        // 更新并获取
+        result = count.updateAndGet(x -> x + 10); // 加10
+        
+        // 累加器
+        result = count.accumulateAndGet(5, (x, y) -> x + y); // 加5
+    }
+    
+    // 2. AtomicLong - 原子长整数
+    private AtomicLong longCount = new AtomicLong(0L);
+    
+    public void atomicLongDemo() {
+        longCount.incrementAndGet();
+        longCount.addAndGet(100L);
+        longCount.compareAndSet(100L, 200L);
+    }
+    
+    // 3. AtomicBoolean - 原子布尔值
+    private AtomicBoolean flag = new AtomicBoolean(false);
+    
+    public void atomicBooleanDemo() {
+        // 获取并设置
+        boolean oldValue = flag.getAndSet(true);
+        
+        // CAS操作
+        boolean success = flag.compareAndSet(false, true);
+        
+        // 常用于一次性开关
+        if (flag.compareAndSet(false, true)) {
+            System.out.println("首次执行");
+        }
+    }
+    
+    // 4. AtomicReference - 原子引用
+    private static class User {
+        String name;
+        int age;
+        
+        User(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+    }
+    
+    private AtomicReference<User> userRef = new AtomicReference<>();
+    
+    public void atomicReferenceDemo() {
+        User user1 = new User("张三", 20);
+        User user2 = new User("李四", 25);
+        
+        // 设置引用
+        userRef.set(user1);
+        
+        // CAS更新引用
+        boolean success = userRef.compareAndSet(user1, user2);
+        
+        // 获取并更新
+        User oldUser = userRef.getAndUpdate(user -> {
+            user.age++;
+            return user;
+        });
+    }
+    
+    // 5. AtomicStampedReference - 带版本号的原子引用（解决ABA问题）
+    private AtomicStampedReference<Integer> stampedRef = 
+        new AtomicStampedReference<>(100, 0);
+    
+    public void atomicStampedReferenceDemo() {
+        int[] stampHolder = new int[1];
+        Integer value = stampedRef.get(stampHolder);
+        int stamp = stampedHolder[0];
+        
+        // CAS操作，同时检查值和版本号
+        boolean success = stampedRef.compareAndSet(
+            100,        // 期望值
+            200,        // 新值
+            stamp,      // 期望版本号
+            stamp + 1   // 新版本号
+        );
+        
+        // 解决ABA问题：即使值从A变为B再变回A，版本号也会改变
+    }
+    
+    // 6. AtomicIntegerArray - 原子整数数组
+    private AtomicIntegerArray array = new AtomicIntegerArray(10);
+    
+    public void atomicArrayDemo() {
+        // 设置指定位置的值
+        array.set(0, 100);
+        
+        // 获取指定位置的值
+        int value = array.get(0);
+        
+        // 原子递增指定位置
+        array.incrementAndGet(0);
+        
+        // CAS更新指定位置
+        array.compareAndSet(0, 100, 200);
+        
+        // 原子加法
+        array.addAndGet(0, 50);
+    }
+    
+    // 7. AtomicIntegerFieldUpdater - 字段更新器
+    private static class Counter {
+        volatile int count = 0; // 必须是volatile
+    }
+    
+    private static AtomicIntegerFieldUpdater<Counter> updater = 
+        AtomicIntegerFieldUpdater.newUpdater(Counter.class, "count");
+    
+    public void fieldUpdaterDemo() {
+        Counter counter = new Counter();
+        
+        // 原子更新字段
+        updater.incrementAndGet(counter);
+        updater.addAndGet(counter, 10);
+        updater.compareAndSet(counter, 10, 20);
+        
+        // 优势：不需要将字段声明为Atomic类型，节省内存
+    }
+    
+    // 8. LongAdder - 高性能计数器（JDK 8+）
+    private LongAdder adder = new LongAdder();
+    
+    public void longAdderDemo() {
+        // 递增
+        adder.increment();
+        
+        // 加法
+        adder.add(10);
+        
+        // 获取总和
+        long sum = adder.sum();
+        
+        // 重置
+        adder.reset();
+        
+        // 原理：分段累加，减少CAS竞争
+        // 高并发下性能优于AtomicLong
+    }
+    
+    // 9. 实际应用：线程安全的计数器
+    public static class SafeCounter {
+        private AtomicInteger count = new AtomicInteger(0);
+        
+        public void increment() {
+            count.incrementAndGet();
+        }
+        
+        public int getCount() {
+            return count.get();
+        }
+    }
+    
+    // 10. 性能对比测试
+    public static void performanceTest() throws InterruptedException {
+        int threadCount = 10;
+        int iterations = 100000;
+        
+        // 测试AtomicInteger
+        AtomicInteger atomicCount = new AtomicInteger(0);
+        long start = System.currentTimeMillis();
+        
+        Thread[] threads = new Thread[threadCount];
+        for (int i = 0; i < threadCount; i++) {
+            threads[i] = new Thread(() -> {
+                for (int j = 0; j < iterations; j++) {
+                    atomicCount.incrementAndGet();
+                }
+            });
+            threads[i].start();
+        }
+        
+        for (Thread thread : threads) {
+            thread.join();
+        }
+        
+        long atomicTime = System.currentTimeMillis() - start;
+        System.out.println("AtomicInteger耗时: " + atomicTime + "ms");
+        System.out.println("最终值: " + atomicCount.get());
+        
+        // 测试LongAdder
+        LongAdder adder = new LongAdder();
+        start = System.currentTimeMillis();
+        
+        for (int i = 0; i < threadCount; i++) {
+            threads[i] = new Thread(() -> {
+                for (int j = 0; j < iterations; j++) {
+                    adder.increment();
+                }
+            });
+            threads[i].start();
+        }
+        
+        for (Thread thread : threads) {
+            thread.join();
+        }
+        
+        long adderTime = System.currentTimeMillis() - start;
+        System.out.println("LongAdder耗时: " + adderTime + "ms");
+        System.out.println("最终值: " + adder.sum());
+    }
+}
+            `
+          },
+          {
+            id: 'concurrent-collections',
+            title: '并发集合',
+            subtitle: 'ConcurrentHashMap/CopyOnWrite',
+            content: `
+**常用并发集合**
+- ConcurrentHashMap：线程安全的HashMap
+- CopyOnWriteArrayList：写时复制List
+- ConcurrentLinkedQueue：无锁队列
+- BlockingQueue：阻塞队列
+
+**选择建议**
+- 读多写少：CopyOnWrite
+- 高并发读写：ConcurrentHashMap
+- 生产者消费者：BlockingQueue
+
+**代码示例：**
+
+import java.util.concurrent.*;
+
+public class ConcurrentCollectionsDemo {
+    
+    // 1. ConcurrentHashMap - 线程安全的HashMap
+    private ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>();
+    
+    public void concurrentHashMapDemo() {
+        // 基本操作
+        map.put("key1", 100);
+        Integer value = map.get("key1");
+        map.remove("key1");
+        
+        // 原子操作：如果不存在则放入
+        map.putIfAbsent("key2", 200);
+        
+        // 原子操作：替换
+        map.replace("key2", 200, 300); // 只有当前值是200时才替换为300
+        
+        // 原子操作：计算
+        map.compute("key3", (k, v) -> v == null ? 1 : v + 1);
+        
+        // 原子操作：合并
+        map.merge("key4", 1, Integer::sum); // 累加
+        
+        // 批量操作
+        map.forEach((k, v) -> System.out.println(k + "=" + v));
+        
+        // 搜索操作
+        String result = map.search(1, (k, v) -> v > 100 ? k : null);
+        
+        // 归约操作
+        int sum = map.reduceValues(1, Integer::sum);
+    }
+    
+    // 2. CopyOnWriteArrayList - 写时复制列表
+    private CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<>();
+    
+    public void copyOnWriteArrayListDemo() {
+        // 添加元素（会复制整个数组）
+        list.add("item1");
+        list.add("item2");
+        
+        // 读取操作（不加锁，读取快照）
+        for (String item : list) {
+            System.out.println(item);
+        }
+        
+        // 迭代过程中修改不会抛出ConcurrentModificationException
+        for (String item : list) {
+            if (item.equals("item1")) {
+                list.add("item3"); // 安全，但迭代器看不到新元素
+            }
+        }
+        
+        // 适用场景：读多写少，如监听器列表
+        // 缺点：写操作开销大，内存占用高
+    }
+    
+    // 3. ConcurrentLinkedQueue - 无锁队列
+    private ConcurrentLinkedQueue<String> queue = new ConcurrentLinkedQueue<>();
+    
+    public void concurrentLinkedQueueDemo() {
+        // 入队
+        queue.offer("task1");
+        queue.add("task2");
+        
+        // 出队
+        String task = queue.poll(); // 返回并移除头元素，队列空返回null
+        
+        // 查看头元素（不移除）
+        String head = queue.peek();
+        
+        // 判断是否为空
+        boolean empty = queue.isEmpty();
+        
+        // 获取大小（注意：不是常量时间操作）
+        int size = queue.size();
+        
+        // 特点：基于CAS的无锁实现，高性能
+    }
+    
+    // 4. BlockingQueue - 阻塞队列
+    public void blockingQueueDemo() throws InterruptedException {
+        // ArrayBlockingQueue - 有界阻塞队列
+        BlockingQueue<String> arrayQueue = new ArrayBlockingQueue<>(10);
+        
+        // 放入元素（队列满时阻塞）
+        arrayQueue.put("item1");
+        
+        // 放入元素（队列满时等待指定时间）
+        boolean success = arrayQueue.offer("item2", 3, TimeUnit.SECONDS);
+        
+        // 取出元素（队列空时阻塞）
+        String item = arrayQueue.take();
+        
+        // 取出元素（队列空时等待指定时间）
+        item = arrayQueue.poll(3, TimeUnit.SECONDS);
+        
+        // LinkedBlockingQueue - 可选有界阻塞队列
+        BlockingQueue<String> linkedQueue = new LinkedBlockingQueue<>(100);
+        
+        // PriorityBlockingQueue - 优先级阻塞队列
+        BlockingQueue<Integer> priorityQueue = new PriorityBlockingQueue<>();
+        
+        // DelayQueue - 延迟队列
+        BlockingQueue<Delayed> delayQueue = new DelayQueue<>();
+        
+        // SynchronousQueue - 同步队列（容量为0）
+        BlockingQueue<String> syncQueue = new SynchronousQueue<>();
+    }
+    
+    // 5. 生产者-消费者模式
+    public static class ProducerConsumerDemo {
+        private BlockingQueue<String> queue = new LinkedBlockingQueue<>(10);
+        
+        // 生产者
+        class Producer implements Runnable {
+            @Override
+            public void run() {
+                try {
+                    for (int i = 0; i < 100; i++) {
+                        String product = "产品-" + i;
+                        queue.put(product); // 队列满时阻塞
+                        System.out.println("生产: " + product);
+                        Thread.sleep(100);
+                    }
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+        
+        // 消费者
+        class Consumer implements Runnable {
+            @Override
+            public void run() {
+                try {
+                    while (true) {
+                        String product = queue.take(); // 队列空时阻塞
+                        System.out.println("消费: " + product);
+                        Thread.sleep(200);
+                    }
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+        
+        public void start() {
+            new Thread(new Producer()).start();
+            new Thread(new Consumer()).start();
+            new Thread(new Consumer()).start();
+        }
+    }
+    
+    // 6. ConcurrentSkipListMap - 跳表实现的有序Map
+    private ConcurrentSkipListMap<Integer, String> skipListMap = 
+        new ConcurrentSkipListMap<>();
+    
+    public void concurrentSkipListMapDemo() {
+        skipListMap.put(3, "three");
+        skipListMap.put(1, "one");
+        skipListMap.put(2, "two");
+        
+        // 自动排序
+        skipListMap.forEach((k, v) -> System.out.println(k + "=" + v));
+        // 输出：1=one, 2=two, 3=three
+        
+        // 范围查询
+        ConcurrentNavigableMap<Integer, String> subMap = 
+            skipListMap.subMap(1, true, 2, true);
+    }
+    
+    // 7. ConcurrentSkipListSet - 跳表实现的有序Set
+    private ConcurrentSkipListSet<Integer> skipListSet = 
+        new ConcurrentSkipListSet<>();
+    
+    public void concurrentSkipListSetDemo() {
+        skipListSet.add(3);
+        skipListSet.add(1);
+        skipListSet.add(2);
+        
+        // 自动排序且去重
+        skipListSet.forEach(System.out::println);
+        // 输出：1, 2, 3
+    }
+    
+    // 8. 性能对比
+    public static void performanceComparison() throws InterruptedException {
+        int threadCount = 10;
+        int operations = 10000;
+        
+        // 测试ConcurrentHashMap
+        ConcurrentHashMap<Integer, Integer> concurrentMap = 
+            new ConcurrentHashMap<>();
+        long start = System.currentTimeMillis();
+        
+        Thread[] threads = new Thread[threadCount];
+        for (int i = 0; i < threadCount; i++) {
+            int threadId = i;
+            threads[i] = new Thread(() -> {
+                for (int j = 0; j < operations; j++) {
+                    concurrentMap.put(threadId * operations + j, j);
+                }
+            });
+            threads[i].start();
+        }
+        
+        for (Thread thread : threads) {
+            thread.join();
+        }
+        
+        System.out.println("ConcurrentHashMap耗时: " + 
+            (System.currentTimeMillis() - start) + "ms");
+        
+        // 测试Collections.synchronizedMap
+        Map<Integer, Integer> syncMap = 
+            Collections.synchronizedMap(new HashMap<>());
+        start = System.currentTimeMillis();
+        
+        for (int i = 0; i < threadCount; i++) {
+            int threadId = i;
+            threads[i] = new Thread(() -> {
+                for (int j = 0; j < operations; j++) {
+                    syncMap.put(threadId * operations + j, j);
+                }
+            });
+            threads[i].start();
+        }
+        
+        for (Thread thread : threads) {
+            thread.join();
+        }
+        
+        System.out.println("SynchronizedMap耗时: " + 
+            (System.currentTimeMillis() - start) + "ms");
+    }
+}
+            `
+          },
+          {
+            id: 'aqs',
+            title: 'AQS',
+            subtitle: 'AbstractQueuedSynchronizer',
+            content: `
+**AQS核心**
+- 同步器框架基础
+- 维护状态变量state
+- FIFO等待队列
+- 独占模式和共享模式
+
+**基于AQS的工具**
+- ReentrantLock
+- Semaphore
+- CountDownLatch
+- CyclicBarrier
+
+**代码示例：**
+
+import java.util.concurrent.*;
+import java.util.concurrent.locks.*;
+
+public class AQSDemo {
+    
+    // 1. 自定义独占锁（基于AQS）
+    public static class CustomLock {
+        private final Sync sync = new Sync();
+        
+        // 内部同步器
+        private static class Sync extends AbstractQueuedSynchronizer {
+            @Override
+            protected boolean tryAcquire(int arg) {
+                // 尝试获取锁：CAS设置state从0到1
+                if (compareAndSetState(0, 1)) {
+                    setExclusiveOwnerThread(Thread.currentThread());
+                    return true;
+                }
+                return false;
+            }
+            
+            @Override
+            protected boolean tryRelease(int arg) {
+                // 释放锁：设置state为0
+                if (getState() == 0) {
+                    throw new IllegalMonitorStateException();
+                }
+                setExclusiveOwnerThread(null);
+                setState(0);
+                return true;
+            }
+            
+            @Override
+            protected boolean isHeldExclusively() {
+                return getState() == 1;
+            }
+        }
+        
+        public void lock() {
+            sync.acquire(1);
+        }
+        
+        public void unlock() {
+            sync.release(1);
+        }
+    }
+    
+    // 2. Semaphore - 信号量（控制并发数）
+    public static void semaphoreDemo() throws InterruptedException {
+        // 创建3个许可的信号量
+        Semaphore semaphore = new Semaphore(3);
+        
+        // 模拟10个线程竞争3个资源
+        for (int i = 0; i < 10; i++) {
+            int threadId = i;
+            new Thread(() -> {
+                try {
+                    System.out.println("线程" + threadId + " 等待获取许可");
+                    semaphore.acquire(); // 获取许可（阻塞）
+                    System.out.println("线程" + threadId + " 获得许可，开始执行");
+                    Thread.sleep(2000); // 模拟业务处理
+                    System.out.println("线程" + threadId + " 释放许可");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    semaphore.release(); // 释放许可
+                }
+            }).start();
+        }
+        
+        // 尝试获取许可（非阻塞）
+        boolean acquired = semaphore.tryAcquire();
+        if (acquired) {
+            try {
+                // 执行业务
+            } finally {
+                semaphore.release();
+            }
+        }
+        
+        // 带超时的获取
+        acquired = semaphore.tryAcquire(3, TimeUnit.SECONDS);
+    }
+    
+    // 3. CountDownLatch - 倒计时门栓
+    public static void countDownLatchDemo() throws InterruptedException {
+        int workerCount = 5;
+        CountDownLatch latch = new CountDownLatch(workerCount);
+        
+        // 启动多个工作线程
+        for (int i = 0; i < workerCount; i++) {
+            int workerId = i;
+            new Thread(() -> {
+                try {
+                    System.out.println("工作线程" + workerId + " 开始执行");
+                    Thread.sleep((long) (Math.random() * 3000));
+                    System.out.println("工作线程" + workerId + " 执行完成");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    latch.countDown(); // 计数减1
+                }
+            }).start();
+        }
+        
+        System.out.println("主线程等待所有工作线程完成...");
+        latch.await(); // 阻塞直到计数为0
+        System.out.println("所有工作线程已完成，主线程继续执行");
+        
+        // 带超时的等待
+        boolean completed = latch.await(10, TimeUnit.SECONDS);
+    }
+    
+    // 4. CyclicBarrier - 循环栅栏
+    public static void cyclicBarrierDemo() {
+        int parties = 3;
+        
+        // 创建栅栏，所有线程到达后执行barrierAction
+        CyclicBarrier barrier = new CyclicBarrier(parties, () -> {
+            System.out.println("所有线程已到达栅栏，开始下一阶段");
+        });
+        
+        for (int i = 0; i < parties; i++) {
+            int threadId = i;
+            new Thread(() -> {
+                try {
+                    System.out.println("线程" + threadId + " 第一阶段工作");
+                    Thread.sleep((long) (Math.random() * 2000));
+                    System.out.println("线程" + threadId + " 到达栅栏");
+                    barrier.await(); // 等待其他线程
+                    
+                    System.out.println("线程" + threadId + " 第二阶段工作");
+                    Thread.sleep((long) (Math.random() * 2000));
+                    System.out.println("线程" + threadId + " 到达栅栏");
+                    barrier.await(); // 可重复使用
+                    
+                    System.out.println("线程" + threadId + " 全部完成");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        }
+    }
+    
+    // 5. Phaser - 阶段器（JDK 7+，更灵活的CyclicBarrier）
+    public static void phaserDemo() {
+        Phaser phaser = new Phaser(3); // 3个参与者
+        
+        for (int i = 0; i < 3; i++) {
+            int threadId = i;
+            new Thread(() -> {
+                System.out.println("线程" + threadId + " 阶段0");
+                phaser.arriveAndAwaitAdvance(); // 到达并等待
+                
+                System.out.println("线程" + threadId + " 阶段1");
+                phaser.arriveAndAwaitAdvance();
+                
+                System.out.println("线程" + threadId + " 阶段2");
+                phaser.arriveAndDeregister(); // 到达并注销
+            }).start();
+        }
+    }
+    
+    // 6. Exchanger - 交换器（两个线程交换数据）
+    public static void exchangerDemo() {
+        Exchanger<String> exchanger = new Exchanger<>();
+        
+        // 线程1
+        new Thread(() -> {
+            try {
+                String data = "线程1的数据";
+                System.out.println("线程1准备交换: " + data);
+                String received = exchanger.exchange(data);
+                System.out.println("线程1收到: " + received);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+        
+        // 线程2
+        new Thread(() -> {
+            try {
+                String data = "线程2的数据";
+                System.out.println("线程2准备交换: " + data);
+                String received = exchanger.exchange(data);
+                System.out.println("线程2收到: " + received);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+    
+    // 7. 实际应用：并行任务协调
+    public static class ParallelTaskCoordinator {
+        private final int taskCount;
+        private final CountDownLatch startLatch;
+        private final CountDownLatch endLatch;
+        
+        public ParallelTaskCoordinator(int taskCount) {
+            this.taskCount = taskCount;
+            this.startLatch = new CountDownLatch(1);
+            this.endLatch = new CountDownLatch(taskCount);
+        }
+        
+        public void executeTask(Runnable task) {
+            new Thread(() -> {
+                try {
+                    startLatch.await(); // 等待开始信号
+                    task.run();
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                } finally {
+                    endLatch.countDown();
+                }
+            }).start();
+        }
+        
+        public void startAll() {
+            startLatch.countDown(); // 发送开始信号
+        }
+        
+        public void awaitCompletion() throws InterruptedException {
+            endLatch.await(); // 等待所有任务完成
+        }
+    }
+    
+    // 8. 使用示例
+    public static void main(String[] args) throws InterruptedException {
+        // 测试自定义锁
+        CustomLock lock = new CustomLock();
+        lock.lock();
+        try {
+            System.out.println("持有自定义锁");
+        } finally {
+            lock.unlock();
+        }
+        
+        // 测试信号量
+        semaphoreDemo();
+        
+        // 测试倒计时门栓
+        countDownLatchDemo();
+        
+        // 测试循环栅栏
+        cyclicBarrierDemo();
+        
+        // 测试阶段器
+        phaserDemo();
+        
+        // 测试交换器
+        exchangerDemo();
+        
+        // 测试并行任务协调器
+        ParallelTaskCoordinator coordinator = new ParallelTaskCoordinator(5);
+        for (int i = 0; i < 5; i++) {
+            int taskId = i;
+            coordinator.executeTask(() -> {
+                System.out.println("任务" + taskId + " 执行");
+            });
+        }
+        coordinator.startAll();
+        coordinator.awaitCompletion();
+        System.out.println("所有任务完成");
+    }
+}
+            `
+          },
+        ]
+      },
+      {
+        name: 'JMM内存模型',
+        blocks: [
+          {
+            id: 'jmm',
+            title: 'Java内存模型',
+            subtitle: '主内存/工作内存',
+            content: `
+**JMM核心概念**
+- 主内存：所有线程共享
+- 工作内存：线程私有
+- 内存交互操作：lock/unlock/read/write等
+
+**三大特性**
+- 原子性：synchronized、Lock
+- 可见性：volatile、synchronized、final
+- 有序性：volatile、synchronized
+
+**代码示例：**
+
+public class JMMDemo {
+    
+    // 1. 可见性问题示例
+    private static boolean flag = false; // 没有volatile
+    
+    public static void visibilityProblem() {
+        // 线程1：修改flag
+        new Thread(() -> {
+            try {
+                Thread.sleep(1000);
+                flag = true; // 修改可能不会立即对线程2可见
+                System.out.println("线程1修改flag为true");
+            } catch (InterruptedException e) {}
+        }).start();
+        
+        // 线程2：读取flag
+        new Thread(() -> {
+            while (!flag) {
+                // 可能一直循环，因为看不到flag的修改
+            }
+            System.out.println("线程2检测到flag变化");
+        }).start();
+    }
+    
+    // 解决方案：使用volatile
+    private static volatile boolean volatileFlag = false;
+    
+    public static void visibilitySolution() {
+        new Thread(() -> {
+            try {
+                Thread.sleep(1000);
+                volatileFlag = true; // 修改立即对其他线程可见
+                System.out.println("线程1修改volatileFlag为true");
+            } catch (InterruptedException e) {}
+        }).start();
+        
+        new Thread(() -> {
+            while (!volatileFlag) {
+                // volatile保证可见性
+            }
+            System.out.println("线程2检测到volatileFlag变化");
+        }).start();
+    }
+    
+    // 2. 原子性问题示例
+    private static int count = 0;
+    
+    public static void atomicityProblem() throws InterruptedException {
+        Thread[] threads = new Thread[10];
+        for (int i = 0; i < 10; i++) {
+            threads[i] = new Thread(() -> {
+                for (int j = 0; j < 1000; j++) {
+                    count++; // 非原子操作：读取、加1、写回
+                }
+            });
+            threads[i].start();
+        }
+        
+        for (Thread thread : threads) {
+            thread.join();
+        }
+        
+        System.out.println("count = " + count); // 结果小于10000
+    }
+    
+    // 解决方案1：使用synchronized
+    private static int syncCount = 0;
+    
+    public static synchronized void incrementSync() {
+        syncCount++; // synchronized保证原子性
+    }
+    
+    // 解决方案2：使用AtomicInteger
+    private static AtomicInteger atomicCount = new AtomicInteger(0);
+    
+    public static void incrementAtomic() {
+        atomicCount.incrementAndGet(); // 原子操作
+    }
+    
+    // 3. 有序性问题示例（指令重排序）
+    private static int a = 0;
+    private static int b = 0;
+    private static int x = 0;
+    private static int y = 0;
+    
+    public static void reorderingProblem() throws InterruptedException {
+        for (int i = 0; i < 100000; i++) {
+            a = 0; b = 0; x = 0; y = 0;
+            
+            Thread t1 = new Thread(() -> {
+                a = 1;  // 操作1
+                x = b;  // 操作2
+                // 可能被重排序为：x = b; a = 1;
+            });
+            
+            Thread t2 = new Thread(() -> {
+                b = 1;  // 操作3
+                y = a;  // 操作4
+                // 可能被重排序为：y = a; b = 1;
+            });
+            
+            t1.start();
+            t2.start();
+            t1.join();
+            t2.join();
+            
+            // 正常情况：x=0,y=1 或 x=1,y=0 或 x=1,y=1
+            // 重排序后可能：x=0,y=0
+            if (x == 0 && y == 0) {
+                System.out.println("发生指令重排序！");
+                break;
+            }
+        }
+    }
+    
+    // 解决方案：使用volatile禁止重排序
+    private static volatile int volatileA = 0;
+    private static volatile int volatileB = 0;
+    
+    // 4. 内存屏障示例
+    public static class MemoryBarrierDemo {
+        private int normalVar = 0;
+        private volatile int volatileVar = 0;
+        
+        public void writer() {
+            normalVar = 1;      // 普通写
+            volatileVar = 2;    // volatile写
+            // volatile写之前的所有操作都不会被重排序到volatile写之后
+            // 相当于插入了StoreStore屏障
+        }
+        
+        public void reader() {
+            int temp = volatileVar;  // volatile读
+            // volatile读之后的所有操作都不会被重排序到volatile读之前
+            // 相当于插入了LoadLoad屏障
+            int value = normalVar;   // 普通读
+            // 保证能读到normalVar=1
+        }
+    }
+    
+    // 5. final字段的可见性
+    public static class FinalFieldDemo {
+        private final int x;
+        private int y;
+        
+        public FinalFieldDemo() {
+            x = 1;  // final字段的写入
+            y = 2;  // 普通字段的写入
+        }
+        
+        // JMM保证：
+        // 1. 构造函数内对final字段的写入，在构造函数返回前完成
+        // 2. 其他线程看到该对象时，final字段一定是初始化完成的
+        // 3. 普通字段y可能还未初始化完成
+    }
+    
+    // 6. 双重检查锁定（DCL）
+    public static class Singleton {
+        // 必须使用volatile，防止指令重排序
+        private static volatile Singleton instance;
+        
+        private Singleton() {}
+        
+        public static Singleton getInstance() {
+            if (instance == null) {  // 第一次检查
+                synchronized (Singleton.class) {
+                    if (instance == null) {  // 第二次检查
+                        // 对象创建分三步：
+                        // 1. 分配内存空间
+                        // 2. 初始化对象
+                        // 3. 将instance指向内存空间
+                        // 
+                        // 没有volatile可能重排序为1->3->2
+                        // 导致其他线程看到未初始化的对象
+                        instance = new Singleton();
+                    }
+                }
+            }
+            return instance;
+        }
+    }
+    
+    // 7. 线程本地内存示例
+    public static class ThreadLocalMemoryDemo {
+        private int sharedVar = 0;
+        
+        public void demonstrate() {
+            // 线程1
+            new Thread(() -> {
+                int localCopy = sharedVar;  // 从主内存读取到工作内存
+                localCopy++;                // 在工作内存中修改
+                sharedVar = localCopy;      // 写回主内存（不一定立即）
+            }).start();
+            
+            // 线程2
+            new Thread(() -> {
+                int localCopy = sharedVar;  // 可能读到旧值
+                System.out.println("sharedVar = " + localCopy);
+            }).start();
+        }
+    }
+    
+    // 8. 8种内存交互操作
+    public static void memoryOperations() {
+        /*
+         * 主内存与工作内存之间的8种操作：
+         * 
+         * 1. lock（锁定）：作用于主内存，把变量标识为线程独占
+         * 2. unlock（解锁）：作用于主内存，释放锁定的变量
+         * 3. read（读取）：作用于主内存，把变量值传输到工作内存
+         * 4. load（载入）：作用于工作内存，把read的值放入工作内存副本
+         * 5. use（使用）：作用于工作内存，把值传递给执行引擎
+         * 6. assign（赋值）：作用于工作内存，把执行引擎的值赋给工作内存
+         * 7. store（存储）：作用于工作内存，把值传输到主内存
+         * 8. write（写入）：作用于主内存，把store的值写入主内存变量
+         * 
+         * 规则：
+         * - read和load必须成对出现
+         * - store和write必须成对出现
+         * - 不允许线程丢弃assign操作
+         * - 不允许线程无原因地把数据从工作内存同步回主内存
+         * - 新变量只能在主内存中诞生
+         * - 一个变量同一时刻只允许一条线程对其进行lock操作
+         * - lock操作会清空工作内存中此变量的值
+         * - unlock之前必须先把变量同步回主内存
+         */
+    }
+    
+    public static void main(String[] args) throws InterruptedException {
+        // 测试可见性问题
+        visibilityProblem();
+        Thread.sleep(3000);
+        
+        // 测试可见性解决方案
+        visibilitySolution();
+        Thread.sleep(3000);
+        
+        // 测试原子性问题
+        atomicityProblem();
+        
+        // 测试重排序问题
+        reorderingProblem();
+    }
+}
+            `
+          },
+          {
+            id: 'happens-before',
+            title: 'happens-before',
+            subtitle: '先行发生原则',
+            content: `
+**8条规则**
+1. 程序次序规则
+2. 监视器锁规则
+3. volatile变量规则
+4. 线程启动规则
+5. 线程终止规则
+6. 线程中断规则
+7. 对象终结规则
+8. 传递性
+
+**意义**
+- 定义内存可见性保证
+- 无需显式同步的场景
+
+**代码示例：**
+
+public class HappensBeforeDemo {
+    
+    // 1. 程序次序规则（Program Order Rule）
+    public static void programOrderRule() {
+        int a = 1;      // 操作1
+        int b = 2;      // 操作2
+        int c = a + b;  // 操作3
+        
+        // 规则：在同一个线程中，按照程序代码顺序
+        // 操作1 happens-before 操作2
+        // 操作2 happens-before 操作3
+        // 注意：实际执行可能重排序，但结果保证一致
+    }
+    
+    // 2. 监视器锁规则（Monitor Lock Rule）
+    private static int sharedVar = 0;
+    private static final Object lock = new Object();
+    
+    public static void monitorLockRule() {
+        // 线程1
+        new Thread(() -> {
+            synchronized (lock) {
+                sharedVar = 1;  // 操作1
+            } // unlock操作
+        }).start();
+        
+        // 线程2
+        new Thread(() -> {
+            synchronized (lock) {  // lock操作
+                int value = sharedVar;  // 操作2
+                // 规则：unlock happens-before 后续的lock
+                // 因此操作1 happens-before 操作2
+                // 保证能看到sharedVar=1
+                System.out.println("sharedVar = " + value);
+            }
+        }).start();
+    }
+    
+    // 3. volatile变量规则（Volatile Variable Rule）
+    private static volatile int volatileVar = 0;
+    private static int normalVar = 0;
+    
+    public static void volatileVariableRule() {
+        // 线程1
+        new Thread(() -> {
+            normalVar = 1;      // 操作1
+            volatileVar = 2;    // 操作2（volatile写）
+            // 规则：volatile写之前的所有操作 happens-before volatile写
+        }).start();
+        
+        // 线程2
+        new Thread(() -> {
+            int temp = volatileVar;  // 操作3（volatile读）
+            int value = normalVar;   // 操作4
+            // 规则：volatile写 happens-before volatile读
+            // 因此操作1 happens-before 操作4
+            // 保证能看到normalVar=1
+            System.out.println("normalVar = " + value);
+        }).start();
+    }
+    
+    // 4. 线程启动规则（Thread Start Rule）
+    private static int x = 0;
+    
+    public static void threadStartRule() {
+        x = 1;  // 操作1
+        
+        Thread thread = new Thread(() -> {
+            int value = x;  // 操作2
+            // 规则：主线程中对变量的写入 happens-before 子线程的读取
+            // 因此操作1 happens-before 操作2
+            // 保证能看到x=1
+            System.out.println("x = " + value);
+        });
+        
+        thread.start();  // 启动线程
+    }
+    
+    // 5. 线程终止规则（Thread Termination Rule）
+    private static int y = 0;
+    
+    public static void threadTerminationRule() throws InterruptedException {
+        Thread thread = new Thread(() -> {
+            y = 1;  // 操作1
+        });
+        
+        thread.start();
+        thread.join();  // 等待线程结束
+        
+        int value = y;  // 操作2
+        // 规则：子线程中的所有操作 happens-before join()返回
+        // 因此操作1 happens-before 操作2
+        // 保证能看到y=1
+        System.out.println("y = " + value);
+    }
+    
+    // 6. 线程中断规则（Thread Interruption Rule）
+    public static void threadInterruptionRule() {
+        Thread thread = new Thread(() -> {
+            while (!Thread.currentThread().isInterrupted()) {
+                // 执行任务
+            }
+            // 操作2：检测到中断
+            System.out.println("线程被中断");
+        });
+        
+        thread.start();
+        
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {}
+        
+        thread.interrupt();  // 操作1：中断线程
+        // 规则：interrupt()调用 happens-before 检测到中断
+        // 因此操作1 happens-before 操作2
+    }
+    
+    // 7. 对象终结规则（Finalizer Rule）
+    public static class FinalizerDemo {
+        private int data = 0;
+        
+        public FinalizerDemo() {
+            data = 1;  // 操作1
+        }
+        
+        @Override
+        protected void finalize() throws Throwable {
+            int value = data;  // 操作2
+            // 规则：构造函数的结束 happens-before finalize()方法的开始
+            // 因此操作1 happens-before 操作2
+            // 保证能看到data=1
+            System.out.println("data = " + value);
+        }
+    }
+    
+    // 8. 传递性（Transitivity）
+    private static int a = 0;
+    private static volatile boolean flag = false;
+    private static int b = 0;
+    
+    public static void transitivityRule() {
+        // 线程1
+        new Thread(() -> {
+            a = 1;          // 操作1
+            flag = true;    // 操作2（volatile写）
+        }).start();
+        
+        // 线程2
+        new Thread(() -> {
+            if (flag) {     // 操作3（volatile读）
+                b = a;      // 操作4
+                // 传递性：
+                // 操作1 happens-before 操作2（程序次序规则）
+                // 操作2 happens-before 操作3（volatile规则）
+                // 操作3 happens-before 操作4（程序次序规则）
+                // 因此：操作1 happens-before 操作4
+                // 保证能看到a=1
+                System.out.println("b = " + b);
+            }
+        }).start();
+    }
+    
+    // 9. 实际应用：安全发布对象
+    public static class SafePublication {
+        private final int x;
+        private final int y;
+        private static volatile SafePublication instance;
+        
+        private SafePublication() {
+            x = 1;  // final字段的写入
+            y = 2;  // final字段的写入
+        }
+        
+        public static SafePublication getInstance() {
+            if (instance == null) {
+                synchronized (SafePublication.class) {
+                    if (instance == null) {
+                        instance = new SafePublication();
+                        // happens-before保证：
+                        // 1. 构造函数内的写入 happens-before 构造函数结束
+                        // 2. 构造函数结束 happens-before volatile写
+                        // 3. volatile写 happens-before volatile读
+                        // 因此其他线程读取instance时，x和y一定已初始化
+                    }
+                }
+            }
+            return instance;
+        }
+    }
+    
+    // 10. 实际应用：生产者-消费者
+    public static class ProducerConsumer {
+        private volatile boolean ready = false;
+        private int data = 0;
+        
+        // 生产者
+        public void produce() {
+            data = 42;      // 操作1
+            ready = true;   // 操作2（volatile写）
+            // happens-before保证：操作1 happens-before 操作2
+        }
+        
+        // 消费者
+        public void consume() {
+            while (!ready) {  // 操作3（volatile读）
+                // 等待数据准备好
+            }
+            int value = data;  // 操作4
+            // happens-before保证：
+            // 操作2 happens-before 操作3（volatile规则）
+            // 操作3 happens-before 操作4（程序次序规则）
+            // 因此：操作1 happens-before 操作4
+            // 保证能看到data=42
+            System.out.println("消费数据: " + value);
+        }
+    }
+    
+    // 11. 常见错误：没有happens-before关系
+    private static int unsafeVar = 0;
+    
+    public static void noHappensBeforeExample() {
+        // 线程1
+        new Thread(() -> {
+            unsafeVar = 1;  // 操作1
+        }).start();
+        
+        // 线程2
+        new Thread(() -> {
+            int value = unsafeVar;  // 操作2
+            // 错误：操作1和操作2之间没有happens-before关系
+            // 不保证能看到unsafeVar=1
+            System.out.println("unsafeVar = " + value);
+        }).start();
+    }
+    
+    // 12. 总结：如何建立happens-before关系
+    public static void howToEstablishHappensBefore() {
+        /*
+         * 建立happens-before关系的方法：
+         * 
+         * 1. 使用synchronized
+         *    - unlock happens-before 后续的lock
+         * 
+         * 2. 使用volatile
+         *    - volatile写 happens-before volatile读
+         * 
+         * 3. 使用显式锁（Lock）
+         *    - unlock happens-before 后续的lock
+         * 
+         * 4. 使用线程启动和终止
+         *    - start() happens-before 线程内的操作
+         *    - 线程内的操作 happens-before join()返回
+         * 
+         * 5. 使用final字段
+         *    - 构造函数内对final字段的写入 happens-before 构造函数结束
+         * 
+         * 6. 使用并发工具类
+         *    - CountDownLatch.countDown() happens-before await()返回
+         *    - Semaphore.release() happens-before acquire()返回
+         *    - Future.set() happens-before get()返回
+         */
+    }
+    
+    public static void main(String[] args) throws InterruptedException {
+        // 测试各种happens-before规则
+        programOrderRule();
+        monitorLockRule();
+        volatileVariableRule();
+        threadStartRule();
+        threadTerminationRule();
+        threadInterruptionRule();
+        transitivityRule();
+        
+        // 测试实际应用
+        ProducerConsumer pc = new ProducerConsumer();
+        new Thread(pc::produce).start();
+        new Thread(pc::consume).start();
+    }
+}
+            `
+          }
+        ]
+      }
+    ]
+  }
+  
+  // 通用处理：为其他分类自动生成全景图
+  // 将知识点列表按每10个一组分层展示
+  if (panoramaCategory.value.children && panoramaCategory.value.children.length > 0) {
+    const children = panoramaCategory.value.children
+    const layers = []
+    const itemsPerLayer = 10
+    
+    for (let i = 0; i < children.length; i += itemsPerLayer) {
+      const layerItems = children.slice(i, Math.min(i + itemsPerLayer, children.length))
+      const layerNumber = Math.floor(i / itemsPerLayer) + 1
+      const totalLayers = Math.ceil(children.length / itemsPerLayer)
+      
+      layers.push({
+        name: `知识点 ${i + 1}-${Math.min(i + itemsPerLayer, children.length)} (共${children.length}个)`,
+        blocks: layerItems.map(item => ({
+          id: item.id,
+          title: item.name,
+          subtitle: `点击查看详情`,
+          content: `
+**${item.name}**
+
+这是关于"${item.name}"的知识点。
+
+**核心要点：**
+- 理解基本概念和原理
+- 掌握使用场景和最佳实践
+- 了解常见问题和解决方案
+
+**面试建议：**
+- 准备相关的实际案例
+- 理解底层实现原理
+- 能够对比相关技术的优缺点
+
+**代码示例：**
+
+// TODO: 补充具体的代码示例
+// 这里展示${item.name}的基本用法
+
+public class Demo {
+    public static void main(String[] args) {
+        // 示例代码
+        System.out.println("${item.name}");
+    }
+}
+          `
+        }))
+      })
+    }
+    
+    return layers
+  }
+  
+  return []
+})
+
+const renderedContent = computed(() => {
+  if (!selectedArticle.value) return ''
+  
+  const mockContent = `
+# ${selectedArticle.value.name}
+
+## 概述
+
+这是关于 **${selectedArticle.value.name}** 的详细介绍。
+
+## 核心概念
+
+### 1. 基本定义
+
+\`\`\`java
+// 示例代码
+public class Example {
+    private String name;
+    
+    public Example(String name) {
+        this.name = name;
+    }
+    
+    public void display() {
+        System.out.println("Hello, " + name);
+    }
+}
+\`\`\`
+
+### 2. 关键特性
+
+- **特性一**：提供了强大的功能支持
+- **特性二**：具有良好的性能表现
+- **特性三**：易于使用和维护
+
+### 3. 使用场景
+
+在实际开发中，我们经常会遇到以下场景：
+
+1. **场景一**：高并发环境下的数据处理
+2. **场景二**：分布式系统中的一致性保证
+3. **场景三**：微服务架构中的服务治理
+
+## 面试要点
+
+> 💡 **面试官常问**：请解释一下这个概念的核心原理？
+
+**参考答案**：
+
+这个知识点的核心在于理解其底层实现机制。主要包括以下几个方面：
+
+- 原理一：详细说明
+- 原理二：详细说明
+- 原理三：详细说明
+
+## 最佳实践
+
+\`\`\`java
+// 推荐的写法
+public class BestPractice {
+    // 使用构造函数注入
+    private final DependencyService service;
+    
+    public BestPractice(DependencyService service) {
+        this.service = service;
+    }
+    
+    public void execute() {
+        // 实现代码
+        service.process();
+    }
+}
+\`\`\`
+
+## 常见陷阱
+
+⚠️ **注意**：在使用时要避免以下问题：
+
+- **陷阱1**：忽略线程安全问题
+- **陷阱2**：过度使用导致性能下降
+- **陷阱3**：配置不当引发异常
+
+## 总结
+
+通过本文的学习，你应该掌握了 ${selectedArticle.value.name} 的核心概念和使用方法。
+
+## 相关资源
+
+- [官方文档](https://docs.oracle.com/javase/)
+- [深入理解JVM](https://book.douban.com/)
+- [Effective Java](https://book.douban.com/)
+`
+  
+  return md.render(mockContent)
+})
+</script>
+
+<style scoped>
+.card-grid-layout {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(17, 24, 39, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo-icon {
+  font-size: 36px;
+  filter: drop-shadow(0 2px 8px rgba(59, 130, 246, 0.4));
+}
+
+.app-title {
+  font-size: 28px;
+  font-weight: 700;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.search-section {
+  position: relative;
+  flex: 1;
+  max-width: 500px;
+}
+
+.global-search {
+  width: 100%;
+  padding: 12px 48px 12px 20px;
+  background: var(--bg-tertiary);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-size: 15px;
+  transition: all 0.3s;
+}
+
+.global-search:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.search-icon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  pointer-events: none;
+}
+
+.main-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+
+/* 分类卡片网格 */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  animation: fadeIn 0.5s ease;
+}
+
+.category-card {
+  position: relative;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: 16px;
+  padding: 40px 32px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  animation: slideInUp 0.5s ease backwards;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.category-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent-primary);
+  box-shadow: 0 12px 32px rgba(59, 130, 246, 0.2);
+}
+
+.category-card:hover .card-hover-effect {
+  opacity: 1;
+}
+
+.card-hover-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--accent-gradient);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.card-icon {
+  font-size: 56px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.card-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.card-count {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* 知识点列表 */
+.knowledge-points {
+  animation: fadeIn 0.4s ease;
+}
+
+.points-header {
+  margin-bottom: 40px;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 24px;
+}
+
+.back-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border-color: var(--accent-primary);
+}
+
+.category-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.category-icon-large {
+  font-size: 64px;
+  filter: drop-shadow(0 4px 12px rgba(59, 130, 246, 0.4));
+}
+
+.category-title {
+  font-size: 36px;
+  font-weight: 700;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.points-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.point-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 28px;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  animation: slideInUp 0.4s ease backwards;
+}
+
+.point-card:hover {
+  transform: translateX(8px);
+  border-color: var(--accent-primary);
+  background: var(--bg-tertiary);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15);
+}
+
+.point-card:hover .point-arrow {
+  transform: translateX(4px);
+  color: var(--accent-primary);
+}
+
+.point-number {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.point-title {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.point-arrow {
+  font-size: 24px;
+  color: var(--text-muted);
+  transition: all 0.3s;
+}
+
+/* 文章视图 */
+.article-view {
+  animation: fadeIn 0.4s ease;
+}
+
+.article-header {
+  margin-bottom: 40px;
+}
+
+.article-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 16px;
+}
+
+.breadcrumb-link {
+  color: var(--accent-primary);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.breadcrumb-link:hover {
+  color: var(--accent-secondary);
+}
+
+.breadcrumb-sep {
+  color: var(--border-color);
+}
+
+.breadcrumb-current {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.article-content {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 60px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.article-title {
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  line-height: 1.3;
+}
+
+.article-meta {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.meta-tag {
+  padding: 6px 16px;
+  background: var(--accent-gradient);
+  color: white;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.meta-date {
+  padding: 6px 16px;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.markdown-body {
+  color: var(--text-primary);
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+.markdown-body :deep(h1),
+.markdown-body :deep(h2),
+.markdown-body :deep(h3) {
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+.markdown-body :deep(h2) {
+  font-size: 28px;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 12px;
+}
+
+.markdown-body :deep(h3) {
+  font-size: 22px;
+}
+
+.markdown-body :deep(p) {
+  margin-bottom: 16px;
+}
+
+.markdown-body :deep(code) {
+  background: var(--bg-tertiary);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: #e06c75;
+}
+
+.markdown-body :deep(pre) {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  overflow-x: auto;
+  margin: 20px 0;
+}
+
+.markdown-body :deep(pre code) {
+  background: none;
+  padding: 0;
+  color: var(--text-primary);
+}
+
+.markdown-body :deep(ul),
+.markdown-body :deep(ol) {
+  margin: 16px 0;
+  padding-left: 32px;
+}
+
+.markdown-body :deep(li) {
+  margin: 8px 0;
+}
+
+.markdown-body :deep(blockquote) {
+  border-left: 4px solid var(--accent-primary);
+  background: var(--bg-tertiary);
+  padding: 16px 24px;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+
+.markdown-body :deep(strong) {
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .search-section {
+    max-width: 100%;
+  }
+  
+  .category-grid,
+  .points-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .article-content {
+    padding: 32px 24px;
+  }
+}
+
+/* 全景按钮样式 */
+.panorama-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.category-card {
+  position: relative;
+}
+
+.category-card:hover .panorama-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.panorama-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.card-content {
+  cursor: pointer;
+}
+
+/* 全景视图样式 */
+.panorama-view {
+  padding: 40px;
+  animation: fadeIn 0.5s ease;
+}
+
+.panorama-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.panorama-title {
+  font-size: 32px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 架构图样式 */
+.architecture-diagram {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.arch-layer {
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.arch-layer:hover {
+  transform: translateY(-4px);
+}
+
+.layer-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 3px solid var(--accent-primary);
+  display: inline-block;
+}
+
+.layer-blocks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.knowledge-block {
+  background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.knowledge-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.knowledge-block:hover::before {
+  transform: scaleY(1);
+}
+
+.knowledge-block:hover {
+  transform: translateX(8px);
+  border-color: var(--accent-primary);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.2);
+}
+
+.block-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.block-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  opacity: 0.8;
+}
+
+/* 知识点模态框样式 */
+.knowledge-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.knowledge-modal {
+  background: var(--bg-secondary);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 900px;
+  width: 90%;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.modal-close:hover {
+  background: var(--accent-primary);
+  color: white;
+  transform: rotate(90deg);
+}
+
+.modal-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  padding-right: 50px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 标签页样式 */
+.modal-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.tab-btn {
+  padding: 12px 24px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+}
+
+.tab-btn.active {
+  color: var(--accent-primary);
+  border-bottom-color: var(--accent-primary);
+}
+
+/* 内容区域 */
+.modal-content-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.modal-content {
+  color: var(--text-primary);
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+/* 知识讲解样式 */
+.description-content {
+  white-space: pre-line;
+  padding: 20px;
+}
+
+.description-content strong {
+  color: var(--accent-primary);
+  font-weight: 600;
+  display: block;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+/* 代码示例样式 */
+.code-content {
+  padding: 0;
+}
+
+.code-content pre {
+  margin: 0;
+  padding: 24px;
+  background: #1e1e1e;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+.code-content code {
+  font-family: 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #d4d4d4;
+  display: block;
+}
+
+/* Java 代码语法高亮 */
+.code-content :deep(.keyword) {
+  color: #569cd6;
+  font-weight: 600;
+}
+
+.code-content :deep(.string) {
+  color: #ce9178;
+}
+
+.code-content :deep(.comment) {
+  color: #6a9955;
+  font-style: italic;
+}
+
+.code-content :deep(.number) {
+  color: #b5cea8;
+}
+
+.code-content :deep(.function) {
+  color: #dcdcaa;
+}
+
+.code-content :deep(.class-name) {
+  color: #4ec9b0;
+}
+
+/* 滚动条样式 */
+.modal-content-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content-wrapper::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+}
+
+.modal-content-wrapper::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+.modal-content-wrapper::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .panorama-view {
+    padding: 20px;
+  }
+  
+  .layer-blocks {
+    grid-template-columns: 1fr;
+  }
+  
+  .knowledge-modal {
+    margin: 20px;
+    padding: 30px 20px;
+    max-width: calc(100% - 40px);
+  }
+  
+  .modal-title {
+    font-size: 22px;
+  }
+}
+
+</style>

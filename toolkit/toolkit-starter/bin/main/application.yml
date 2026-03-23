@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: toolkit
+
+server:
+  port: 8081
+
+toolkit:
+  http:
+    connect-timeout: 10
+    read-timeout: 30
+  knowledge:
+    root-path: /Users/zhangkai/IdeaProjects/job-interview-log/java8gu/a8gu
+
+logging:
+  level:
+    com.kai.toolkit: DEBUG

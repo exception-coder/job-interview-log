@@ -1,0 +1,64 @@
+---
+description: java-knowledge-frontend 前端架构规则
+globs: java-knowledge-frontend/src/**
+alwaysApply: true
+---
+
+# 前端架构：Feature-Sliced + Composable-Driven
+
+数据、操作、视图、样式严格分层，职责单一，禁止跨层直接依赖。
+
+## 目录职责
+
+```
+src/
+├── data/
+│   ├── types.ts          # 全局 TS 类型与接口，只放类型，不含逻辑
+│   ├── knowledgeTree.ts  # 知识树静态数据
+│   ├── panorama/         # 全景图数据，按领域切片
+│   └── content/          # 知识块详细内容，按领域切片
+│       ├── index.ts      # 统一导出 & loadBlockContent
+│       └── {domain}/     # 领域子目录
+├── composables/          # 业务逻辑层（Vue Composable）
+├── components/           # 纯展示组件，无业务状态
+├── style.css             # 全局样式
+├── main.ts               # 应用入口
+└── App.vue               # 根组件，仅负责组装
+```
+
+## 分层规则
+
+**data 层**
+- 不得 import composables 或 components
+- panorama/ 和 content/ 按领域拆文件，新增领域在 index.ts 注册
+
+**composables 层**
+- 用 `use` 前缀命名，每个对应一个业务场景
+- 响应式状态（ref/reactive）只在此层声明
+- 异步数据加载放在 composable 中，不放组件内
+- 可 import data 层，不得 import components
+
+**components 层**
+- 只负责渲染，接收 props / emit events
+- 不写业务状态，样式写在 `<style scoped>`
+
+**App.vue**
+- 仅做组合：引入 composables，传递给 components
+- 不写业务逻辑，不直接操作 data 层
+
+## 编码规范
+
+- TypeScript，禁止 `any`（临时兼容需注释说明）
+- Vue 3 `<script setup>` 语法
+- 组件 PascalCase，composable `useCamelCase`，data 文件 camelCase
+- 不引入新 UI 组件库
+- 三处重复再提取公共逻辑，避免过度抽象
+
+## 新增知识领域 checklist
+
+1. `data/types.ts` — 确认类型已定义
+2. `data/panorama/{domain}.ts` — 添加全景图数据
+3. `data/panorama/index.ts` — 注册新领域
+4. `data/content/{domain}/` — 添加内容文件
+5. `data/content/index.ts` — 注册加载映射
+6. `data/knowledgeTree.ts` — 添加知识树节点

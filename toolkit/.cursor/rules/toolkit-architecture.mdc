@@ -1,0 +1,117 @@
+---
+description: DDD Lite 架构规范 - 适用于 toolkit 项目所有 Java 代码
+globs: ["**/*.java", "**/*.gradle.kts"]
+alwaysApply: true
+---
+
+# Toolkit 项目编码规范
+
+## 架构层次规则
+
+- **domain 层**：零框架依赖，只允许引入 lombok 和 JDK 标准库
+  - 所有出站接口（Port）定义在 `domain.*.port` 包下
+  - 模型对象放在 `domain.*.model` 包下，使用 `@Builder` + `@Getter`
+  - 禁止在 domain 层使用 `@Component`、`@Service` 等 Spring 注解
+- **application 层**：只依赖 domain 层接口，不依赖 infrastructure
+  - Service 通过构造函数注入 Port，便于单元测试
+  - 返回值统一使用 `Result<T>`，不抛出受检异常
+- **infrastructure 层**：实现 domain/application 的 Port 接口
+  - 适配器类命名：`{技术名}Adapter` 或 `{技术名}{功能}`，如 `OkHttpClientAdapter`
+  - 不允许直接被 application 层调用，只通过接口依赖
+- **bootstrap 层**：唯一允许组装所有层的地方
+  - Bean 注册集中在 `config/` 包的 `@Configuration` 类中
+
+## 命名规范
+
+- Port 接口：`{能力}Port`，如 `HttpClientPort`、`HtmlParserPort`
+- Adapter 实现：`{技术栈}{Port去掉Port}`，如 `OkHttpClientAdapter`
+- Service：`{领域}Service`，如 `CrawlService`
+- 模型：`{概念}`，如 `HttpRequest`、`CrawlResult`
+
+## 代码风格
+
+- 使用 Lombok `@Builder`、`@Getter`，不手写 getter/setter
+- 集合字段对外暴露时用 `Collections.unmodifiableXxx` 包装
+- 日志用 SLF4J：`private static final Logger log = LoggerFactory.getLogger(Xxx.class)`
+- 时间统一用 `java.time.*`（Instant、LocalDateTime），不用 Date
+
+## 注释规范
+
+- **类注释**：每个类必须有 Javadoc，说明该类的职责、所属层次、核心设计决策
+- **方法注释**：每个 public/protected 方法必须有 Javadoc，说明：
+  - 该方法做什么（一句话概括）
+  - 关键参数含义（`@param`）
+  - 返回值含义（`@return`）
+  - 可能的失败情况
+- **块注释**：方法内每个逻辑块（读文件、编解码、格式化等）前写单行注释说明该块的目的
+- **禁止**写无意义注释，如 `// 调用方法`、`// 返回结果`
+- 示例：
+
+```java
+/**
+ * 基于 NIO FileChannel 的 URL 解码适配器。
+ * 使用分块读取避免大文件 OOM，解码后尝试 JSON 格式化。
+ * 属于 infrastructure 层，实现 UrlDecodePort 接口。
+ */
+public class NioUrlDecodeAdapter implements UrlDecodePort {
+
+    /**
+     * 读取文件并进行 URL 解码。
+     *
+     * @param request 解码请求，包含文件路径、字符集、是否格式化
+     * @return 解码成功返回 Result.ok(DecodeResult)，IO 异常返回 Result.fail
+     */
+    @Override
+    public Result<DecodeResult> decode(DecodeRequest request) {
+        // 用 NIO 分块读取文件原始内容
+        String raw = readFileNio(request.getFilePath());
+
+        // URL 解码
+        String decoded = URLDecoder.decode(raw, charset);
+
+        // 按需格式化 JSON
+        if (request.isPrettyPrint()) {
+            decoded = prettyPrintIfJson(decoded);
+        }
+    }
+}
+```
+
+## 测试规范
+
+- 单元测试放在对应模块的 `src/test/java` 下，包名与被测类一致
+- **每个功能类都必须有对应的单元测试**，测试文件命名：`{类名}Test`
+- application 层测试用 Mockito mock Port 接口
+- infrastructure 层测试可直接实例化被测类，使用临时文件（`@TempDir`）模拟 IO
+- 测试方法命名：`{方法名}_{场景}_{预期结果}`，如 `crawl_httpError_returnsFail`
+- 每个测试方法只验证一个行为，覆盖：正常路径、边界条件、异常路径
+- 禁止在单元测试中发出真实网络请求
+
+## 开发日志规范
+
+- 每次开发完成后，必须将本次变更记录到 `docs/dev-log.md`
+- 若 `docs/` 目录或 `dev-log.md` 不存在，直接创建
+- 内容**倒序排列**，最新记录写在文件最顶部
+- 每条记录格式：
+
+```markdown
+## YYYY-MM-DD 简短标题
+
+### 变更内容
+- 做了什么
+
+### 涉及文件
+- `模块/路径/文件.java`
+
+### 备注
+（可选，记录设计决策或注意事项）
+```
+
+## 新增工具包指引
+
+1. 在 `domain` 层新建 `{feature}/model/` 和 `{feature}/port/` 包
+2. 在 `application` 层新建 `{feature}/` 包，编写 Service
+3. 在 `infrastructure` 层实现 Port
+4. 在 `bootstrap/config/` 注册 Bean
+5. 更新 `gradle/libs.versions.toml` 添加新依赖版本
+6. 在 `docs/dev-log.md` 顶部追加本次开发记录

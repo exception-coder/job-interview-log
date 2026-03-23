@@ -1,0 +1,1676 @@
+# Java 8 Gu 02
+
+## 📮📮📮必读📮📮📮
+
+- [❗❗❗必读❗❗❗](https://www.yuque.com/hollis666/fsn3og/ycscnksw0cw2wus4)
+- [To读者&交流群](https://www.yuque.com/hollis666/fsn3og/eg7b13tn2f5uanmg)
+- [更新Timeline_202303-202304](https://www.yuque.com/hollis666/fsn3og/mdcg8yutol8sxcw8)
+- [更新Timeline_202305-202306](https://www.yuque.com/hollis666/fsn3og/qfmtrd0i6ykrzm1p)
+- [更新Timeline_202307](https://www.yuque.com/hollis666/fsn3og/coeur72pz6lx23bz)
+- [更新Timeline_202308](https://www.yuque.com/hollis666/fsn3og/gtu4pmyfadi56xsp)
+- [更新Timeline_202309](https://www.yuque.com/hollis666/fsn3og/nrao71wean312x2h)
+- [更新Timeline_202310](https://www.yuque.com/hollis666/fsn3og/zwzgzyluo2ds67zd)
+- [更新Timeline_202311](https://www.yuque.com/hollis666/fsn3og/it75tfyn8xynkpaq)
+- [更新Timeline_202312](https://www.yuque.com/hollis666/fsn3og/czrrdwkde3glsf9k)
+- [更新Timeline_202401](https://www.yuque.com/hollis666/fsn3og/hiz01xvskzxi1d1n)
+- [更新Timeline_202402](https://www.yuque.com/hollis666/fsn3og/vrfdnahd98tzdilt)
+- [更新Timeline_202403](https://www.yuque.com/hollis666/fsn3og/tcrpgcbaqnts9miy)
+- [更新Timeline_202404](https://www.yuque.com/hollis666/fsn3og/uuhkg3ldcog97agc)
+- [更新Timeline_202405](https://www.yuque.com/hollis666/fsn3og/vwgql7cuzt41wben)
+- [更新Timeline_202406](https://www.yuque.com/hollis666/fsn3og/gz0vbrz3r2b2qm2x)
+- [更新Timeline_202407](https://www.yuque.com/hollis666/fsn3og/zbdhbxzu2ghakkmh)
+- [更新Timeline_202408](https://www.yuque.com/hollis666/fsn3og/bvavdpeztvwvdi6i)
+- [更新Timeline_202409](https://www.yuque.com/hollis666/fsn3og/ahki9qik4cakfqq1)
+- [更新Timeline_202410](https://www.yuque.com/hollis666/fsn3og/yoixqprzseeo8p6p)
+- [更新Timeline_202411](https://www.yuque.com/hollis666/fsn3og/sashcgx1af07cc6u)
+- [更新Timeline_202412](https://www.yuque.com/hollis666/fsn3og/nzsma5ahgkibbqmv)
+- [更新Timeline_202501](https://www.yuque.com/hollis666/fsn3og/mn84v66dsnqq2szs)
+- [更新Timeline_202502](https://www.yuque.com/hollis666/fsn3og/gza3kwzszfsn6qgr)
+- [更新Timeline_202503](https://www.yuque.com/hollis666/fsn3og/ycn3agn2bfd1wp70)
+- [更新Timeline_202504](https://www.yuque.com/hollis666/fsn3og/mss8l7yithzzydy2)
+- [💯💯💯我该看哪些东西？](https://www.yuque.com/hollis666/fsn3og/agp62lnty94r7sgi)
+- [🧣🧣🧣项目实战课介绍&老用户福利](https://www.yuque.com/hollis666/fsn3og/dgolk0cckpb94sia)
+- [更新Timeline_202505](https://www.yuque.com/hollis666/fsn3og/aao0ao0wmc30i39b)
+- [🔥🔥🔥更新Timeline_202506](https://www.yuque.com/hollis666/fsn3og/ftqcv4xd4b7k1iu4)
+- [更新Timeline_202507](https://www.yuque.com/hollis666/fsn3og/bcz4tzg5xre9dgdv)
+- [更新Timeline_202508](https://www.yuque.com/hollis666/fsn3og/tlcbwb9pg9kg9f7g)
+- [更新Timeline_202509](https://www.yuque.com/hollis666/fsn3og/tv9o7tq10bpn4o9u)
+- [更新Timeline_202510](https://www.yuque.com/hollis666/fsn3og/oo5bplxnyumc1fur)
+- [更新Timeline_202511](https://www.yuque.com/hollis666/fsn3og/ar3ot1lvifhoisdp)
+- [更新Timeline_202512](https://www.yuque.com/hollis666/fsn3og/icgbutd3eb2gv8wr)
+- [更新Timeline_202601](https://www.yuque.com/hollis666/fsn3og/fen5reeo5who29cg)
+- [更新Timeline_202602](https://www.yuque.com/hollis666/fsn3og/tl8at5u8mm55akup)
+- [AI课优惠券](https://www.yuque.com/hollis666/fsn3og/dkm70gxmurvgph0z)
+- [🔥🔥🔥更新Timeline_202603](https://www.yuque.com/hollis666/fsn3og/mad741xs29zi5n2l)
+
+## 面试必备
+
+- [✅简历模板——5年（3）](https://www.yuque.com/hollis666/fsn3og/xso3ak0acoc4bfku)
+- [✅面试前必须要准备哪些内容？](https://www.yuque.com/hollis666/fsn3og/dgmrl77vgk8lu5wx)
+- [✅项目介绍如何准备](https://www.yuque.com/hollis666/fsn3og/qes6cfyam17ka1d4)
+- [✅简历指导](https://www.yuque.com/hollis666/fsn3og/gyela63hufmvk8w1)
+- [✅简历自查](https://www.yuque.com/hollis666/fsn3og/ezgiyfbytalgq2pb)
+- [✅简历模板——应届生](https://www.yuque.com/hollis666/fsn3og/ktbbk18o5f9kn0fg)
+- [✅简历模板——应届生（2）](https://www.yuque.com/hollis666/fsn3og/gneg11f527gl2od0)
+- [✅简历模板——1年](https://www.yuque.com/hollis666/fsn3og/qng0oxf5rn55224q)
+- [✅简历模板——3年](https://www.yuque.com/hollis666/fsn3og/wgx7r53ow60he2ul)
+- [✅简历模板——3年（2）](https://www.yuque.com/hollis666/fsn3og/edfn95v6dsla4zuc)
+- [✅简历模板——5年](https://www.yuque.com/hollis666/fsn3og/gnsnq584we815dpe)
+- [✅简历模板——5年（2）](https://www.yuque.com/hollis666/fsn3og/qwc3x94ghluatkdf)
+- [✅简历模板——8年](https://www.yuque.com/hollis666/fsn3og/zlwrmv89lbkosq27)
+- 大厂面试流程
+
+## 场景题
+
+- [✅订单到期关闭如何实现](https://www.yuque.com/hollis666/fsn3og/tg0ehg)
+- [✅每天100w次登录请求，4C8G机器如何做JVM调优？](https://www.yuque.com/hollis666/fsn3og/kbo55ytuygz8gn2w)
+- [✅如果你的业务量突然提升100倍QPS你会怎么做？](https://www.yuque.com/hollis666/fsn3og/vmymwg4epv4o24lc)
+- [✅不用redis分布式锁， 如何防止用户重复点击？](https://www.yuque.com/hollis666/fsn3og/bg9usqc0763mw2wm)
+- [✅让你设计一个订单号生成服务，该怎么做?](https://www.yuque.com/hollis666/fsn3og/gg4fgfh4z1ff2qfi)
+- [✅如何设计一个购物车功能？](https://www.yuque.com/hollis666/fsn3og/iv02gw)
+- [✅让你设计一个秒杀系统，你会考虑哪些问题？](https://www.yuque.com/hollis666/fsn3og/lghq5y)
+- [✅如果让你实现消息队列，会考虑哪些问题？](https://www.yuque.com/hollis666/fsn3og/zge9wo)
+- [✅库存扣减如何避免超卖和少卖？](https://www.yuque.com/hollis666/fsn3og/qpnna44eczny06z7)
+- [✅如何用Redis实现朋友圈点赞功能？](https://www.yuque.com/hollis666/fsn3og/ncskb5a7o5a1nw32)
+- [✅Redis的zset实现排行榜，实现分数相同按照时间顺序排序，怎么做？](https://www.yuque.com/hollis666/fsn3og/ooqi2qfep22bcpag)
+- [✅如何实现"查找附近的人"功能？](https://www.yuque.com/hollis666/fsn3og/ow77mcr961n4z7mg)
+- [✅消息队列使用拉模式好还是推模式好？为什么？](https://www.yuque.com/hollis666/fsn3og/mq3pwg8ge56hfvhx)
+- [✅如果让你实现一个RPC框架，会考虑用哪些技术解决哪些问题？](https://www.yuque.com/hollis666/fsn3og/nlhfcvk5d9ruz5zy)
+- [✅Kafka，单分区单消费者实例，如何提高吞吐量](https://www.yuque.com/hollis666/fsn3og/uwg9o64kxcyzrhyr)
+- [✅一个订单，在11:00超时关闭，但在11:00也支付成功了，怎么办？](https://www.yuque.com/hollis666/fsn3og/vwwc639702l84g4g)
+- [✅一个支付单，多个渠道同时支付成功了怎么办？](https://www.yuque.com/hollis666/fsn3og/gqtxugdhs2zg2axw)
+- [✅如何解决消息重复消费、重复下单等问题？](https://www.yuque.com/hollis666/fsn3og/paqecpn87o0v6np5)
+- [✅你是如何进行SQL调优的？](https://www.yuque.com/hollis666/fsn3og/awytshm5gv5yxs03)
+- [✅不使用synchronized和Lock如何设计一个线程安全的单例？](https://www.yuque.com/hollis666/fsn3og/hyiz0wluw5xgs3tg)
+- [✅索引失效的问题是如何排查的，有哪些种情况？](https://www.yuque.com/hollis666/fsn3og/sgkrtodriyoliden)
+- [✅40亿个QQ号，限制1G内存，如何去重？](https://www.yuque.com/hollis666/fsn3og/gr5y1sca3xfris91)
+- [✅说一说多级缓存是如何应用的？](https://www.yuque.com/hollis666/fsn3og/kbizvh0kvqs8kldf)
+- [✅从B+树的角度分析为什么单表2000万要考虑分表？？](https://www.yuque.com/hollis666/fsn3og/ovg68pfik2vo2eh8)
+- [✅InnoDB为什么不用跳表，Redis为什么不用B+树？](https://www.yuque.com/hollis666/fsn3og/lcz0grveudyoa16b)
+- [✅线上接口如果响应很慢如何去排查定位问题呢？](https://www.yuque.com/hollis666/fsn3og/seg25uzc7ck89kkn)
+- [✅怎么做数据对账？](https://www.yuque.com/hollis666/fsn3og/vh0msbr3qrqzfrfm)
+- [✅MySQL千万级大表如何做数据清理？](https://www.yuque.com/hollis666/fsn3og/lgzsefg9r220alma)
+- [✅为什么MySQL用B+树，MongoDB用B树？](https://www.yuque.com/hollis666/fsn3og/pp4wesnfc5w2smgg)
+- [✅高并发的库存系统，在数据库扣减库存，怎么实现？](https://www.yuque.com/hollis666/fsn3og/ns5mki19bc5xyg61)
+- [✅MySQL热点数据更新会带来哪些问题？](https://www.yuque.com/hollis666/fsn3og/gccycd2mvmpthq1s)
+- [✅和外部机构交互如何防止被外部服务不可用而拖垮](https://www.yuque.com/hollis666/fsn3og/xn8ucm3w3exfazpp)
+- [✅MySQL 里有 2000W 数据，Redis 中只存 20W 的数据，如何保证 Redis 中的数据都是热点数据?](https://www.yuque.com/hollis666/fsn3og/vagacifzq499w5t5)
+- [✅用了一锁二查三更新，为啥还出现了重复数据？](https://www.yuque.com/hollis666/fsn3og/rc0qez0gyn9t62f9)
+- [✅一个接口3000QPS，接口RT为200MS，预估需要几台机器？](https://www.yuque.com/hollis666/fsn3og/sskc5wha1fx7odc1)
+- [✅在100M内存下存储一亿个整数，其范围在１到2亿，如何快速判断给定到一个整数值是否存在？](https://www.yuque.com/hollis666/fsn3og/oko78h59yxecv82b)
+- [✅数据库逻辑删除后，怎么做唯一性约束？](https://www.yuque.com/hollis666/fsn3og/uwumrs9gs9x422k7)
+- [✅电商下单场景，如何设计一个数据一致性方案？](https://www.yuque.com/hollis666/fsn3og/qclfal9s63y5im9i)
+- [✅如果单表数据量大，只能考虑分库分表吗？](https://www.yuque.com/hollis666/fsn3og/dk6tpttlf2aex9ap)
+- [✅如何实现缓存的预热？](https://www.yuque.com/hollis666/fsn3og/lu2phlltfr1umdxw)
+- [✅如何实现百万级数据从Excel导入到数据库？](https://www.yuque.com/hollis666/fsn3og/pq601cwrcmznni0x)
+- [✅如果需要跨库join，该如何实现？](https://www.yuque.com/hollis666/fsn3og/br8q53x9u4rb8t12)
+- [✅应用占用内存持续增长，但是堆内存、元空间都没变化，可能是什么原因？](https://www.yuque.com/hollis666/fsn3og/nnthpmrw9o6romsb)
+- [✅和其他公司做数据交互时，有什么需要注意的？](https://www.yuque.com/hollis666/fsn3og/kvcbk5lotrqc8yi8)
+- [✅4C8G的机器，各项系统指标，什么范围算是正常？](https://www.yuque.com/hollis666/fsn3og/pt58t4z58614u4z0)
+- [✅4C8G *16台 和 8C16G*8台，不考虑成本的情况怎么选？](https://www.yuque.com/hollis666/fsn3og/yszywwcftisbsnc5)
+- [✅如何预估一个系统的QPS？](https://www.yuque.com/hollis666/fsn3og/svqsqgr2c6u6krnx)
+- [✅如何做SQL调优：用了主键索引反而查询很慢？](https://www.yuque.com/hollis666/fsn3og/lopuurburldnhvd4)
+- [✅如果要存IP地址，用什么数据类型比较好？](https://www.yuque.com/hollis666/fsn3og/py1ytrmw65n0b0qt)
+- [✅一次RPC请求，客户端显示超时，但是服务端不超时，可能是什么原因？](https://www.yuque.com/hollis666/fsn3og/gl5n4ovgyauybtnz)
+- [✅为什么不建议使用MQ实现订单到期关闭？](https://www.yuque.com/hollis666/fsn3og/mgisesnbgdoirure)
+- [✅如何实现敏感词过滤？](https://www.yuque.com/hollis666/fsn3og/dgsbltylfglksuv0)
+- [✅为啥不要在事务中做外部调用？](https://www.yuque.com/hollis666/fsn3og/gxnzfaxighqtaxod)
+- [✅如何做平滑的数据迁移?](https://www.yuque.com/hollis666/fsn3og/vgar5hckwt0g9lrw)
+- [✅如何实现一个抢红包功能？](https://www.yuque.com/hollis666/fsn3og/el7oz10w01tkc2cm)
+- [✅使用分布式锁时，分布式锁加在事务外面还是里面，有什么区别？](https://www.yuque.com/hollis666/fsn3og/qo6smg4i30szxvpk)
+- [✅加分布式锁之后影响并发了怎么办？](https://www.yuque.com/hollis666/fsn3og/vdm2h4ww7c0y5pkz)
+- [✅数据库乐观锁和悲观锁以及redis分布式锁的区别和使用场景？](https://www.yuque.com/hollis666/fsn3og/hvqo9wybuzk1z6h2)
+- [✅为什么很多公司数据库不允许物理删除(delete) 数据](https://www.yuque.com/hollis666/fsn3og/gpczo0268hubexiu)
+- [✅为什么不用分布式锁来实现秒杀？](https://www.yuque.com/hollis666/fsn3og/arab9x0v5n8mfm9y)
+- [✅为什么不直接用原生的BlockinQueue做消息队列](https://www.yuque.com/hollis666/fsn3og/obgfsg459tg5g6ad)
+- [✅Spring Event和MQ有什么区别？各自适用场景是什么？](https://www.yuque.com/hollis666/fsn3og/eugy3gggbymf6gp3)
+- [✅如何实现百万级排行榜功能？](https://www.yuque.com/hollis666/fsn3og/tym5ygcdfyg4tk1n)
+- [✅为什么一定要做限流？不应该服务好客户吗？不应该是加机器吗？](https://www.yuque.com/hollis666/fsn3og/pfgbuemozdgl0m93)
+- [✅大型电商的订单系统，如何设计分库分表方案？](https://www.yuque.com/hollis666/fsn3og/rqes81qfla7nyuxb)
+- [✅你认为分布式架构一定比单体架构要好吗？](https://www.yuque.com/hollis666/fsn3og/otsd26qi3650x320)
+- [✅Redis 如果挂了，你怎么办？](https://www.yuque.com/hollis666/fsn3og/ni9yghphzz5utfhp)
+- [✅代码中使用长事务，会带来哪些问题？](https://www.yuque.com/hollis666/fsn3og/odhck7oslpx0mra0)
+- [✅Redis 的内存如果用满了，会挂吗？](https://www.yuque.com/hollis666/fsn3og/voqgki9tvs60a14y)
+- [✅给第三方提供接口调用，需要注意些什么？](https://www.yuque.com/hollis666/fsn3og/tk8fdl447lp5da62)
+- [✅应用启动后前几分钟，Load、RT、CPU等飙高，如何定位，可能的原因是什么？](https://www.yuque.com/hollis666/fsn3og/we92mtmze7gd58ct)
+- [✅分库分表时，每个城市的人口不一样，有的密集，有的稀疏，如何实现均匀分布？](https://www.yuque.com/hollis666/fsn3og/rtztofa2pgn9obxy)
+- [✅项目中，如果日志打印成为瓶颈，该如何优化？](https://www.yuque.com/hollis666/fsn3og/bikxuiiqn5u7seva)
+- [✅分布式系统，用户登录信息保存在服务器A上，服务器B如何获取到共享Session](https://www.yuque.com/hollis666/fsn3og/ggzx17g775wy6fye)
+- [✅实现一个登录拉黑功能，实现拉黑用户和把已经登陆用户踢下线。](https://www.yuque.com/hollis666/fsn3og/na3qxghw9fqnse8e)
+- [✅调用第三方接口支付时，第三方接口显示支付成功，但是在调用方显示支付失败，问题可能出在哪里](https://www.yuque.com/hollis666/fsn3og/ciwrvp35io6ib0b0)
+- [✅读取一千个文件，一个线程读取和开十个线程读取，哪种方式效率高？](https://www.yuque.com/hollis666/fsn3og/scouuoszp3ue9wvw)
+- [✅a,b 的联合索引，select b where a = xx，无法走索引覆盖什么原因？](https://www.yuque.com/hollis666/fsn3og/fpvufyaqktr3i9dw)
+- [✅大量的手机号码被标记成骚扰电话，如何存储这些号码?](https://www.yuque.com/hollis666/fsn3og/zvklxbxkwcpic1cx)
+- [✅把商品加入购物车时断网了，该怎么在重新联网时同步？](https://www.yuque.com/hollis666/fsn3og/xu5higwg639avqea)
+- [✅不用大于号小于号怎么判断两个正整数大小？](https://www.yuque.com/hollis666/fsn3og/sthvwqeiyr4f10gq)
+- [✅外卖系统，一天一千万条数据，用户需要查到近30天的数据，商家也要查询到30天的数据，怎么设计表？](https://www.yuque.com/hollis666/fsn3og/pv558wgfql2i697t)
+- [✅进入电梯里断网后又恢复刚开始为什么网络慢？](https://www.yuque.com/hollis666/fsn3og/po821mqdgftrbdgg)
+- [✅一个表有用户和时间两个列，现有3个需求：根据用户查；根据日期查；根据日期和用户查；问怎么建立索引？](https://www.yuque.com/hollis666/fsn3og/xphxkbfeoxpnfgch)
+- [✅做一个过滤黑名单网址的系统，你觉得要怎么实现，会用到哪些数据结构？](https://www.yuque.com/hollis666/fsn3og/yrlc3c4ywe3ueugr)
+- [✅全国的酒店价格（千万级）需要在某个瞬间比如7点发生变动，怎样高性能准点去进行变更](https://www.yuque.com/hollis666/fsn3og/mvlefpgw0k6k4odl)
+- [✅服务器有多个节点，线上出现用户进入缓慢，监控服务器cpu和缓存没有什么压力，可以从哪些方面排查？](https://www.yuque.com/hollis666/fsn3og/tal0rut3oi8sbygk)
+- [✅账户里面只有十块钱，同时发来两笔订单一共大于十块钱，怎么保证不超花？](https://www.yuque.com/hollis666/fsn3og/eye0y86lsvhsfrb7)
+- [✅项目中需要应用发布和ddl变更，需要如何保证不出错？](https://www.yuque.com/hollis666/fsn3og/cqvnpa9y5pfdknhm)
+- [✅有100个优惠券，有几千万流量，怎么保证服务器不跨掉，怎么保证最前面的人能抢到这个券？](https://www.yuque.com/hollis666/fsn3og/gheid4l25yi9ts56)
+- [✅秒杀场景下，怎么加库存？](https://www.yuque.com/hollis666/fsn3og/oo55mmy2x0rw1apg)
+- [✅5 分钟内最多允许用户尝试登录 3 次，如果错误次数超过限制，需要对该用户进行锁定。如何实现？](https://www.yuque.com/hollis666/fsn3og/azpobkgvl4075xhp)
+- [✅两个不相关的网站A和B，如何实现A登录B也能自动登录](https://www.yuque.com/hollis666/fsn3og/biqw5o2hqv7s1w7d)
+- [✅MQ出现消息乱序了如何解决？](https://www.yuque.com/hollis666/fsn3og/wiskmfxd1cykhot1)
+- [✅在for循环中调用数据库，有什么缺点？如何优化？](https://www.yuque.com/hollis666/fsn3og/squh53h4ltwxrmxb)
+- [✅MySQL单表一千万条数据怎么做分页查询？](https://www.yuque.com/hollis666/fsn3og/pc2zgwoy5a6ywov2)
+- [✅MySQL千万级数据量，查询如何做优化？](https://www.yuque.com/hollis666/fsn3og/as0fp8ieqd20v2lw)
+- [✅什么是数据归档，一般是怎么做的？](https://www.yuque.com/hollis666/fsn3og/fuad5y2lvxgplsn6)
+- [✅第三方接口不稳定经常超时，如何处理三方接口异常不影响自己接口](https://www.yuque.com/hollis666/fsn3og/fld9pt8wnhdh6t6g)
+- [✅Redis、MySQL和MongoDB的区别是什么，各自适用场景呢？](https://www.yuque.com/hollis666/fsn3og/dip4hk9phfqepm8s)
+- [✅Redis实现分布式锁，加锁的时候，redis不可用了咋整？](https://www.yuque.com/hollis666/fsn3og/ybubkfatufhaydb2)
+- [✅如果让你实现短链服务，如何生成不重复的短链地址？](https://www.yuque.com/hollis666/fsn3og/hqbaavfnq7pofa9h)
+- [✅MySQL如果突然断电，会发生数据丢失吗？](https://www.yuque.com/hollis666/fsn3og/nxtpavyryigig9q9)
+- [✅防止接口被恶意刷流量，除了限流还应在代码层面做哪些防护？](https://www.yuque.com/hollis666/fsn3og/ue0owhrfobd7l98k)
+- [✅库存扣减、创建订单，如何拆成TCC？](https://www.yuque.com/hollis666/fsn3og/elbfrkngg37i842u)
+- [✅Redis保存库存的时候，如何避免被Redis清理掉？](https://www.yuque.com/hollis666/fsn3og/fwh7tsxgyr63c43w)
+- [✅如果token被窃取了，是不是就能伪造登陆了？](https://www.yuque.com/hollis666/fsn3og/llt2i9ttoon3k07u)
+- [✅如果有1TB的数据需要排序，但只有32GB的内存如何排序处理？](https://www.yuque.com/hollis666/fsn3og/gyx3ggnspew3dg4p)
+- [✅如何从 1TB 的搜索日志中找出搜索量最高的 10 个关键词？](https://www.yuque.com/hollis666/fsn3og/mdegw67xikew2hdl)
+- [✅用@Scheduled执行定时任务，如何避免集群的并发问题](https://www.yuque.com/hollis666/fsn3og/gy31zq2gdufg3tfx)
+- [✅下单支付过程，点击跳转支付，输入密码，支付完成后跳转到订单页，整个过程可能会有什么问题？架构方面做哪些设计？](https://www.yuque.com/hollis666/fsn3og/nghwce4kiy80z9nq)
+- [✅有一张上百万条数据的单表，从前端页面、Java后台、数据库三个层面做查询优化](https://www.yuque.com/hollis666/fsn3og/vg4t6crstingqc8b)
+- [✅假设还有很多内存，有什么情况还会频繁fullgc？](https://www.yuque.com/hollis666/fsn3og/su3bwvxsop67g8oq)
+- [✅压测600没问题，上线后300就扛不住了，可能是什么原因？](https://www.yuque.com/hollis666/fsn3og/hhm6buv0wq4lkgz2)
+- [✅Redis和MySQL的一次普通查询，RT在什么范围内是合理的？](https://www.yuque.com/hollis666/fsn3og/lg07ilmsrvf1gwe5)
+- [✅5亿条数据放到布隆过滤器中，大概需要多大内存？如何估算？](https://www.yuque.com/hollis666/fsn3og/wu3c112hds0q6hkq)
+- [✅为了避免丢消息问题需要落表，如何设计这张消息表？](https://www.yuque.com/hollis666/fsn3og/iw138sersv6ocx6u)
+- [✅有一个银行系统，对实时性要求比较高，你会怎么选择垃圾回收器？](https://www.yuque.com/hollis666/fsn3og/cznus43esusc1pyr)
+- [✅百万级会员的用户平台，如何实现快到期的会员的消息提醒？](https://www.yuque.com/hollis666/fsn3og/kn7zs8zpuqeauh3g)
+- [✅A线程获取Redis分布式锁，但那一刻做了主从的切换，B线程能获取到锁吗？](https://www.yuque.com/hollis666/fsn3og/hes38wzm9goflkki)
+- [✅如果设计一个缓存，需要考虑哪些方面？](https://www.yuque.com/hollis666/fsn3og/xgu367cyf8m7idta)
+- [✅扫表任务，如何写SQL可以避免出现跳页的情况？](https://www.yuque.com/hollis666/fsn3og/ay22om8dstddy4tf)
+- [✅阿里出的Java开发手册看过吗，对哪条规约印象深刻？](https://www.yuque.com/hollis666/fsn3og/tqkcue5hl7t91bkw)
+- [✅购物车中如何解决重复下单的问题？](https://www.yuque.com/hollis666/fsn3og/xdwhfuaugi9uuvsm)
+- [✅让你实现一个短链服务，你会考虑哪些问题?](https://www.yuque.com/hollis666/fsn3og/sfsui1laabpxxrqr)
+- [✅用了本地消息表的方案，如果下游执行失败了上游如何回滚？](https://www.yuque.com/hollis666/fsn3og/fxytzn7grefl51yw)
+- [✅MySQL千万级大表中如何增加字段？](https://www.yuque.com/hollis666/fsn3og/ccgmrir9ls6xgucs)
+- [✅如果一个接口响应时间不符合预期，怎么排查跟解决？](https://www.yuque.com/hollis666/fsn3og/nh081cr509f2y3v4)
+- [✅数据对账时，如果日切时间点前后的数据不一致怎么办？](https://www.yuque.com/hollis666/fsn3og/ihf3nztxhrz13zq9)
+- [✅如何实现一个点赞系统？](https://www.yuque.com/hollis666/fsn3og/vl70ex3xkt5kq02d)
+- [✅5000w数据查询电话号码后4位，如何优化？](https://www.yuque.com/hollis666/fsn3og/erg53cxt6v5mguuy)
+- [✅select x from table where a = 1 这条sql导致索引失效的原因有哪些？](https://www.yuque.com/hollis666/fsn3og/nml4ce8x6ypdib46)
+- [✅select * from table where a=1 and b>2 order by c,d,f 怎么加索引？](https://www.yuque.com/hollis666/fsn3og/bshan5ugkpimy30z)
+- [✅MySQL（pgsql）、Elasticsearch、mongodb、HBase、Redis，各适合什么场景？](https://www.yuque.com/hollis666/fsn3og/kg9m41nibkgmcsgb)
+
+## 线上问题排查
+
+- [✅RocketMQ消费堆积问题排查](https://www.yuque.com/hollis666/fsn3og/za04hyyegpeg4h2i)
+- [✅RT飙高问题排查过程](https://www.yuque.com/hollis666/fsn3og/uo4l5odg0lh4yxgw)
+- [✅数据库死锁问题排查过程](https://www.yuque.com/hollis666/fsn3og/yywypm)
+- [✅CPU飙高问题排查过程（1）](https://www.yuque.com/hollis666/fsn3og/yp216u)
+- [✅CPU飙高问题排查过程（2）](https://www.yuque.com/hollis666/fsn3og/mstcr4s9ufn0ubsf)
+- [✅数据库连接池满排查过程](https://www.yuque.com/hollis666/fsn3og/dlz4xagyghoys4p8)
+- [✅数据库CPU被打满排查过程](https://www.yuque.com/hollis666/fsn3og/yhfy70xlf7kegk0s)
+- [✅OOM问题排查过程](https://www.yuque.com/hollis666/fsn3og/vdnaxh)
+- [✅频繁FullGC问题排查](https://www.yuque.com/hollis666/fsn3og/iocmzc)
+- [✅Arthas统计方法耗时的原理是什么？](https://www.yuque.com/hollis666/fsn3og/lswk78)
+- [✅慢SQL问题排查](https://www.yuque.com/hollis666/fsn3og/dxmpt2)
+- [✅Load飙高问题排查过程](https://www.yuque.com/hollis666/fsn3og/uq7bul)
+- [✅Sort aborted问题排查过程](https://www.yuque.com/hollis666/fsn3og/sox6oiog8m4xqtli)
+- [✅如何使用jstack分析死锁](https://www.yuque.com/hollis666/fsn3og/ql40gqum24bg3bdk)
+- [✅POI导致内存溢出排查](https://www.yuque.com/hollis666/fsn3og/sabwlgzwy2nhnseg)
+- [✅如何排查网络问题？](https://www.yuque.com/hollis666/fsn3og/us7bsygf7z1ocgd5)
+- [✅频繁FullGC问题排查(2)](https://www.yuque.com/hollis666/fsn3og/zpkzwgx4o9g89s8x)
+- [✅数据倾斜导致的频繁FullGC问题排查](https://www.yuque.com/hollis666/fsn3og/enapz53wi65s8ybr)
+- [✅死循环会导致CPU使用率升高吗？为什么？](https://www.yuque.com/hollis666/fsn3og/cgygrzax0kehoeml)
+- [✅死锁会导致CPU使用率升高吗？为什么？](https://www.yuque.com/hollis666/fsn3og/rk5n7i1ambv44id0)
+- [✅服务发布分10批，第一批发完后负载很高后面恢复正常，如何处理？](https://www.yuque.com/hollis666/fsn3og/wi3la5wznf1uuen3)
+- [✅Java进程突然挂了，可能是什么原因？](https://www.yuque.com/hollis666/fsn3og/chvwkk4a3xa6cii1)
+- [✅程序运行期发生ClassNotFoundException 可能是什么原因？](https://www.yuque.com/hollis666/fsn3og/hplvh5v7fzor6zr7)
+- [✅服务器突然 ssh 连不上了，可能是什么问题？](https://www.yuque.com/hollis666/fsn3og/ihvm77o3hy3t3cx6)
+- [✅回表导致慢 SQL 问题排查](https://www.yuque.com/hollis666/fsn3og/eysu1hhvshiz4b4p)
+- [✅服务器被注入挖矿木马问题排查](https://www.yuque.com/hollis666/fsn3og/qyptd5ubbyvgvq0e)
+- [✅线上服务器如果磁盘满了，你会如何处理？](https://www.yuque.com/hollis666/fsn3og/kvd3pl0bhmy5nmr8)
+- [✅日志打印导致CPU飙高问题排查](https://www.yuque.com/hollis666/fsn3og/zxuto1zdfl8k9ag4)
+- [✅端口冲突问题如何定位和解决](https://www.yuque.com/hollis666/fsn3og/ecbps9ubczl6nsbg)
+
+## 项目难点&亮点
+
+- [你的项目有哪些难点&亮点？](https://www.yuque.com/hollis666/fsn3og/qnsu1w1s7v0gr7xv)
+- [✅引入分布式锁解决并发问题](https://www.yuque.com/hollis666/fsn3og/gq8eszf1bgks154g)
+- [✅使用CompletableFuture完成并发编排，提升接口性能](https://www.yuque.com/hollis666/fsn3og/wwbg7zocoo7ubisl)
+- [✅基于Spring Event，实现同步转异步，解决定时任务扫表导致数据库连接池不够的问题](https://www.yuque.com/hollis666/fsn3og/phqa2kizsvmdp7dp)
+- [✅通过采用“一锁二判三更新”方式设计接口幂等，解决支付单重复支付的问题](https://www.yuque.com/hollis666/fsn3og/zo48dq7hfgsb27os)
+- [✅基于Redis的分布式锁，解决短信验证码重复发放等问题](https://www.yuque.com/hollis666/fsn3og/bk4i6a22gqst4ygi)
+- [✅使用quartz定时任务实现支付单自动关单功能，并引入多线程+分段解决扫表延迟的问题](https://www.yuque.com/hollis666/fsn3og/ifgs14vfixuwt8xi)
+- [✅使用自定义注解+切面减少冗余代码，提升代码的鲁棒性](https://www.yuque.com/hollis666/fsn3og/kfu24zmltkpx2bd3)
+- [✅基于本地消息表实现分布式事务保证最终一致性](https://www.yuque.com/hollis666/fsn3og/hi956hl64rr7cwx1)
+- [✅为了防止接口被恶意调用，设计API秘钥方式提升接口安全性，并通过滑动窗口粗实现接口调用限流。](https://www.yuque.com/hollis666/fsn3og/nvfqzrus72dsztd0)
+- [✅通过热点数据预热、多级缓存、异步化编程等方式解决热门数据接口耗时长问题](https://www.yuque.com/hollis666/fsn3og/gyofu7gml4gbghqm)
+- [✅基于EasyExcel+线程池解决POI文件导出时的内存溢出及超时问题](https://www.yuque.com/hollis666/fsn3og/wcm6xqvp0z004ing)
+- [✅基于EasyExcel+线程池+批量插入实现百万级数据导入](https://www.yuque.com/hollis666/fsn3og/iekgungvgtyb06zh)
+- [✅基于Redis的zset实现秒级排行榜](https://www.yuque.com/hollis666/fsn3og/krlg7kes395enbdv)
+- [✅基于TTL 解决线程池中 ThreadLocal 线程无法共享的问题](https://www.yuque.com/hollis666/fsn3og/lzyt5gda26mrrf6r)
+- [✅基于Token校验避免订单重复提交](https://www.yuque.com/hollis666/fsn3og/pwcy754u79o8h9a1)
+- [✅基于状态机+乐观锁解决订单支付和关单的并发问题](https://www.yuque.com/hollis666/fsn3og/wivav02l47kcd9nl)
+- [✅利用雪花算法+Redis 自增 ID，实现唯一订单号生成](https://www.yuque.com/hollis666/fsn3og/tn85uurzqo8xe9yg)
+- [✅基于XXL-JOB的分片实现分库分表后的扫表](https://www.yuque.com/hollis666/fsn3og/ikdbgt9mpm46u298)
+- [✅基于 bitset 实现高效的商品预约](https://www.yuque.com/hollis666/fsn3og/wa2gec97ixa2waw0)
+
+## Java基础
+
+### 面向对象
+
+- [✅Java和C++主要区别有哪些？各有哪些优缺点？](https://www.yuque.com/hollis666/fsn3og/ugbv46)
+- [✅如何理解面向对象和面向过程？](https://www.yuque.com/hollis666/fsn3og/sy3eyr)
+- [✅为什么Java不支持多继承？](https://www.yuque.com/hollis666/fsn3og/uegateiyswx40n33)
+- [✅接口和抽象类的区别，如何选择？](https://www.yuque.com/hollis666/fsn3og/bit2y4)
+- [✅如何理解Java中的多态？](https://www.yuque.com/hollis666/fsn3og/bzmvmo4s1l8mig23)
+- [✅RPC接口返回中，使用基本类型还是包装类？](https://www.yuque.com/hollis666/fsn3og/hqm4f0)
+- [✅为什么建议多用组合少用继承？](https://www.yuque.com/hollis666/fsn3og/yya9secquv5o8dr9)
+- [✅反射与封装是否矛盾？如何解决反射破坏封装不安全的问题？](https://www.yuque.com/hollis666/fsn3og/sybmg0g0nk1d0mtl)
+
+### 基本类型 & 包装类
+
+- [✅Java中有了基本类型为什么还需要包装类？](https://www.yuque.com/hollis666/fsn3og/xtd0s5)
+- [✅为什么不能用浮点数表示金额？](https://www.yuque.com/hollis666/fsn3og/vmrkz84g8c6ypu5s)
+- [✅为什么不能用BigDecimal的equals方法做等值比较？](https://www.yuque.com/hollis666/fsn3og/qmx8yss8tve7w73q)
+- [✅BigDecimal(double)和BigDecimal(String)有什么区别？](https://www.yuque.com/hollis666/fsn3og/tv3ne5taonetgiip)
+- [✅为什么对Java中的负数取绝对值结果不一定是正数？](https://www.yuque.com/hollis666/fsn3og/ikifo7)
+- [✅char能存储中文吗？](https://www.yuque.com/hollis666/fsn3og/uxy145ittqo83wqk)
+- [✅while(true)和for(;;)哪个性能好？](https://www.yuque.com/hollis666/fsn3og/wapd1ptqpu5onwwm)
+- [✅BigDecimal和Long表示金额哪个更合适，怎么选择？](https://www.yuque.com/hollis666/fsn3og/skv2srz4h3786nng)
+- [✅Integer a=1000，Integer b=1000，==是什么结果，如果是100呢？](https://www.yuque.com/hollis666/fsn3og/hguxhykuwedpqkex)
+
+### String & 编码
+
+- [✅String、StringBuilder和StringBuffer的区别？](https://www.yuque.com/hollis666/fsn3og/pg23qhb7rgnuamd1)
+- [✅String为什么设计成不可变的？](https://www.yuque.com/hollis666/fsn3og/hhkgh2nsrlnf2g0g)
+- [✅String str=new String("hollis")创建了几个对象？](https://www.yuque.com/hollis666/fsn3og/em12e4rgw6suv75o)
+- [✅String a = "ab"; String b = "a" + "b"; a == b 吗？](https://www.yuque.com/hollis666/fsn3og/pwmmw153wb4f2cgq)
+- [✅String有长度限制吗？是多少？](https://www.yuque.com/hollis666/fsn3og/pr39b854mv6ftvr4)
+- [✅常见的字符编码有哪些？有什么区别？](https://www.yuque.com/hollis666/fsn3og/fcr3ed)
+- [✅什么是UUID，能保证唯一吗？](https://www.yuque.com/hollis666/fsn3og/pi2zfc9ykug141im)
+- [✅为什么JDK 9中把String的char[]改成了byte[]？](https://www.yuque.com/hollis666/fsn3og/hcy7n8p0rhxro0xq)
+- [✅String是如何实现不可变的？](https://www.yuque.com/hollis666/fsn3og/ik9x1gx4zddllhhg)
+- [✅字符串常量是什么时候进入到字符串常量池的？](https://www.yuque.com/hollis666/fsn3og/os0m38kyugpxvgsq)
+- [✅String中intern的原理是什么？](https://www.yuque.com/hollis666/fsn3og/yr32wu44yxt5l8nh)
+- [✅怎么修改一个类中的private修饰的String参数的值](https://www.yuque.com/hollis666/fsn3og/dyy45igkaq848q23)
+- [✅JDK 9中对字符串的拼接做了什么优化？](https://www.yuque.com/hollis666/fsn3og/ifyf24hsuuvwynlp)
+
+### 异常
+
+- [✅Java中异常分哪两类，有什么区别？](https://www.yuque.com/hollis666/fsn3og/dx3i8a)
+- [✅以下关于异常处理的代码有哪些问题](https://www.yuque.com/hollis666/fsn3og/bwxlms)
+- [✅finally中代码一定会执行吗？](https://www.yuque.com/hollis666/fsn3og/rs846vlvpa7dwe3v)
+- [✅ClassNotFoundException和NoClassDefFoundError的区别是什么？](https://www.yuque.com/hollis666/fsn3og/mtp0rmyyc19wgd0m)
+- [✅try中return A，catch中return B，finally中return C，最终返回值是什么？](https://www.yuque.com/hollis666/fsn3og/ltw8ngs7yntrdk3a)
+- [✅final、finally、finalize有什么区别](https://www.yuque.com/hollis666/fsn3og/aptpcugzork18qpx)
+- [✅为什么不建议使用异常控制业务流程](https://www.yuque.com/hollis666/fsn3og/kgodgo19faudkgt2)
+
+### 泛型 & 反射
+
+- [✅说几个常见的语法糖？](https://www.yuque.com/hollis666/fsn3og/dwdzin)
+- [✅什么是泛型？有什么好处？](https://www.yuque.com/hollis666/fsn3og/syhevb)
+- [✅什么是类型擦除？](https://www.yuque.com/hollis666/fsn3og/qcn00m)
+- [✅泛型中K T V E ？ Object等分别代表什么含义。](https://www.yuque.com/hollis666/fsn3og/ku0x9c)
+- [✅泛型中上下界限定符extends 和 super有什么区别？](https://www.yuque.com/hollis666/fsn3og/wi2kt7)
+- [✅什么是SPI，和API有啥区别](https://www.yuque.com/hollis666/fsn3og/eltpur)
+- [✅什么是反射机制？为什么反射慢？](https://www.yuque.com/hollis666/fsn3og/sr19rp)
+- [✅Java的动态代理如何实现？](https://www.yuque.com/hollis666/fsn3og/ugvfzx)
+- [✅Java注解的作用是啥](https://www.yuque.com/hollis666/fsn3og/zelhse)
+
+### IO & 序列化
+
+- [✅什么是序列化与反序列化](https://www.yuque.com/hollis666/fsn3og/rthz7lyvsfb3xvl4)
+- [✅Java序列化的原理是啥](https://www.yuque.com/hollis666/fsn3og/mw0tui)
+- [✅serialVersionUID 有何用途? 如果没定义会有什么问题？](https://www.yuque.com/hollis666/fsn3og/yy4icr)
+- [✅你知道fastjson的反序列化漏洞吗](https://www.yuque.com/hollis666/fsn3og/sexwwk)
+- [✅什么是AIO、BIO和NIO？](https://www.yuque.com/hollis666/fsn3og/qzdgo2)
+- [✅什么是深拷贝和浅拷贝？](https://www.yuque.com/hollis666/fsn3og/br3qgdim5xz2pngx)
+- [✅Stream的并行流一定比串行流更快吗？](https://www.yuque.com/hollis666/fsn3og/ol476y0fb7dkx2yp)
+
+### 对象 & 类
+
+- [✅Java中创建对象有哪些种方式](https://www.yuque.com/hollis666/fsn3og/bw0z5kus5ry1xq0u)
+- [✅Java中的枚举有什么特点和好处](https://www.yuque.com/hollis666/fsn3og/if7kxl)
+- [✅Java是值传递还是引用传递？](https://www.yuque.com/hollis666/fsn3og/lbdoqe)
+- [✅为什么建议自定义一个无参构造函数](https://www.yuque.com/hollis666/fsn3og/ggblti0p753ht8ny)
+- [✅为什么这段代码在JDK不同版本中结果不同](https://www.yuque.com/hollis666/fsn3og/iky8sebui0cv6sli)
+- [✅为什么Java中的main方法必须是public static void的？](https://www.yuque.com/hollis666/fsn3og/funmod94ph7x4rus)
+- [✅Java中的static都能用来修饰什么？](https://www.yuque.com/hollis666/fsn3og/cvc9hcegg2i7mtgi)
+- [✅有了equals为啥需要hashCode方法？](https://www.yuque.com/hollis666/fsn3og/pp2gpau34dpwl15x)
+- [✅Java有协程吗？](https://www.yuque.com/hollis666/fsn3og/nanvlfcf066e664a)
+
+### 日期 & 工具
+
+- [✅SimpleDateFormat是线程安全的吗？使用时应该注意什么？](https://www.yuque.com/hollis666/fsn3og/gyz59h)
+- [✅Arrays.sort是使用什么排序算法实现的？](https://www.yuque.com/hollis666/fsn3og/zld6gp50xnp6p7vs)
+- [✅Java中Timer实现定时调度的原理是什么？](https://www.yuque.com/hollis666/fsn3og/lms2vr705c88tgke)
+
+### 新特性
+
+- [✅Lambda表达式是如何实现的？](https://www.yuque.com/hollis666/fsn3og/kawhdmf1bkcn1gxn)
+- [✅现在JDK的最新版本是什么？](https://www.yuque.com/hollis666/fsn3og/bvygm5vo3wmt1cug)
+- [✅JDK新版本中都有哪些新特性？](https://www.yuque.com/hollis666/fsn3og/htgm9p3vbpx85p6n)
+
+## Java并发
+
+### 线程基础
+
+- [✅什么是多线程中的上下文切换？](https://www.yuque.com/hollis666/fsn3og/dye7p0b0it112wcy)
+- [✅能不能谈谈你对线程安全的理解？](https://www.yuque.com/hollis666/fsn3og/bnddbd)
+- [✅什么是并发，什么是并行？](https://www.yuque.com/hollis666/fsn3og/fxvrxkep8rus8ytb)
+- [✅线程有几种状态，状态之间的流转是怎样的？](https://www.yuque.com/hollis666/fsn3og/rt6e6b)
+- [✅什么是守护线程，和普通线程有什么区别？](https://www.yuque.com/hollis666/fsn3og/dlg6vw)
+- [✅JDK21 中的虚拟线程是怎么回事？](https://www.yuque.com/hollis666/fsn3og/ac1a0q)
+- [✅创建线程有几种方式？](https://www.yuque.com/hollis666/fsn3og/gmgb2a)
+- [✅run/start、wait/sleep、notify/notifyAll区别?](https://www.yuque.com/hollis666/fsn3og/bw9p42)
+- [✅线程数设定成多少更合适？](https://www.yuque.com/hollis666/fsn3og/zanzx4giay7gixf6)
+- [✅并发编程中的原子性和数据库ACID的原子性一样吗？](https://www.yuque.com/hollis666/fsn3og/wsfbu382gg5l9ytx)
+- [✅CAS在操作系统层面是如何保证原子性的？](https://www.yuque.com/hollis666/fsn3og/ed72dt8guaf4fvn8)
+- [✅父子线程之间怎么共享/传递数据？](https://www.yuque.com/hollis666/fsn3og/adgan2125uzrsbte)
+- [✅Thread.sleep(0)的作用是什么？](https://www.yuque.com/hollis666/fsn3og/dazanh67q9re25lp)
+- [✅有哪些实现线程安全的方案?](https://www.yuque.com/hollis666/fsn3og/wwsbaz77gvug9hbb)
+- [✅线程是如何被调度的？](https://www.yuque.com/hollis666/fsn3og/kru3wibs8b590cl1)
+- [✅Java是如何判断一个线程是否存活的？](https://www.yuque.com/hollis666/fsn3og/mh6zkrgkqfams6fd)
+- [✅如何实现主线程捕获子线程异常](https://www.yuque.com/hollis666/fsn3og/iao166g9qgzld9e3)
+- [✅为什么不能在try-catch中捕获子线程的异常?](https://www.yuque.com/hollis666/fsn3og/dtci5npzb1cidzxk)
+- [✅Java线程出现异常，进程为啥不会退出？](https://www.yuque.com/hollis666/fsn3og/vhge9qann70zsrag)
+- [✅为什么虚拟线程不能用synchronized？](https://www.yuque.com/hollis666/fsn3og/cdp5h287x61w7uyc)
+- [✅为什么虚拟线程不要和线程池一起用？](https://www.yuque.com/hollis666/fsn3og/gwmioommi0ps1vco)
+- [✅为什么虚拟线程尽量避免使用ThreadLocal](https://www.yuque.com/hollis666/fsn3og/ehzum6hzexcsgxhn)
+- [✅new Thread().start() 创建一个线程时，操作系统层面发生了什么？](https://www.yuque.com/hollis666/fsn3og/xe4tpgfro8lasprd)
+
+### 线程池
+
+- [✅什么是线程池，如何实现的？](https://www.yuque.com/hollis666/fsn3og/fb5th6)
+- [✅ForkJoinPool和ThreadPoolExecutor区别是什么？](https://www.yuque.com/hollis666/fsn3og/wl8s1swvh7g841be)
+- [✅为什么不建议通过Executors构建线程池](https://www.yuque.com/hollis666/fsn3og/ptpdp2dxfh1dxbc0)
+- [✅线程池的拒绝策略有哪些？](https://www.yuque.com/hollis666/fsn3og/gfoppg6a3stefkig)
+- [✅如何让Java的线程池顺序执行任务？](https://www.yuque.com/hollis666/fsn3og/llopgapefsycnhnd)
+- [✅线程池中使用ThreadLocal会有哪些潜在风险？](https://www.yuque.com/hollis666/fsn3og/ycpwehst8u13tlxg)
+- [✅动态线程池的原理是什么？](https://www.yuque.com/hollis666/fsn3og/uu685byqlkwf7evf)
+- [✅线程池有哪些核心参数？](https://www.yuque.com/hollis666/fsn3og/lcwl3527lqbtwdtk)
+
+### synchronized
+
+- [✅synchronized是怎么实现的？](https://www.yuque.com/hollis666/fsn3og/gxq5p0)
+- [✅synchronized锁的是什么？](https://www.yuque.com/hollis666/fsn3og/xpwgigmu7xz4uvzn)
+- [✅synchronized是如何保证原子性、可见性、有序性的？](https://www.yuque.com/hollis666/fsn3og/qw9x0lgisg4q18t6)
+- [✅synchronized的锁升级过程是怎样的？](https://www.yuque.com/hollis666/fsn3og/cv5kt1)
+- [✅synchronized的重量级锁很慢，为什么还需要重量级锁？](https://www.yuque.com/hollis666/fsn3og/dc6vfx4nfvptib2y)
+- [✅synchronized的锁优化是怎样的？](https://www.yuque.com/hollis666/fsn3og/qewdiv)
+- [✅有了synchronized为什么还需要volatile?](https://www.yuque.com/hollis666/fsn3og/nl3dfw)
+- [✅synchronized和reentrantLock区别？](https://www.yuque.com/hollis666/fsn3og/bitupp)
+- [✅为什么JDK 15要废弃偏向锁？](https://www.yuque.com/hollis666/fsn3og/kzigekbg6ark71m3)
+- [✅sychronized是非公平锁吗，那么是如何体现的？](https://www.yuque.com/hollis666/fsn3og/ihq8bdg4q3ts8mpo)
+- [✅synchronized 的锁能降级吗？](https://www.yuque.com/hollis666/fsn3og/ghg8a3skmvxgquvh)
+
+### volatile & JMM
+
+- [✅什么是Java内存模型（JMM）？](https://www.yuque.com/hollis666/fsn3og/hmi3m1)
+- [✅volatile能保证原子性吗？为什么？](https://www.yuque.com/hollis666/fsn3og/aylaul)
+- [✅volatile是如何保证可见性和有序性的？](https://www.yuque.com/hollis666/fsn3og/iscdbslmh7h7qp6p)
+- [✅什么是总线嗅探和总线风暴，和JMM有什么关系？](https://www.yuque.com/hollis666/fsn3og/ghzfwsp5n9qzsx01)
+- [✅什么是happens-before原则？](https://www.yuque.com/hollis666/fsn3og/uctffq5e5bnaie18)
+- [✅happens-before和as-if-serial有啥区别和联系？](https://www.yuque.com/hollis666/fsn3og/foc06h1owrl7rrub)
+- [✅到底啥是内存屏障？到底怎么加的？](https://www.yuque.com/hollis666/fsn3og/kozqs205honv8nso)
+- [✅有了CAS为啥还需要volatile？](https://www.yuque.com/hollis666/fsn3og/brargpgpdizkgkog)
+- [✅有了MESI为啥还需要JMM？](https://www.yuque.com/hollis666/fsn3og/yx29gk7wsw26ec4r)
+
+### 原子性
+
+- [✅int a = 1 是原子性操作吗](https://www.yuque.com/hollis666/fsn3og/qc0bbxi2p2zbu3o7)
+- [✅如何保证多线程下 i++ 结果正确？](https://www.yuque.com/hollis666/fsn3og/wp2k1g6vlimw1gb2)
+
+### Lock & AQS
+
+- [✅如何理解AQS？](https://www.yuque.com/hollis666/fsn3og/qka9yt)
+- [✅公平锁和非公平锁的区别？](https://www.yuque.com/hollis666/fsn3og/bnt978)
+- [✅AQS是如何实现线程的等待和唤醒的？](https://www.yuque.com/hollis666/fsn3og/hnrod27wbk0w5g0v)
+- [✅什么是可重入锁，怎么实现可重入锁？](https://www.yuque.com/hollis666/fsn3og/zvx2w5h9sr7trle7)
+- [✅AQS的同步队列和条件队列原理？](https://www.yuque.com/hollis666/fsn3og/xc3fs6mny7pgeh0p)
+- [✅什么是AQS的独占模式和共享模式？](https://www.yuque.com/hollis666/fsn3og/wk1gxv6xgqk0folv)
+- [✅AQS为什么采用双向链表？](https://www.yuque.com/hollis666/fsn3og/crr52gwi61ndh6tp)
+
+### CAS & Unsafe
+
+- [✅什么是CAS？存在什么问题？](https://www.yuque.com/hollis666/fsn3og/cgckk3)
+- [✅CAS一定有自旋吗？](https://www.yuque.com/hollis666/fsn3og/cle1ag1rfu3uuwzg)
+- [✅什么是Unsafe？](https://www.yuque.com/hollis666/fsn3og/prx4n1mxtbk8qffq)
+- [✅LongAdder和AtomicLong的区别？](https://www.yuque.com/hollis666/fsn3og/dhzyrg)
+- [✅如何实现无锁化编程？](https://www.yuque.com/hollis666/fsn3og/grinqxlb1p0ag5wc)
+
+### 并发工具类
+
+- [✅CountDownLatch、CyclicBarrier、Semaphore区别？](https://www.yuque.com/hollis666/fsn3og/bkx0d6)
+- [✅有三个线程T1,T2,T3如何保证顺序执行？](https://www.yuque.com/hollis666/fsn3og/wwqs6n658n4ip0ed)
+- [✅如何对多线程进行编排](https://www.yuque.com/hollis666/fsn3og/dlk3uz)
+- [✅三个线程分别顺序打印0-100](https://www.yuque.com/hollis666/fsn3og/wcqebt)
+- [✅CompletableFuture的底层是如何实现的？](https://www.yuque.com/hollis666/fsn3og/qgrygdsu04a6vfzw)
+- [✅如何在 Java 中实现高效的异步编程？如何避免回调地狱？](https://www.yuque.com/hollis666/fsn3og/pi2oou7n45oxtq7s)
+- [✅介绍下JUC，都有哪些工具类？](https://www.yuque.com/hollis666/fsn3og/pgrpaat8sk0obfk5)
+
+### ThreadLocal
+
+- [✅什么是ThreadLocal，如何实现的？](https://www.yuque.com/hollis666/fsn3og/ihoye3)
+- [✅有了InheritableThreadLocal为啥还需要TransmittableThreadLocal？](https://www.yuque.com/hollis666/fsn3og/fucuuyqoqv8rdkpr)
+- [✅ThreadLocal的应用场景有哪些？](https://www.yuque.com/hollis666/fsn3og/bpm9cgs19qwlgc1k)
+- [✅ThreadLocal为什么会导致内存泄漏？如何解决的？](https://www.yuque.com/hollis666/fsn3og/bueq7weva8ha9f1p)
+- [✅JDK25的ScopedValue是什么？为什么可以替代ThreadLocal？](https://www.yuque.com/hollis666/fsn3og/acwiha67w8oklohg)
+
+### 死锁 & 活锁
+
+- [✅什么是死锁，如何解决？](https://www.yuque.com/hollis666/fsn3og/mtdxsd)
+- [✅什么是伪共享，如何解决伪共享？](https://www.yuque.com/hollis666/fsn3og/lq5iu3e8gwpwm1w4)
+- [✅什么是活锁，和死锁有什么区别？](https://www.yuque.com/hollis666/fsn3og/ap1ykf33k4e9gwqi)
+
+### 锁分类综述
+
+- [✅线程同步的方式有哪些？](https://www.yuque.com/hollis666/fsn3og/trvp1sbzi4b3yx3p)
+- [✅Java中有哪些锁?](https://www.yuque.com/hollis666/fsn3og/yfg2ftt7q2m09kop)
+
+## 集合类
+
+- [✅Java中的集合类有哪些？如何分类的？](https://www.yuque.com/hollis666/fsn3og/gxi0rc)
+- [✅你能说出几种集合的排序方式？](https://www.yuque.com/hollis666/fsn3og/txv35a)
+- [✅什么是fail-fast？什么是fail-safe？](https://www.yuque.com/hollis666/fsn3og/klkvnw)
+- [✅遍历的同时修改一个List有几种方式？](https://www.yuque.com/hollis666/fsn3og/mba03d)
+- [✅Set是如何保证元素不重复的](https://www.yuque.com/hollis666/fsn3og/iyr09c)
+- [✅ArrayList、LinkedList与Vector的区别？](https://www.yuque.com/hollis666/fsn3og/kwoitf)
+- [✅ArrayList的subList方法有什么需要注意的地方吗？](https://www.yuque.com/hollis666/fsn3og/em9xr6)
+- [✅ArrayList的序列化是怎么实现的？](https://www.yuque.com/hollis666/fsn3og/mskwg8)
+- [✅hash冲突通常怎么解决？](https://www.yuque.com/hollis666/fsn3og/pogt662wy87z24dr)
+- [✅HashMap的数据结构是怎样的？](https://www.yuque.com/hollis666/fsn3og/klz889cad0dpv2am)
+- [✅HashMap、Hashtable和ConcurrentHashMap的区别？](https://www.yuque.com/hollis666/fsn3og/lbfr7s)
+- [✅HashMap在get和put时经过哪些步骤？](https://www.yuque.com/hollis666/fsn3og/fxnckk)
+- [✅为什么HashMap的Cap是2^n，如何保证？](https://www.yuque.com/hollis666/fsn3og/ud3e99)
+- [✅为什么HashMap的默认负载因子设置成0.75](https://www.yuque.com/hollis666/fsn3og/qq99gipzlvhzcuer)
+- [✅HashMap的容量设置多少合适？](https://www.yuque.com/hollis666/fsn3og/zftlbogxzvcsbymo)
+- [✅HashMap是如何扩容的？](https://www.yuque.com/hollis666/fsn3og/co1ul8)
+- [✅为什么在JDK8中HashMap要转成红黑树](https://www.yuque.com/hollis666/fsn3og/zx609g)
+- [✅HashMap的hash方法是如何实现的？](https://www.yuque.com/hollis666/fsn3og/sz24zwwrdg92qizg)
+- [✅同步容器（如Vector）的所有操作一定是线程安全的吗？](https://www.yuque.com/hollis666/fsn3og/zvdr34qim77wfrsm)
+- [✅Stream的并行流是如何实现的？](https://www.yuque.com/hollis666/fsn3og/lwhrhzqn0swdrg3r)
+- [✅HashMap的remove方法是如何实现的？](https://www.yuque.com/hollis666/fsn3og/te8w6mo0taqqboy2)
+- [✅ConcurrentHashMap是如何保证线程安全的？](https://www.yuque.com/hollis666/fsn3og/seuqd9oynk2enp9t)
+- [✅ConcurrentHashMap在哪些地方做了并发控制](https://www.yuque.com/hollis666/fsn3og/mkk5y0)
+- [✅ConcurrentHashMap是如何保证fail-safe的？](https://www.yuque.com/hollis666/fsn3og/ghmzuzasiaic6xga)
+- [✅如何将集合变成线程安全的？](https://www.yuque.com/hollis666/fsn3og/ogzddw)
+- [✅HashMap用在并发场景中有什么问题？](https://www.yuque.com/hollis666/fsn3og/ph44ot)
+- [✅什么是COW，如何保证的线程安全？](https://www.yuque.com/hollis666/fsn3og/sn842t5l24dmlsp4)
+- [✅Java 8中的Stream用过吗？都能干什么？](https://www.yuque.com/hollis666/fsn3og/igsnmo)
+- [✅为什么ConcurrentHashMap不允许null值？](https://www.yuque.com/hollis666/fsn3og/ro41pfdt3hu4ocgq)
+- [✅JDK1.8中HashMap有哪些改变？](https://www.yuque.com/hollis666/fsn3og/cgben69hc08cpng7)
+- [✅ConcurrentHashMap为什么在JDK 1.8中废弃分段锁？](https://www.yuque.com/hollis666/fsn3og/gzavigfwro6fgs8o)
+- [✅ConcurrentHashMap为什么在JDK1.8中使用synchronized而不是ReentrantLock](https://www.yuque.com/hollis666/fsn3og/zfcsv292hkbiclzu)
+
+## JVM
+
+### 平台无关 & 编译
+
+- [✅Java是如何实现的平台无关？](https://www.yuque.com/hollis666/fsn3og/wgcs7a)
+- [✅Java是编译型还是解释型?](https://www.yuque.com/hollis666/fsn3og/ylde5u)
+- [✅什么是编译和反编译？](https://www.yuque.com/hollis666/fsn3og/gpd672xz0sx2qyyh)
+- [✅简单介绍一下JIT优化技术？](https://www.yuque.com/hollis666/fsn3og/nkr4ge)
+- [✅什么是AOT编译？和JIT有啥区别？](https://www.yuque.com/hollis666/fsn3og/cy5i6guhszisviks)
+- [✅Java一定就是平台无关的吗？](https://www.yuque.com/hollis666/fsn3og/fgeranr7ts8m4iuy)
+
+### 内存区域
+
+- [✅JVM的运行时内存区域是怎样的？](https://www.yuque.com/hollis666/fsn3og/oyxrdhamqrmn291o)
+- [✅虚拟机中的堆一定是线程共享的吗？](https://www.yuque.com/hollis666/fsn3og/if0i9d)
+- [✅字符串常量池是如何实现的？](https://www.yuque.com/hollis666/fsn3og/koc3uykar8eg3oxt)
+- [✅什么是方法区？是如何实现的？](https://www.yuque.com/hollis666/fsn3og/bk9qtiiqisie4f5a)
+- [✅JVM为什么要把堆和栈区分出来呢？](https://www.yuque.com/hollis666/fsn3og/ab9w29iiz14ehgsi)
+- [✅运行时常量池和字符串常量池的关系是什么？](https://www.yuque.com/hollis666/fsn3og/qbaa4627yid4v1em)
+- [✅什么是堆外内存？如何使用堆外内存？](https://www.yuque.com/hollis666/fsn3og/roit5c9y04z6fqae)
+- [✅OutOfMemory和StackOverflow的区别是什么](https://www.yuque.com/hollis666/fsn3og/rd8oyrewr8tcd9gc)
+- [✅什么是Class常量池，和运行时常量池关系是什么？](https://www.yuque.com/hollis666/fsn3og/orlw1aoulz0dhxr8)
+- [✅什么是safe point，有啥用？](https://www.yuque.com/hollis666/fsn3og/rpclpg5ag63bkyyq)
+- [✅一个Java进程占用的内存都哪些部分？](https://www.yuque.com/hollis666/fsn3og/bqg0lby0vl00gzpt)
+- [✅什么情况会导致JVM退出？](https://www.yuque.com/hollis666/fsn3og/eimtbcv1d2wrwifr)
+
+### GC 垃圾回收
+
+- [✅Java的堆是如何分代的？为什么分代？](https://www.yuque.com/hollis666/fsn3og/iop1msfpeny48x4c)
+- [✅新生代如果只有一个Eden+一个Survivor可以吗？](https://www.yuque.com/hollis666/fsn3og/eigm8iqgpwmd2eg8)
+- [✅YoungGC和FullGC的触发条件是什么？](https://www.yuque.com/hollis666/fsn3og/akr0h4yk44r57g5x)
+- [✅什么是Stop The World？](https://www.yuque.com/hollis666/fsn3og/am0cl3)
+- [✅JVM有哪些垃圾回收算法？](https://www.yuque.com/hollis666/fsn3og/sinedm)
+- [✅什么是三色标记算法？](https://www.yuque.com/hollis666/fsn3og/lva8a9gfhagbrw2g)
+- [✅什么是强引用、软引用、弱引用和虚引用？](https://www.yuque.com/hollis666/fsn3og/mx9eo0s2s5iaah2s)
+- [✅新生代和老年代的GC算法](https://www.yuque.com/hollis666/fsn3og/batkyxxf61dx4kl7)
+- [✅新生代和老年代的垃圾回收器有何区别？](https://www.yuque.com/hollis666/fsn3og/nqra2l)
+- [✅G1和CMS有什么区别？](https://www.yuque.com/hollis666/fsn3og/gkhirkk70lc2zz8z)
+- [✅为什么G1从JDK 9之后成为默认的垃圾回收器？](https://www.yuque.com/hollis666/fsn3og/hgquufzt6m9psmtp)
+- [✅JDK 11中新出的ZGC有什么特点？](https://www.yuque.com/hollis666/fsn3og/qpu0uu6em1ompzeh)
+- [✅Java 8 和 Java 11 的GC有什么区别？](https://www.yuque.com/hollis666/fsn3og/suywtb1ylutad9uk)
+- [✅哪些语言有GC机制](https://www.yuque.com/hollis666/fsn3og/xverku)
+- [✅JVM 中一次完整的 GC 流程是怎样的？](https://www.yuque.com/hollis666/fsn3og/nm3u0khcxyc42u9q)
+- [✅FullGC多久一次算正常？](https://www.yuque.com/hollis666/fsn3og/nks48167c9upybbo)
+- [✅什么是跨代引用，有什么问题？](https://www.yuque.com/hollis666/fsn3og/efipfg3pgg4puux2)
+- [✅说一说JVM的并发回收和并行回收](https://www.yuque.com/hollis666/fsn3og/srfo2k1o2nq4dp7f)
+- [✅为什么初始标记和重新标记需要STW，而并发标记不需要？](https://www.yuque.com/hollis666/fsn3og/acz9pk5h7waamrbe)
+- [✅介绍下CMS的垃圾回收过程](https://www.yuque.com/hollis666/fsn3og/lh75qbvh58o6xv8s)
+- [✅什么是STW？有什么影响？](https://www.yuque.com/hollis666/fsn3og/qg9fvqfnzpbd70hl)
+- [✅项目中如何选择垃圾回收器？为啥选择这个？](https://www.yuque.com/hollis666/fsn3og/fykv0mt786qx8ifa)
+- [✅ZGC和CMS和G1的区别对比?](https://www.yuque.com/hollis666/fsn3og/kexb6xh4v4v7ya57)
+- [✅G1如何精确控制 STW的时间的？](https://www.yuque.com/hollis666/fsn3og/gzt284nht3pv1igh)
+
+### OOM & 调优
+
+- [✅对JDK进程执行kill -9有什么影响？](https://www.yuque.com/hollis666/fsn3og/kmlq81)
+- [✅常见的JVM调优工具有哪些](https://www.yuque.com/hollis666/fsn3og/ouwbti)
+- [✅有哪些常用的JVM启动参数？](https://www.yuque.com/hollis666/fsn3og/nw8et6)
+- [✅内存泄漏和内存溢出的区别是什么？](https://www.yuque.com/hollis666/fsn3og/ge1k2i2aumhsgvbc)
+- [✅Java发生了OOM一定会导致JVM 退出吗？](https://www.yuque.com/hollis666/fsn3og/fsnk2a6xdyhqfvf7)
+- [✅元空间满了（或溢出），可能是什么原因？](https://www.yuque.com/hollis666/fsn3og/kgkxrm3mghwancuq)
+- [✅为什么JDK  1.8要废弃永久代，改用元空间](https://www.yuque.com/hollis666/fsn3og/oze6rrdt2yeq1o02)
+
+### 对象 & 内存
+
+- [✅Java中的对象一定在堆上分配内存吗？](https://www.yuque.com/hollis666/fsn3og/bx3qiz80wclfbmpw)
+- [✅JVM如何判断对象是否存活？](https://www.yuque.com/hollis666/fsn3og/zcd5ur)
+- [✅JVM如何保证给对象分配内存过程的线程安全？](https://www.yuque.com/hollis666/fsn3og/gea4my)
+- [✅一个对象的结构是什么样的？](https://www.yuque.com/hollis666/fsn3og/gstqom)
+- [✅JVM是如何创建对象的？](https://www.yuque.com/hollis666/fsn3og/yx27u8)
+- [✅什么是逃逸分析？](https://www.yuque.com/hollis666/fsn3og/vwrawt9lig6whl4o)
+
+### 类加载器
+
+- [✅类的生命周期是怎么样的？](https://www.yuque.com/hollis666/fsn3og/txysbi)
+- [✅Java中类加载的过程是怎么样的？](https://www.yuque.com/hollis666/fsn3og/tuikxhaa2urq32ds)
+- [✅Java中的类什么时候会被加载？](https://www.yuque.com/hollis666/fsn3og/bg87cow8krr82oq6)
+- [✅什么是双亲委派？如何破坏？](https://www.yuque.com/hollis666/fsn3og/gt8zp4)
+- [✅如何判断JVM中类和其他类是不是同一个类？](https://www.yuque.com/hollis666/fsn3og/gsg3n6)
+- [✅破坏双亲委派之后，能重写String类吗？](https://www.yuque.com/hollis666/fsn3og/udk4icob5shwdsl0)
+- [✅JDK1.8和1.9中类加载器有哪些不同](https://www.yuque.com/hollis666/fsn3og/mla5wg5f3xwifa1d)
+
+## Spring
+
+### IOC & 依赖注入
+
+- [✅介绍一下Spring的IOC](https://www.yuque.com/hollis666/fsn3og/wswp59)
+- [✅为什么Spring不建议使用基于字段的依赖注入？](https://www.yuque.com/hollis666/fsn3og/lbst9ffoy74od6kr)
+- [✅Autowired和Resource的关系？](https://www.yuque.com/hollis666/fsn3og/gai6a9)
+- [✅什么是Spring的循环依赖问题？](https://www.yuque.com/hollis666/fsn3og/xgbtp0)
+- [✅什么是Spring的三级缓存](https://www.yuque.com/hollis666/fsn3og/ilmdn79lc0ba2f4t)
+- [✅三级缓存是如何解决循环依赖的问题的？](https://www.yuque.com/hollis666/fsn3og/ffk7dlcrwk35glpl)
+- [✅Spring解决循环依赖一定需要三级缓存吗？](https://www.yuque.com/hollis666/fsn3og/edvhrik3pbw300os)
+- [✅@Lazy注解能解决循环依赖吗？](https://www.yuque.com/hollis666/fsn3og/vxnlsuitmu61amyq)
+- [✅Spring的@Autowired能用在Map上吗？](https://www.yuque.com/hollis666/fsn3og/wlqh0v66qvep7w0e)
+- [✅Spring默认支持循环依赖吗？如果发生如何解决？](https://www.yuque.com/hollis666/fsn3og/dzzz1gn5k0rdadvu)
+
+### Bean 注解 & 扩展
+
+- [✅Spring Bean的生命周期是怎么样的？](https://www.yuque.com/hollis666/fsn3og/gpl60ga0c996vmw3)
+- [✅Spring Bean的初始化过程是怎么样的？](https://www.yuque.com/hollis666/fsn3og/zlvhpz)
+- [✅@PostConstruct、init-method和afterPropertiesSet执行顺序](https://www.yuque.com/hollis666/fsn3og/sgf2ipp88i6qk803)
+- [✅BeanFactory和FactroyBean的关系？](https://www.yuque.com/hollis666/fsn3og/cnhqfg)
+- [✅Spring在业务中常见的使用方式](https://www.yuque.com/hollis666/fsn3og/xn5f5v)
+- [✅Spring中用到了哪些设计模式](https://www.yuque.com/hollis666/fsn3og/kirdzq)
+- [✅Spring Boot 如何让你的 bean 在其他 bean 之前加载](https://www.yuque.com/hollis666/fsn3og/yybgxw)
+- [✅如何统计一个Bean中的方法调用次数](https://www.yuque.com/hollis666/fsn3og/mnnadn)
+- [✅Spring中shutdownhook作用是什么？](https://www.yuque.com/hollis666/fsn3og/yhm4uefb73v8iezg)
+- [✅在Spring中如何使用Spring Event做事件驱动](https://www.yuque.com/hollis666/fsn3og/lgs78ulq6l3cg1qk)
+- [✅为什么不建议直接使用Spring的@Async](https://www.yuque.com/hollis666/fsn3og/naw927g44ywpxw4e)
+- [✅Spring中@Service 、@Component、@Repository等注解区别是什么？](https://www.yuque.com/hollis666/fsn3og/twxw1ws403puq2zl)
+- [✅如何在Spring启动过程中做缓存预热](https://www.yuque.com/hollis666/fsn3og/hnprw0zg14t9gbva)
+- [✅Spring 中的 Bean 是线程安全的吗？](https://www.yuque.com/hollis666/fsn3og/opxi6925xz4tsuqx)
+- [✅Spring 中的 Bean 作用域有哪些？](https://www.yuque.com/hollis666/fsn3og/se3lrm1ib8an3oem)
+- [✅Spring中如何实现多环境配置？](https://www.yuque.com/hollis666/fsn3og/kanfbagntpcyqc0c)
+- [✅如何根据配置动态生成Spring的Bean？](https://www.yuque.com/hollis666/fsn3og/ptv9g0c665boyd5g)
+- [✅Spring中创建Bean有几种方式?](https://www.yuque.com/hollis666/fsn3og/hz7pd5vdmguwqyls)
+- [✅Spring 中注入 Bean 有几种方式](https://www.yuque.com/hollis666/fsn3og/oscfgn7ca0ubwqf5)
+- [✅同时使用 @Transactional 与 @Async 时，事务会不会生效？](https://www.yuque.com/hollis666/fsn3og/wz4plmzc2t4i2lgd)
+- [✅有什么情况会导致一个bean无法被初始化么？](https://www.yuque.com/hollis666/fsn3og/vga6ntoo2obg59gh)
+
+### AOP & 代理
+
+- [✅介绍一下Spring的AOP](https://www.yuque.com/hollis666/fsn3og/nget4r5wl2imegi7)
+- [✅Spring的AOP在什么场景下会失效？](https://www.yuque.com/hollis666/fsn3og/qogczxzhispgvw96)
+
+### 事务
+
+- [✅Spring的事务传播机制有哪些？](https://www.yuque.com/hollis666/fsn3og/ixgoek25ybmy7ws4)
+- [✅Spring中如何开启事务？](https://www.yuque.com/hollis666/fsn3og/dmp6qs)
+- [✅Spring事务失效可能是哪些原因？](https://www.yuque.com/hollis666/fsn3og/bz0tulziboigw24b)
+- [✅Spring中的事务事件如何使用？](https://www.yuque.com/hollis666/fsn3og/wleqh7dyg2c20uqq)
+- [✅Spring的事务在多线程下生效吗？为什么？](https://www.yuque.com/hollis666/fsn3og/qi1vgi3yg8l663yy)
+- [✅Spring中@Transactional事务的实现原理](https://www.yuque.com/hollis666/fsn3og/wd3t5wg02oyg1qhx)
+
+### SpringMVC
+
+- [✅什么是MVC](https://www.yuque.com/hollis666/fsn3og/wbhz3f8wvd5hi3me)
+- [✅SpringMVC是如何将不同的Request路由到不同Controller中的？](https://www.yuque.com/hollis666/fsn3og/kdhprf)
+- [✅SpringMVC中如何实现流式输出](https://www.yuque.com/hollis666/fsn3og/vfgz1qe42evx0nyl)
+
+### SpringBoot
+
+- [✅Spring 6.0和SpringBoot 3.0有什么新特性？](https://www.yuque.com/hollis666/fsn3og/gvwpq6q0h4ixd9g1)
+- [✅Springboot是如何实现自动配置的？](https://www.yuque.com/hollis666/fsn3og/pe3y9ym4h8hyds3n)
+- [✅SpringBoot是如何实现main方法启动Web项目的？](https://www.yuque.com/hollis666/fsn3og/xc2sq4)
+- [✅SpringBoot的启动流程是怎么样的？](https://www.yuque.com/hollis666/fsn3og/fadkbgd4fyv8816p)
+- [✅SpringBoot和Spring的区别是什么？](https://www.yuque.com/hollis666/fsn3og/meyfwphs8t6c3znd)
+- [✅SpringBoot如何做优雅停机？](https://www.yuque.com/hollis666/fsn3og/vandcd2n9yps1k4z)
+- [✅如何自定义一个starter？](https://www.yuque.com/hollis666/fsn3og/sn0vo662fz3r7aux)
+- [✅为什么SpringBoot 3中移除了spring.factories](https://www.yuque.com/hollis666/fsn3og/fvqbvn66ayetpqyg)
+- [✅SpringBoot和传统的双亲委派有什么不一样吗？](https://www.yuque.com/hollis666/fsn3og/uh3gfne727y8ddhw)
+
+### 定时任务 & 重试
+
+- [✅介绍下@Scheduled的实现原理以及用法](https://www.yuque.com/hollis666/fsn3og/fvisrutmltymyng2)
+- [✅知道Spring Task吗，和XXL-JOB有啥区别？](https://www.yuque.com/hollis666/fsn3og/zgpmbth30xpyi2e9)
+- [✅介绍下@Retryable的实现原理](https://www.yuque.com/hollis666/fsn3og/usa25lf16ma5rp3x)
+
+### 新特性
+
+- [✅Spring 7 和Spring Boot 4 都有哪些新特性？](https://www.yuque.com/hollis666/fsn3og/laf96d7hlyaoe5wh)
+
+## SpringCloud
+
+### 概览 & 对比
+
+- [✅什么是SpringCloud，有哪些组件？](https://www.yuque.com/hollis666/fsn3og/uv6dixcdfnf6qbuu)
+- [✅SpringCloud和Dubbo有什么区别？](https://www.yuque.com/hollis666/fsn3og/htrdnuwky10m81br)
+- [✅SpringCloud 在Spring6.0后有哪些变化](https://www.yuque.com/hollis666/fsn3og/wrg5t9u9mek9hlrg)
+
+### 网关
+
+- [✅什么是Zuul网关，有什么用？](https://www.yuque.com/hollis666/fsn3og/ub4syzfkylukv8xv)
+- [✅Ribbon和Nginx的区别是什么？](https://www.yuque.com/hollis666/fsn3og/mr3ozrbq3ur2f1la)
+- [✅Zuul、Gateway和Nginx有什么区别？](https://www.yuque.com/hollis666/fsn3og/uliggwanbo7t3hxg)
+- [✅为什么需要SpringCloud Gateway，他起到了什么作用？](https://www.yuque.com/hollis666/fsn3og/ow7cnpaa2du8zvv5)
+
+### 负载均衡
+
+- [✅Ribbon是怎么做负载均衡的？](https://www.yuque.com/hollis666/fsn3og/umf7fkgc9purm9qb)
+- [✅LoadBalancer和Ribbon的区别是什么？为什么用他替代Ribbon？](https://www.yuque.com/hollis666/fsn3og/akhcxgict7a5kx46)
+- [✅LoadBalancer支持哪些负载均衡策略？如何修改？](https://www.yuque.com/hollis666/fsn3og/xntmn5zea7y85r82)
+- [✅OpenFeign 是如何实现负载均衡的？](https://www.yuque.com/hollis666/fsn3og/ag5skxvies08z9z6)
+
+### 服务调用
+
+- [✅OpenFeign 不支持了怎么办？](https://www.yuque.com/hollis666/fsn3og/itmcpq5517975ttq)
+- [✅在 Spring Cloud 中，服务间的通信有哪些方式？](https://www.yuque.com/hollis666/fsn3og/eda2t6sboyhxragt)
+- [✅Dubbo和Feign有什么区别？](https://www.yuque.com/hollis666/fsn3og/bi8engr1dqg1o4gn)
+- [✅Feign 第一次调用为什么很慢？可能的原因是什么？](https://www.yuque.com/hollis666/fsn3og/xkif40ganq23kmyd)
+- [✅Feign 和 RestTemplate 有什么不同？](https://www.yuque.com/hollis666/fsn3og/qitnhtonzzc535vo)
+- [✅Feign和OpenFeign 有什么区别？](https://www.yuque.com/hollis666/fsn3og/nyigf9383hb8rmwg)
+- [✅OpenFeign如何处理超时？如何处理异常？如何记录客户端日志？](https://www.yuque.com/hollis666/fsn3og/qobuvxgq6vq87gak)
+- [✅Feign调用超时，会自动重试吗？如何设置？](https://www.yuque.com/hollis666/fsn3og/zzi01ikwfkhpxwi0)
+
+### 熔断 & 限流
+
+- [✅Hystrix和Sentinel的区别是什么？](https://www.yuque.com/hollis666/fsn3og/gvgtod53vvivtk0t)
+- [✅Hystrix熔断器的工作原理是什么？](https://www.yuque.com/hollis666/fsn3og/kf1fake8g2pret28)
+- [✅介绍一下 Hystrix 的隔离策略，你用哪个？](https://www.yuque.com/hollis666/fsn3og/qnv7o8f70pdo23fn)
+
+### 注册中心
+
+- [✅Eureka和Zookeeper有什么区别？](https://www.yuque.com/hollis666/fsn3og/ifgriifpma4mgpu0)
+- [✅介绍一下Eureka的缓存机制](https://www.yuque.com/hollis666/fsn3og/ixwaksugfzsggy9k)
+- [✅什么是Eureka的自我保护模式？](https://www.yuque.com/hollis666/fsn3og/wuyo15a4o3ybgyxz)
+- [✅Eureka 在 Spring Boot 3.x 之后被移除了，如何替代？](https://www.yuque.com/hollis666/fsn3og/fgsge63ygay8ml4z)
+
+### 配置
+
+- [✅application.yml 和 bootstrap.yml 这两个配置文件有什么区别？](https://www.yuque.com/hollis666/fsn3og/eda5nkr0h5xp2g84)
+
+## MySQL
+
+### 基础 & 存储引擎
+
+- [✅有了关系型数据库，为什么还需要NOSQL？](https://www.yuque.com/hollis666/fsn3og/ic65fs)
+- [✅MySQL的数据存储一定是基于硬盘的吗？](https://www.yuque.com/hollis666/fsn3og/wgqvpgmmezluxuzc)
+- [✅InnoDB和MyISAM有什么区别？](https://www.yuque.com/hollis666/fsn3og/adeg5m)
+- [✅char和varchar的区别？](https://www.yuque.com/hollis666/fsn3og/xodf4gdc6i9goyt6)
+- [✅MySQL 5.x和8.0有什么区别？](https://www.yuque.com/hollis666/fsn3og/uxdmro)
+- [✅什么是数据库范式，为什么要反范式？](https://www.yuque.com/hollis666/fsn3og/ebavvu)
+- [✅为什么大厂不建议使用多表join？](https://www.yuque.com/hollis666/fsn3og/qt4krg)
+- [✅InnoDB支持哪几种行格式？](https://www.yuque.com/hollis666/fsn3og/git053kfd3r0fc8o)
+- [✅InnoDB的一次更新事务过程是怎么样的？](https://www.yuque.com/hollis666/fsn3og/wmmyt7a9vr7qlwsl)
+- [✅InnoDB如何解决脏读、不可重复读和幻读的？](https://www.yuque.com/hollis666/fsn3og/zx47wieewckee8bk)
+- [✅Innodb的RR到底有没有解决幻读？](https://www.yuque.com/hollis666/fsn3og/vmaulo)
+- [✅介绍下InnoDB的锁机制？](https://www.yuque.com/hollis666/fsn3og/rgdoek)
+- [✅Innodb加索引，这个时候会锁表吗？](https://www.yuque.com/hollis666/fsn3og/wy801zizgya0s9b4)
+- [✅InnoDB中的索引类型？](https://www.yuque.com/hollis666/fsn3og/hogrm3)
+- [✅InnoDB为什么使用B+树实现索引？](https://www.yuque.com/hollis666/fsn3og/uh3cy1)
+- [✅是否支持emoji表情存储，如果不支持，如何操作？](https://www.yuque.com/hollis666/fsn3og/hwe1ut)
+- [✅介绍一下InnoDB的数据页，和B+树的关系是什么？](https://www.yuque.com/hollis666/fsn3og/vebvlntlc6rnvuu0)
+- [✅MySQL的Hash Join是什么？](https://www.yuque.com/hollis666/fsn3og/ci3ae75ktzkmz1dw)
+- [✅什么是InnoDB的页分裂和页合并](https://www.yuque.com/hollis666/fsn3og/lq17kh7gaf8ayipw)
+- [✅介绍下MySQL 5.7中的组提交](https://www.yuque.com/hollis666/fsn3og/bb860tpuha0cuza2)
+- [✅为什么MySQL 8.0要取消查询缓存？](https://www.yuque.com/hollis666/fsn3og/wuzidroy4wl3xag9)
+- [✅MyISAM 的索引结构是怎么样的，它存在的问题是什么？](https://www.yuque.com/hollis666/fsn3og/mcl4sn8mcutieesz)
+- [✅为什么不建议使用存储过程？](https://www.yuque.com/hollis666/fsn3og/ynztvs5ybexqof8s)
+- [✅什么是OnlineDDL](https://www.yuque.com/hollis666/fsn3og/lwxtmggon7ir4zzz)
+- [✅为什么不推荐使用外键？](https://www.yuque.com/hollis666/fsn3og/tm4gg1mwdsgaqy9a)
+- [✅InnoDB中的表级锁、页级锁、行级锁？](https://www.yuque.com/hollis666/fsn3og/vef33zs32vyylktv)
+- [✅从 innodb 的索引结构分析，为什么索引的 key 长度不能太长?](https://www.yuque.com/hollis666/fsn3og/rs2pun6gm1yblwmn)
+- [✅什么是数据库的锁升级，Innodb 支持吗？](https://www.yuque.com/hollis666/fsn3og/lytbcslc6e3tpuu1)
+- [✅如果SQL中一定要有join，该如何优化？](https://www.yuque.com/hollis666/fsn3og/zqx2r7qmtkggtovs)
+- [✅varchar(100)和varchar(10)有什么区别？](https://www.yuque.com/hollis666/fsn3og/dg2ddbvmc2r3pw9f)
+
+### 索引
+
+- [✅MySQL是如何保证唯一性索引的唯一性的？](https://www.yuque.com/hollis666/fsn3og/gliyvzp21uq8uakh)
+- [✅什么是聚簇索引和非聚簇索引？](https://www.yuque.com/hollis666/fsn3og/le8gbo472cpxv63z)
+- [✅什么是回表，怎么减少回表的次数？](https://www.yuque.com/hollis666/fsn3og/vr22wd)
+- [✅什么是索引覆盖、索引下推？](https://www.yuque.com/hollis666/fsn3og/gpg6mivy21wg0r55)
+- [✅设计索引的时候有哪些原则（考虑哪些因素）？](https://www.yuque.com/hollis666/fsn3og/ygxb9f)
+- [✅什么是最左前缀匹配？为什么要遵守？](https://www.yuque.com/hollis666/fsn3og/cc9mglopp4nigg59)
+- [✅MySQL索引一定遵循最左前缀匹配吗？](https://www.yuque.com/hollis666/fsn3og/nz5520o4qu5yohzv)
+- [✅用了索引还是很慢，可能是什么原因？](https://www.yuque.com/hollis666/fsn3og/st7he2np7e9trg9k)
+- [✅索引失效的问题如何排查？](https://www.yuque.com/hollis666/fsn3og/gux80i)
+- [✅区分度不高的字段建索引一定没用吗？](https://www.yuque.com/hollis666/fsn3og/nr83t255g22gu3v7)
+- [✅where条件的顺序影响使用索引吗？](https://www.yuque.com/hollis666/fsn3og/nwm3ry85o8l0gega)
+- [✅为什么MySQL会选错索引，如何解决？](https://www.yuque.com/hollis666/fsn3og/ghy5i20ie717exee)
+- [✅唯一索引和主键索引的区别？](https://www.yuque.com/hollis666/fsn3og/mot9do3w6rh5u03t)
+- [✅联合索引是越多越好吗？](https://www.yuque.com/hollis666/fsn3og/gkpnqgz1bqg71n5v)
+- [✅什么时候索引失效反而提升效率？](https://www.yuque.com/hollis666/fsn3og/ctpkpgi7gxkgklk8)
+- [✅MySQL用了函数一定会索引失效吗？](https://www.yuque.com/hollis666/fsn3og/wk2stos6kpdcc8dc)
+- [✅什么是索引合并，原理是什么？](https://www.yuque.com/hollis666/fsn3og/cn34kd6tlw54ulmi)
+- [✅a,b两个单独索引，where a=xx and b=xx 走哪个索引？为什么？](https://www.yuque.com/hollis666/fsn3og/yqc5i99rzam3e5vq)
+- [✅怎么比较两个索引的好坏？](https://www.yuque.com/hollis666/fsn3og/yh5zyqc2yt3gshm9)
+- [✅A,B,C的联合索引，按照 AB,AC,BC查询，能走索引吗？](https://www.yuque.com/hollis666/fsn3og/dx1cqgsrebkvdixc)
+- [✅什么是索引跳跃扫描](https://www.yuque.com/hollis666/fsn3og/ixpnm8nvbfa9l7gm)
+- [✅MySQL的优化器的索引成本是怎么算出来的？](https://www.yuque.com/hollis666/fsn3og/waruyhds7gcn6srf)
+- [✅二级索引在索引覆盖时如何使用MVCC？](https://www.yuque.com/hollis666/fsn3og/kcgxd5vsnygpr9r7)
+- [✅MySQL做索引更新的时候，会锁表吗？](https://www.yuque.com/hollis666/fsn3og/ue3wgwvc5x7nyugl)
+- [✅什么是前缀索引，使用的时候要注意什么？](https://www.yuque.com/hollis666/fsn3og/mgdkt0npzqke4ump)
+- [✅a，b都有索引，select * from table where a = xx order by b。走哪个索引？](https://www.yuque.com/hollis666/fsn3og/sopm64dgvu5g2m5h)
+- [✅为啥 like %xx不走索引？like xx%xxx走索引吗？为啥？](https://www.yuque.com/hollis666/fsn3og/ep1vvhul0wpwrinx)
+- [✅MySQL建了abc的联合索引，底层会建a,ab, abc这3个索引么？](https://www.yuque.com/hollis666/fsn3og/kgtsqwemwrv0tr92)
+
+### 事务 & MVCC
+
+- [✅什么是数据库事务机制？](https://www.yuque.com/hollis666/fsn3og/bvelw3)
+- [✅什么是脏读、幻读、不可重复读？](https://www.yuque.com/hollis666/fsn3og/vp4vma02le3z3y50)
+- [✅MySQL中的事务隔离级别？](https://www.yuque.com/hollis666/fsn3og/ytxaew)
+- [✅MySQL 的 select * 会用到事务吗？](https://www.yuque.com/hollis666/fsn3og/oe675im7idtmd25u)
+- [✅为什么MySQL默认使用RR隔离级别？](https://www.yuque.com/hollis666/fsn3og/fx5luearutigdcep)
+- [✅为什么默认RR，大厂要改成RC？](https://www.yuque.com/hollis666/fsn3og/moe9ws)
+- [✅如何理解MVCC？](https://www.yuque.com/hollis666/fsn3og/wgu1u6)
+- [✅当前读和快照读有什么区别？](https://www.yuque.com/hollis666/fsn3og/gkvz7xyot80ylvnc)
+- [✅binlog、redolog和undolog区别？](https://www.yuque.com/hollis666/fsn3og/tdlgfm)
+- [✅MySQL执行大事务会存在什么问题？](https://www.yuque.com/hollis666/fsn3og/ucgnyqsgubgrar7c)
+- [✅什么是事务的2阶段提交？](https://www.yuque.com/hollis666/fsn3og/geuks1bbiwd39h1r)
+- [✅什么是ReadView，什么样的ReadView可见？](https://www.yuque.com/hollis666/fsn3og/gq6em9bet37p4f77)
+- [✅undolog会一直存在吗？什么时候删除？](https://www.yuque.com/hollis666/fsn3og/smuw1dllb29thq3v)
+- [✅MySQL事务ACID是如何实现的？](https://www.yuque.com/hollis666/fsn3og/opw12171lnkklux0)
+- [✅MySQL如何实现不同隔离级别？](https://www.yuque.com/hollis666/fsn3og/rl52tpw7t4ib8x59)
+
+### 锁
+
+- [✅MySQL的行级锁锁的到底是什么？](https://www.yuque.com/hollis666/fsn3og/kfygzw)
+- [✅什么是排他锁和共享锁？](https://www.yuque.com/hollis666/fsn3og/ec5yhfon858vcq5p)
+- [✅什么是意向锁？](https://www.yuque.com/hollis666/fsn3og/zf7nalngrigml547)
+- [✅乐观锁与悲观锁如何实现？](https://www.yuque.com/hollis666/fsn3og/ionc18)
+- [✅MySQL只操作同一条记录，也会发生死锁吗？](https://www.yuque.com/hollis666/fsn3og/wbgxhl2d85zlome3)
+- [✅数据库死锁如何解决？](https://www.yuque.com/hollis666/fsn3og/ut71vg)
+- [✅数据库乐观锁的过程中，完全没有加任何锁吗？](https://www.yuque.com/hollis666/fsn3og/vk7tpwcpzfh35d04)
+- [✅什么是MySQL的字典锁？](https://www.yuque.com/hollis666/fsn3og/ru6eaoolefdo0lor)
+- [✅MySQL的update语句什么时候锁行什么时候锁表](https://www.yuque.com/hollis666/fsn3og/bmnflz5es21bwy3p)
+
+### SQL & 执行计划
+
+- [✅说一说MySQL一条SQL语句的执行过程？](https://www.yuque.com/hollis666/fsn3og/dzkisw)
+- [✅order by 是怎么实现的？](https://www.yuque.com/hollis666/fsn3og/caou56)
+- [✅count(1)、count(*) 与 count(列名) 的区别](https://www.yuque.com/hollis666/fsn3og/sckebi)
+- [✅limit 0,100和limit 10000000,100一样吗？](https://www.yuque.com/hollis666/fsn3og/gtpc5u4i7xmy13el)
+- [✅SQL语句如何实现insertOrUpdate的功能？](https://www.yuque.com/hollis666/fsn3og/gal4lxk8ug9g2bwk)
+- [✅SQL执行计划分析的时候，要关注哪些信息？](https://www.yuque.com/hollis666/fsn3og/fho0bamf4qpcril5)
+- [✅如何优化一个大规模的数据库系统？](https://www.yuque.com/hollis666/fsn3og/qimt8ayyqk8y5qc7)
+- [✅如何进行SQL调优？](https://www.yuque.com/hollis666/fsn3og/mgpczmz7la99dkft)
+- [✅慢SQL的问题如何排查？](https://www.yuque.com/hollis666/fsn3og/zhfa5g)
+- [✅MySQL的驱动表是什么？MySQL怎么选的？](https://www.yuque.com/hollis666/fsn3og/vs83kfhxbz19mkcg)
+- [✅SQL中PK、UK、CK、FK、DF是什么意思？](https://www.yuque.com/hollis666/fsn3og/ccen6bqh6pgsiogs)
+- [✅执行计划中，key有值，还是很慢怎么办？](https://www.yuque.com/hollis666/fsn3og/upcggbxiyk11gudc)
+- [✅MySQL的深度分页如何优化](https://www.yuque.com/hollis666/fsn3og/et8lo7l10rg7g7iy)
+- [✅MySQL的limit+order by为什么会数据重复？](https://www.yuque.com/hollis666/fsn3og/lfu2tb460vvvs1wg)
+- [✅一个查询语句的执行顺序是怎么样的？](https://www.yuque.com/hollis666/fsn3og/ihsu18bwvr9csnzu)
+- [✅on和where有什么区别？](https://www.yuque.com/hollis666/fsn3og/iiasw1frpq30mdvo)
+- [✅truncate、delete、drop的区别？](https://www.yuque.com/hollis666/fsn3og/uvulgtf6wbgpfx14)
+- [✅Using filesort 能优化吗，怎么优化？](https://www.yuque.com/hollis666/fsn3og/gb04a1yv2x6et411)
+- [✅MySQL 中如何查看一个 SQL 的执行耗时](https://www.yuque.com/hollis666/fsn3og/aut470ml0sk31b4d)
+- [✅MySQL 为什么是小表驱动大表，为什么能提高查询性能？](https://www.yuque.com/hollis666/fsn3og/lxb1s5pqizgaib0k)
+- [✅limit的原理是什么？](https://www.yuque.com/hollis666/fsn3og/zfvodtm4bk19eyvb)
+- [✅为什么要尽量避免使用select * ？](https://www.yuque.com/hollis666/fsn3og/wgmpg7gsqhbc9vmi)
+- [✅表中只有a,b,c 三个字段，比较select * 与 select a,b,c有什么区别。](https://www.yuque.com/hollis666/fsn3og/sngq2pggss2b5q6h)
+- [✅exists和in有什么区别？如何选择？](https://www.yuque.com/hollis666/fsn3og/pslhdo4g6i5h6gpg)
+- [✅执行计划中的filtered的值有啥用？](https://www.yuque.com/hollis666/fsn3og/nn04rt560zdc2rna)
+
+### 主键 & 自增
+
+- [✅MySQL的主键一定是自增的吗？](https://www.yuque.com/hollis666/fsn3og/glycgnryk8953c24)
+- [✅uuid和自增id做主键哪个好，为什么？](https://www.yuque.com/hollis666/fsn3og/uted9tvkngs62pmu)
+- [✅MySQL自增主键用完了会怎么样？](https://www.yuque.com/hollis666/fsn3og/eob7raeqaenifzpp)
+- [✅高并发情况下自增主键会不会重复，为什么？](https://www.yuque.com/hollis666/fsn3og/oxdeyunw5v65gqen)
+- [✅什么情况会导致自增主键不连续？](https://www.yuque.com/hollis666/fsn3og/vtfa41wvszopeaz8)
+- [✅MySQL 获取主键 id 的瓶颈在哪里？如何优化？](https://www.yuque.com/hollis666/fsn3og/kyh6b61d9gtdlqoq)
+
+### Buffer Pool & 底层
+
+- [✅MySQL怎么做热点数据高效更新？](https://www.yuque.com/hollis666/fsn3og/rfqcbz190k9egley)
+- [✅什么是buffer pool？](https://www.yuque.com/hollis666/fsn3og/cskzcn42f9dggat0)
+- [✅buffer pool的读写过程是怎么样的？](https://www.yuque.com/hollis666/fsn3og/npkvvofcuc0g9n7m)
+- [✅MySQL中like的模糊查询如何优化](https://www.yuque.com/hollis666/fsn3og/zrt2y30mhdgiremc)
+- [✅数据库怎么做加密和解密？](https://www.yuque.com/hollis666/fsn3og/xg32pfnstsrh9pdp)
+- [✅数据库加密后怎么做模糊查询？](https://www.yuque.com/hollis666/fsn3og/ri2ky6kb6pvxy656)
+- [✅阿里的数据库能抗秒杀的原理](https://www.yuque.com/hollis666/fsn3og/gwg64tg0g107wgz3)
+- [✅MySQL为什么会有存储（内存）碎片？有什么危害？](https://www.yuque.com/hollis666/fsn3og/dgehrxlnpsrdi83e)
+- [✅数据库扫表任务如何避免出现死循环](https://www.yuque.com/hollis666/fsn3og/kseb1kopfbtovn30)
+- [✅MySQL是AP的还是CP的系统？](https://www.yuque.com/hollis666/fsn3og/xqpwxtsw21p4933v)
+- [✅MySQL的BLOB和TEXT有什么区别?](https://www.yuque.com/hollis666/fsn3og/czdn2ykugiq5mx0d)
+- [✅什么是MySQL的内存碎片？如何清理？](https://www.yuque.com/hollis666/fsn3og/fa27eoa3hcl1qzr8)
+- [✅MySQL如何实现行转列和列转行？](https://www.yuque.com/hollis666/fsn3og/wb2h3s2lsaw5egk8)
+
+### 日志 & 主从复制
+
+- [✅MySQL主从复制的过程](https://www.yuque.com/hollis666/fsn3og/hoi4ql)
+- [✅MySQL的binlog有几种格式](https://www.yuque.com/hollis666/fsn3og/pl5wcg4cmn8dgufn)
+- [✅MySQL的并行复制原理](https://www.yuque.com/hollis666/fsn3og/igarxy867n7bgq1q)
+- [✅什么是数据库的主从延迟，如何解决？](https://www.yuque.com/hollis666/fsn3og/weszn2kock8k8wld)
+- [✅一次insert操作，MySQL的几种log的写入顺序？](https://www.yuque.com/hollis666/fsn3og/gtedt73t4nvskhzb)
+- [✅MySQL能保证数据100%不丢吗？](https://www.yuque.com/hollis666/fsn3og/gb7rrfs70zli4mp8)
+
+## Oracle
+
+- [✅什么是视图，视图的作用是什么？](https://www.yuque.com/hollis666/fsn3og/kris4thwb31b2l1n)
+- [✅Oracle 和 MySQL 的区别是什么？如何选择？](https://www.yuque.com/hollis666/fsn3og/hrdea48tzqmtizbk)
+- [✅阿里巴巴的去 IOE架构中为什么废弃 Oracle](https://www.yuque.com/hollis666/fsn3og/ozuigivzabx10ccx)
+- [✅Oracle 支持哪些索引类型？](https://www.yuque.com/hollis666/fsn3og/bgilo3s62eu34q23)
+- [✅什么是反向键索引，有什么用处？](https://www.yuque.com/hollis666/fsn3og/ragi9onqwc55ge2q)
+- [✅介绍下函数索引、位图索引、空间索引？](https://www.yuque.com/hollis666/fsn3og/yp0urza5spqi11kz)
+- [✅Oracle 的事务隔离级别？](https://www.yuque.com/hollis666/fsn3og/uy74dk6ebd53wuhh)
+- [✅Oracle中如何实现行转列和列转行？](https://www.yuque.com/hollis666/fsn3og/indrkufe8hfdvgx2)
+- [✅ROWNUM 和 ROW_NUMBER() 的区别是什么？](https://www.yuque.com/hollis666/fsn3og/qrzgi78qp1ner15q)
+- [✅PL/SQL 是什么，为什么使用 PL/SQL 而不是 SQL？](https://www.yuque.com/hollis666/fsn3og/zd2q6ye9h1n1m33s)
+- [✅Oracle为什么用B-树索引？](https://www.yuque.com/hollis666/fsn3og/dp3k5rl2a8yygtir)
+
+## MyBatis
+
+- [✅什么是ORM，有哪些常用框架？](https://www.yuque.com/hollis666/fsn3og/bi28ye)
+- [✅MyBatis与Hibernate有何不同？](https://www.yuque.com/hollis666/fsn3og/ou42et6pxahtg5th)
+- [✅Mybatis的优点有哪些？](https://www.yuque.com/hollis666/fsn3og/evq52f)
+- [✅Mybatis是如何实现字段映射的？](https://www.yuque.com/hollis666/fsn3og/pqz4pvpq8l8mi3qp)
+- [✅#和$的区别是什么？什么情况必须用$](https://www.yuque.com/hollis666/fsn3og/idozw647yfbqtkig)
+- [✅Mybatis插件的运行原理？](https://www.yuque.com/hollis666/fsn3og/zx69bk)
+- [✅Mybatis的工作原理？](https://www.yuque.com/hollis666/fsn3og/rf9y4p)
+- [✅Mybatis的缓存机制](https://www.yuque.com/hollis666/fsn3og/mapxqi)
+- [✅Mybatis用的什么连接池？](https://www.yuque.com/hollis666/fsn3og/rlhr2k)
+- [✅Mybatis 是否支持延迟加载？实现原理是什么？](https://www.yuque.com/hollis666/fsn3og/cirnfyonf1bwg8dy)
+- [✅Mybatis可以实现动态SQL么？](https://www.yuque.com/hollis666/fsn3og/tv0weupx1lmpkdm7)
+- [✅使用MyBatis如何实现分页？](https://www.yuque.com/hollis666/fsn3og/ygkn2rwkgv7hrvnv)
+- [✅RowBounds分页的原理是什么？](https://www.yuque.com/hollis666/fsn3og/dkzvunp0718ap32z)
+- [✅PageHelper分页的原理是什么？](https://www.yuque.com/hollis666/fsn3og/ogng83zwfrqblu5e)
+- [✅MyBatis-Plus有什么用？](https://www.yuque.com/hollis666/fsn3og/xyqaxg43w514xduy)
+- [✅MyBatis-Plus的分页原理是什么？](https://www.yuque.com/hollis666/fsn3og/ogixz5y3f0oksyov)
+
+## Tomcat
+
+- [✅Tomcat的启动流程是怎样的？](https://www.yuque.com/hollis666/fsn3og/rvm0tu1yvwobb6or)
+- [✅Tomcat中有哪些类加载器?](https://www.yuque.com/hollis666/fsn3og/rgupmyr7wo4s8zi0)
+- [✅为什么Tomcat可以把线程数设置为200，而不是N+1？](https://www.yuque.com/hollis666/fsn3og/lhgig4mvgknhqnqw)
+- [✅Tomcat处理请求的过程是怎么样的？](https://www.yuque.com/hollis666/fsn3og/ka1ok6scbuvaim5e)
+- [✅过滤器和拦截器的区别是什么？](https://www.yuque.com/hollis666/fsn3og/oo999uimvc6sxrob)
+- [✅介绍一下Tomcat的IO模型？](https://www.yuque.com/hollis666/fsn3og/xui1w5fui7epgthh)
+- [✅Tomcat与Web服务器（如Apache）之间的关系是什么？](https://www.yuque.com/hollis666/fsn3og/yan30bxgibygubcx)
+- [✅Tomcat的类加载机制是怎么样的？](https://www.yuque.com/hollis666/fsn3og/evlwzsa8s6mx93ly)
+
+## Netty
+
+- [✅为什么Netty适合做网络编程？](https://www.yuque.com/hollis666/fsn3og/itxx9r)
+- [✅Netty性能好的原因是什么？](https://www.yuque.com/hollis666/fsn3og/ilms3crzfpxldub5)
+- [✅Netty的零拷贝是怎么实现的？](https://www.yuque.com/hollis666/fsn3og/sa06q2)
+- [✅能不能说一说Netty的无锁化设计？](https://www.yuque.com/hollis666/fsn3og/htc8q64v9kf0mtig)
+- [✅Netty的线程模型是怎么样的？](https://www.yuque.com/hollis666/fsn3og/ind4ry)
+- [✅Netty如何解决TCP粘包、拆包的问题的？](https://www.yuque.com/hollis666/fsn3og/wfo7v7)
+- [✅Netty的Buffer为什么好用](https://www.yuque.com/hollis666/fsn3og/qnyxsvlqd1xa2wis)
+- [✅说说 Netty 的对象池技术？](https://www.yuque.com/hollis666/fsn3og/rt3r0dfeee6tkuh6)
+- [✅Netty有哪些序列化协议？](https://www.yuque.com/hollis666/fsn3og/feghdunr7kut0y9k)
+- [✅Netty 中用了哪些设计模式？](https://www.yuque.com/hollis666/fsn3og/qwoyddp9ci4b643c)
+
+## 微服务
+
+- [✅分布式和微服务的区别是什么？](https://www.yuque.com/hollis666/fsn3og/av4fdpxuxauxym6k)
+- [✅什么是微服务架构？优势？特点？](https://www.yuque.com/hollis666/fsn3og/zao7sn0kve58xasr)
+- [✅SOA和微服务之间的主要区别是什么？](https://www.yuque.com/hollis666/fsn3og/fkg3572ih9pye728)
+- [✅什么是康威定律？](https://www.yuque.com/hollis666/fsn3og/rcgubon7keglqt75)
+- [✅如何进行微服务的拆分？](https://www.yuque.com/hollis666/fsn3og/cts189q73h1ngk83)
+- [✅微服务架构的服务治理有哪些实现方案？](https://www.yuque.com/hollis666/fsn3og/psrpu1cyqxvaufg7)
+- [✅什么是DevOps？](https://www.yuque.com/hollis666/fsn3og/fbvx3cp3cgsyxede)
+- [✅微服务中的CI/CD了解吗？](https://www.yuque.com/hollis666/fsn3og/zred7qql7p76wf5d)
+- [✅听说过ServiceMesh吗？是什么？](https://www.yuque.com/hollis666/fsn3og/wbqtun5lra4h08l2)
+- [✅灰度发布、蓝绿部署、金丝雀部署都是什么？](https://www.yuque.com/hollis666/fsn3og/onc7gmb0928xwhgp)
+- [✅什么是微服务的循环依赖？](https://www.yuque.com/hollis666/fsn3og/iwvcqgm897fdy9bx)
+- [✅限流、降级、熔断有什么区别？](https://www.yuque.com/hollis666/fsn3og/etgovbs6bgphlqso)
+- [✅各个微服务之间，有哪些调用（通信）方式？](https://www.yuque.com/hollis666/fsn3og/va6hzehphyiing2w)
+
+## 分布式
+
+- [✅什么是分布式系统？和集群的区别？](https://www.yuque.com/hollis666/fsn3og/nhfl6i)
+- [✅什么是分布式系统的一致性？](https://www.yuque.com/hollis666/fsn3og/ywhzkoqti2n6zh6g)
+- [✅什么是CAP理论，为什么不能同时满足？](https://www.yuque.com/hollis666/fsn3og/avwops)
+- [✅什么是分布式BASE理论？](https://www.yuque.com/hollis666/fsn3og/vfnqpd)
+- [✅什么是拜占庭将军问题](https://www.yuque.com/hollis666/fsn3og/my2s21)
+- [✅什么是分布式事务中的两阶段提交（2PC）](https://www.yuque.com/hollis666/fsn3og/du7xnm)
+- [✅分布式锁有几种实现方式？](https://www.yuque.com/hollis666/fsn3og/fvnr41)
+- [✅什么是分布式事务？](https://www.yuque.com/hollis666/fsn3og/pgzeqn8h4nxl1o6h)
+- [✅常见的分布式事务有哪些？](https://www.yuque.com/hollis666/fsn3og/yr0lu6)
+- [✅什么是TCC，和2PC有什么区别？](https://www.yuque.com/hollis666/fsn3og/xhvbak3ouy6xqiml)
+- [✅什么是柔性事务？](https://www.yuque.com/hollis666/fsn3og/ez7hqa8mzsixz3ik)
+- [✅如何基于MQ实现分布式事务](https://www.yuque.com/hollis666/fsn3og/yuku2qztfb8ki6wg)
+- [✅如何基于本地消息表实现分布式事务？](https://www.yuque.com/hollis666/fsn3og/xm675quxo1bc5qm8)
+- [✅什么是最大努力通知？](https://www.yuque.com/hollis666/fsn3og/akhq6shbaqc61s5n)
+- [✅最大努力通知&事务消息&本地消息表三者区别是什么？](https://www.yuque.com/hollis666/fsn3og/pxdtc3krterqhrfz)
+- [✅分布式ID生成方案都有哪些？](https://www.yuque.com/hollis666/fsn3og/cdfb2w)
+- [✅怎么实现分布式Session？](https://www.yuque.com/hollis666/fsn3og/xbgu80vgxnhhb438)
+- [✅什么是雪花算法，怎么保证不重复的？](https://www.yuque.com/hollis666/fsn3og/rsocc4sd7v9i0pvc)
+- [✅分布式命名方案都有哪些？](https://www.yuque.com/hollis666/fsn3og/uaamf4cbsc3k17b3)
+- [✅什么是负载均衡，有哪些常见算法？](https://www.yuque.com/hollis666/fsn3og/dw07di)
+- [✅如何解决接口幂等的问题？](https://www.yuque.com/hollis666/fsn3og/gz2qwl)
+- [✅Leaf生成分布式ID的原理？](https://www.yuque.com/hollis666/fsn3og/hgzes2l7eomfmiqu)
+- [✅Seata的实现原理是什么](https://www.yuque.com/hollis666/fsn3og/qro9fl9lsiinx1tu)
+- [✅什么是一致性哈希？](https://www.yuque.com/hollis666/fsn3og/hgx0twgg4t7nqg6v)
+- [✅TCC的空回滚和悬挂是什么？如何解决？](https://www.yuque.com/hollis666/fsn3og/cu01a1g1xxn2v52u)
+- [✅如何实现应用中的链路追踪？](https://www.yuque.com/hollis666/fsn3og/nnl88aqknhx2v76c)
+- [✅实现一个分布式锁需要考虑哪些问题？](https://www.yuque.com/hollis666/fsn3og/nmebtkbkpwzxrcgr)
+- [✅定时任务扫表的缺点有什么？](https://www.yuque.com/hollis666/fsn3og/gamq6s7qf25cn332)
+- [✅什么是Canal，他的工作原理是什么？](https://www.yuque.com/hollis666/fsn3og/qpwdviov4dvaxg4c)
+- [✅什么是分布式数据库，有什么优势？](https://www.yuque.com/hollis666/fsn3og/dmdnuslmzu36wn80)
+- [✅锁和分布式锁的核心区别是什么？](https://www.yuque.com/hollis666/fsn3og/exo64m6r593fni9m)
+- [✅TCC中，Confirm或者Cancel失败了怎么办？](https://www.yuque.com/hollis666/fsn3og/xnvn2of7pmd005no)
+- [✅TCC是强一致性还是最终一致性？](https://www.yuque.com/hollis666/fsn3og/aedtll1aq21ahiwf)
+- [✅为什么不建议用数据库唯一性约束做幂等控制？](https://www.yuque.com/hollis666/fsn3og/prnect4g81wg2law)
+- [✅Seata的4种事务模式，各自适合的场景是什么？](https://www.yuque.com/hollis666/fsn3og/cx86tg6tdhmz1dm9)
+- [✅Seata的AT模式的实现原理](https://www.yuque.com/hollis666/fsn3og/me3ge4vavi0fokgq)
+- [✅Seata的AT模式和XA有什么区别？](https://www.yuque.com/hollis666/fsn3og/fzd9nmraf5krr4m0)
+- [✅Redis 的分布式锁和 Zookeeper 的分布式锁有啥区别？](https://www.yuque.com/hollis666/fsn3og/wa9oz7l84ylazz58)
+- [✅Redis 分布式锁和zk分布式锁哪个对死锁友好?](https://www.yuque.com/hollis666/fsn3og/gl438406i38c7xg8)
+- [✅什么是OAuth2？有什么用？](https://www.yuque.com/hollis666/fsn3og/eahqdb14h64qx7qd)
+- [✅什么是事务消息，为什么需要事务消息？](https://www.yuque.com/hollis666/fsn3og/awrtlggd35yanugp)
+- [✅详细介绍下号段模式生成分布式ID的原理和优缺点？](https://www.yuque.com/hollis666/fsn3og/xa0g0rchewxdt64y)
+- [✅Seata的AT模式会不会出现脏读？为什么？](https://www.yuque.com/hollis666/fsn3og/pm1eeggifcc1vykp)
+- [✅什么是雪花算法的时钟回拨问题，如何解决？](https://www.yuque.com/hollis666/fsn3og/pvqyp93ugcft2mhv)
+- [✅什么是分布式事务中的三阶段提交（3PC）](https://www.yuque.com/hollis666/fsn3og/zt707p4ypq68grpf)
+
+## Redis
+
+### 数据结构
+
+- [✅Redis 支持哪几种数据类型？](https://www.yuque.com/hollis666/fsn3og/hlg4u2)
+- [✅Redis为什么要自己定义SDS？](https://www.yuque.com/hollis666/fsn3og/atppz6)
+- [✅Redis中的Zset是怎么实现的？](https://www.yuque.com/hollis666/fsn3og/uzqztzuicddlk95c)
+- [✅什么是GEO，有什么用？](https://www.yuque.com/hollis666/fsn3og/szth63)
+- [✅Redis中的setnx命令为什么是原子性的](https://www.yuque.com/hollis666/fsn3og/wc784r8azzgcxxi4)
+- [✅Redis 5.0中的 Stream是什么？](https://www.yuque.com/hollis666/fsn3og/qehw9x86oxl0r0sc)
+- [✅如何用SETNX实现分布式锁？](https://www.yuque.com/hollis666/fsn3og/feovxr7gr8ois5yt)
+- [✅为什么ZSet 既能支持高效的范围查询，还能以 O(1) 复杂度获取元素权重值？](https://www.yuque.com/hollis666/fsn3og/cswc0lcmh3wsbfp9)
+- [✅什么是Redis的渐进式rehash](https://www.yuque.com/hollis666/fsn3og/pc4fzp9c2vew5whf)
+- [✅如何用setnx实现一个可重入锁？](https://www.yuque.com/hollis666/fsn3og/ponw7kdrqasbrgoz)
+- [✅Redis中hash结构比string的好处有哪些？](https://www.yuque.com/hollis666/fsn3og/czpzs0yytusc9cr2)
+- [✅Redis中的setnx和setex有啥区别？](https://www.yuque.com/hollis666/fsn3og/uaowmy30rb6778mf)
+- [✅ZSet为什么在数据量少的时候用ZipList，而在数据量大的时候转成SkipList？](https://www.yuque.com/hollis666/fsn3og/lk12d5e9kpxg2wkl)
+- [✅介绍下Redis中的ZipList和他的级联更新问题](https://www.yuque.com/hollis666/fsn3og/pbnk0e7d4dhpzg1v)
+- [✅Redis中的ListPack是如何解决级联更新问题的？](https://www.yuque.com/hollis666/fsn3og/dy8gkropm3hdlty0)
+- [✅Redis的ZipList、SkipList和ListPack之间有什么区别？](https://www.yuque.com/hollis666/fsn3og/bn7lc5eg9dg151xm)
+
+### 持久化
+
+- [✅Redis的持久化机制是怎样的？](https://www.yuque.com/hollis666/fsn3og/zc5q70)
+- [✅RDB和AOF的写回策略分别是什么？](https://www.yuque.com/hollis666/fsn3og/utk3q3u7zwvtsv3a)
+- [✅Redis能完全保证数据不丢失吗？](https://www.yuque.com/hollis666/fsn3og/ciyvstsalpg257bh)
+
+### 集群 & 高可用
+
+- [✅Redis是AP的还是CP的？](https://www.yuque.com/hollis666/fsn3og/uwx1gops5gfdv9wu)
+- [✅介绍一下Redis的集群模式？](https://www.yuque.com/hollis666/fsn3og/namhuv165lorwudw)
+- [✅什么是Redis的数据分片？](https://www.yuque.com/hollis666/fsn3og/fm1elfrg5mn9iw65)
+- [✅介绍下Redis集群的脑裂问题？](https://www.yuque.com/hollis666/fsn3og/zt94705fhgxs5aa0)
+- [✅Redis如何高效安全的遍历所有key](https://www.yuque.com/hollis666/fsn3og/il4myufvvt2iqac9)
+- [✅Redis中的hash和Java中的HashMap有啥区别？](https://www.yuque.com/hollis666/fsn3og/zzgha8xm9xsvhrm3)
+
+### 缓存问题
+
+- [✅什么是热Key问题，如何解决热key问题](https://www.yuque.com/hollis666/fsn3og/lysd3t)
+- [✅什么是大Key问题，如何解决？](https://www.yuque.com/hollis666/fsn3og/qiqc1r6r3catcev9)
+- [✅什么是缓存击穿、缓存穿透、缓存雪崩？](https://www.yuque.com/hollis666/fsn3og/abfis3)
+- [✅什么情况下会出现数据库和缓存不一致的问题？](https://www.yuque.com/hollis666/fsn3og/xr0h8h)
+- [✅如何解决Redis和数据库的一致性问题？](https://www.yuque.com/hollis666/fsn3og/tmcgo0)
+- [✅为什么需要延迟双删，两次删除的原因是什么？](https://www.yuque.com/hollis666/fsn3og/uswtlzlot2lcvy10)
+
+### Redisson
+
+- [✅如何用Redisson实现分布式锁？](https://www.yuque.com/hollis666/fsn3og/gdsvngueclva39ve)
+- [✅Redisson的watchdog机制是怎么样的？](https://www.yuque.com/hollis666/fsn3og/fg0f0wh41g8eu5ik)
+- [✅如何基于Redisson实现一个延迟队列](https://www.yuque.com/hollis666/fsn3og/beakb6uczywuzgg8)
+- [✅Redisson和Jedis有啥区别？如何选择？](https://www.yuque.com/hollis666/fsn3og/fuxcixcwvy5gsxxg)
+- [✅Redisson的lock和tryLock有什么区别？](https://www.yuque.com/hollis666/fsn3og/grwwkcgck6e2vwee)
+- [✅watchdog一直续期，那客户端挂了怎么办？](https://www.yuque.com/hollis666/fsn3og/ggc38etsob451zop)
+- [✅Redisson解锁失败，watchdog会不会一直续期下去？](https://www.yuque.com/hollis666/fsn3og/kufqnzmzvxm2sf5o)
+- [✅Redisson 中为什么要废弃 RedLock，该用啥？](https://www.yuque.com/hollis666/fsn3og/fz545rxlub3czyg6)
+- [✅Redisson 的 watchdog 什么情况下可能会失效？](https://www.yuque.com/hollis666/fsn3og/nc1ig3amxaz2g3n1)
+- [✅Redisson如何保证解锁的线程一定是加锁的线程？](https://www.yuque.com/hollis666/fsn3og/mtfd25g8imxnamo6)
+- [✅Redisson里面的锁是怎么来防止误删的？](https://www.yuque.com/hollis666/fsn3og/gxuuk210inen6pgw)
+- [✅Redisson里面的锁是如何实现可重入的？](https://www.yuque.com/hollis666/fsn3og/ucarmoyv1belggn0)
+
+### 分布式锁
+
+- [✅为什么Lua脚本可以保证原子性？](https://www.yuque.com/hollis666/fsn3og/rwdgnu)
+- [✅什么是RedLock，他解决了什么问题？](https://www.yuque.com/hollis666/fsn3og/lxzg0ubs2xpvenxw)
+- [✅Redis的事务和Lua之间有哪些区别？](https://www.yuque.com/hollis666/fsn3og/ihi6uuc39q5xdil5)
+- [✅如何用Redis实现乐观锁？](https://www.yuque.com/hollis666/fsn3og/graqik44khnn7owf)
+- [✅Redis实现分布锁的时候，哪些问题需要考虑？](https://www.yuque.com/hollis666/fsn3og/zrney050xgem0voc)
+- [✅Redis Cluster 中使用事务和 lua 有什么限制？](https://www.yuque.com/hollis666/fsn3og/zb66y7he56otikqs)
+- [✅如何在 Redis Cluster 中执行 lua 脚本？](https://www.yuque.com/hollis666/fsn3og/hrbvqgdg21k8znhw)
+
+### 高级功能
+
+- [✅Redis 与 Memcached 有什么区别？](https://www.yuque.com/hollis666/fsn3og/ink6os3bm19gafx7)
+- [✅Redis 的事务机制是怎样的？](https://www.yuque.com/hollis666/fsn3og/xxxz79)
+- [✅Redis如何实现延迟消息？](https://www.yuque.com/hollis666/fsn3og/iyvnmnq8hshlza4p)
+- [✅Redis如何实现发布/订阅？](https://www.yuque.com/hollis666/fsn3og/oz0kvggva663l911)
+- [✅除了做缓存，Redis还能用来干什么？](https://www.yuque.com/hollis666/fsn3og/gxqm60)
+- [✅对于 Redis 的操作，有哪些推荐的 Best Practices？](https://www.yuque.com/hollis666/fsn3og/oea8rryxqpsw1np7)
+- [✅如何基于Redis实现滑动窗口限流？](https://www.yuque.com/hollis666/fsn3og/saoeievgraqwxgs1)
+- [✅Redis的Key和Value的设计原则有哪些？](https://www.yuque.com/hollis666/fsn3og/ao4kil4zz979i41s)
+- [✅什么是Redis的Pipeline，和事务有什么区别？](https://www.yuque.com/hollis666/fsn3og/sirm5gg3lgc5nslt)
+- [✅为什么Redis不支持回滚？](https://www.yuque.com/hollis666/fsn3og/gt0qpqluiwb7bg70)
+- [✅Redis的事务和MySQL的事务区别？](https://www.yuque.com/hollis666/fsn3og/xicgnpu302s7veme)
+- [✅Redis 8.0有哪些新特性？](https://www.yuque.com/hollis666/fsn3og/usarzdosgbe0rk60)
+
+### 性能 & 通信
+
+- [✅Redis 使用什么协议进行通信？](https://www.yuque.com/hollis666/fsn3og/if0wtpi44r3xr1n3)
+- [✅Redis为什么这么快？](https://www.yuque.com/hollis666/fsn3og/kc7dw3)
+- [✅Redis为什么被设计成是单线程的？](https://www.yuque.com/hollis666/fsn3og/og6nf4)
+- [✅为什么Redis设计成单线程也能这么快？](https://www.yuque.com/hollis666/fsn3og/lrhzxqbur0eywnfu)
+- [✅为什么Redis 6.0引入了多线程？](https://www.yuque.com/hollis666/fsn3og/zfpgxa93bmn9png9)
+
+### 内存 & 淘汰
+
+- [✅Redis的虚拟内存机制是什么？](https://www.yuque.com/hollis666/fsn3og/ws1nin)
+- [✅Redis 的过期策略是怎么样的？](https://www.yuque.com/hollis666/fsn3og/ggsht0)
+- [✅Redis的内存淘汰策略是怎么样的？](https://www.yuque.com/hollis666/fsn3og/xw99lcraocebx1mk)
+- [✅Redis中key过期了一定会立即删除吗](https://www.yuque.com/hollis666/fsn3og/ds8qgg4zmt7l2kvp)
+- [✅Redis中有一批key瞬间过期，为什么其它key的读写效率会降低？](https://www.yuque.com/hollis666/fsn3og/ry7g0lxzynxmneq7)
+- [✅了解Redis的内存碎片吗？](https://www.yuque.com/hollis666/fsn3og/ebp3a42w462fb77p)
+
+## Dubbo
+
+- [✅什么是RPC，和HTTP有什么区别？](https://www.yuque.com/hollis666/fsn3og/cr3y3t)
+- [✅什么场景只能用HTTP，不能用RPC？](https://www.yuque.com/hollis666/fsn3og/whuui0r5r6kaauc7)
+- [✅什么是泛化调用？](https://www.yuque.com/hollis666/fsn3og/kogite7l9dkksl4q)
+- [✅什么是Dubbo的优雅停机，怎么实现的？](https://www.yuque.com/hollis666/fsn3og/gxda8y)
+- [✅Dubbo支持哪些调用协议？](https://www.yuque.com/hollis666/fsn3og/lkqnmplc1rz02zmi)
+- [✅Dubbo服务发现与路由的概念有什么不同？](https://www.yuque.com/hollis666/fsn3og/fryg5kpce4epa29t)
+- [✅Dubbo的缓存机制了解吗？](https://www.yuque.com/hollis666/fsn3og/li6npsukhdnxovke)
+- [✅Dubbo如何实现像本地方法一样调用远程方法的？](https://www.yuque.com/hollis666/fsn3og/hqnrwvt46ky1ar4n)
+- [✅Dubbo的整体架构是怎么样的？](https://www.yuque.com/hollis666/fsn3og/io1pkwin43mkwaup)
+- [✅为什么RPC要比HTTP更快一些？](https://www.yuque.com/hollis666/fsn3og/dqg0utz3a025y1oi)
+- [✅Dubbo支持哪些序列化方式？](https://www.yuque.com/hollis666/fsn3og/xgwzlb4bp9dhg3r0)
+- [✅Dubbo的服务调用的过程是什么样的？](https://www.yuque.com/hollis666/fsn3og/nn5fo1yz2b2f9lgy)
+- [✅有用过Dubbo的异步调用吗？](https://www.yuque.com/hollis666/fsn3og/zndtx1ivfx2ch2eg)
+- [✅Dubbo支持哪些负载均衡策略？](https://www.yuque.com/hollis666/fsn3og/hhf1tgrx6qhah00v)
+- [✅Dubbo的SPI和JDK的SPI有什么区别？](https://www.yuque.com/hollis666/fsn3og/eu2hm5yzpmo51kwg)
+- [✅为什么Dubbo不用JDK的SPI？](https://www.yuque.com/hollis666/fsn3og/aafqk5dmn9h8q4ka)
+- [✅Dubbo 支持哪些服务治理？](https://www.yuque.com/hollis666/fsn3og/stblzui8tx4lo61q)
+
+## Kafka
+
+- [✅为什么要使用消息队列？](https://www.yuque.com/hollis666/fsn3og/czmbha1fgu6yzz0m)
+- [✅Kafka、ActiveMQ、RabbitMQ和RocketMQ都有哪些区别？](https://www.yuque.com/hollis666/fsn3og/vst81qlgvl7yelgo)
+- [✅Kafka 为什么这么快？](https://www.yuque.com/hollis666/fsn3og/zzc44p)
+- [✅Kafka的架构是怎么样的？](https://www.yuque.com/hollis666/fsn3og/glnsckpypwycgh54)
+- [✅Kafka如何保证消息不丢失？](https://www.yuque.com/hollis666/fsn3og/imx4a7z8zq65erlo)
+- [✅Kafka怎么保证消费只消费一次的?](https://www.yuque.com/hollis666/fsn3og/nyq4gnrf8hozb326)
+- [✅什么是Kafka的重平衡机制？](https://www.yuque.com/hollis666/fsn3og/rqzepcxvq2a1w2e9)
+- [✅Kafka如何实现顺序消费？](https://www.yuque.com/hollis666/fsn3og/lpkrgs6l9l5t3214)
+- [✅Kafka 几种选举过程简单介绍一下？](https://www.yuque.com/hollis666/fsn3og/nk4ld4)
+- [✅为什么Kafka没办法100%保证消息不丢失？](https://www.yuque.com/hollis666/fsn3og/vwy7vz63qax9c7ab)
+- [✅Kafka 消息的发送过程简单介绍一下？](https://www.yuque.com/hollis666/fsn3og/qygznb)
+- [✅Kafka 高水位了解过吗？为什么 Kafka 需要 Leader Epoch？](https://www.yuque.com/hollis666/fsn3og/uw9757)
+- [✅Kafka 为什么有 Topic 还要用 Partition?](https://www.yuque.com/hollis666/fsn3og/opxlb0a177ehqyty)
+- [✅介绍一下Kafka的ISR机制？](https://www.yuque.com/hollis666/fsn3og/sysbmls6p386aow0)
+- [✅Kafka支持事务消息吗？如何实现的？](https://www.yuque.com/hollis666/fsn3og/yfzof8znomat1u6g)
+- [✅Kafka 中的Offset是什么？](https://www.yuque.com/hollis666/fsn3og/yx8f2vl2ph6vf35k)
+- [✅Kafka为什么依赖Zookeeper，有什么用？](https://www.yuque.com/hollis666/fsn3og/eobdd8io8hg44muh)
+- [✅什么是Kafka的渐进式重平衡？](https://www.yuque.com/hollis666/fsn3og/kpvazhtr1ukqoyx7)
+- [✅Kafka的消费者数量和分区数量可以不同吗？会发生什么？](https://www.yuque.com/hollis666/fsn3og/htthtl2fyipdgh0s)
+- [✅MQ的重平衡会带来哪些问题？](https://www.yuque.com/hollis666/fsn3og/naqgl07qw5s4gv24)
+- [✅Kafka如何实现批量消费？](https://www.yuque.com/hollis666/fsn3og/fy0p2ctryn63tf0g)
+- [✅Kafka的批量消费如何确保消息不丢？](https://www.yuque.com/hollis666/fsn3og/qkeygw4eg165iks4)
+- [✅Kafka如果丢消息了，可能的原因是什么？](https://www.yuque.com/hollis666/fsn3og/poqlzlam2ofwfbuh)
+- [✅介绍下Kafka的数据存储结构？](https://www.yuque.com/hollis666/fsn3og/gg35i7142hyfivlp)
+
+## RocketMQ
+
+- [✅RocketMQ的架构是怎么样的？](https://www.yuque.com/hollis666/fsn3og/fkx1hga7xlpbfbuv)
+- [✅RocketMQ的事务消息是如何实现的？](https://www.yuque.com/hollis666/fsn3og/abxh7z)
+- [✅RocketMQ如何保证消息的顺序性？](https://www.yuque.com/hollis666/fsn3og/nt1ishhbunfo0g86)
+- [✅RocketMQ如何保证消息不丢失？](https://www.yuque.com/hollis666/fsn3og/txw2gxr6utxggu60)
+- [✅RocketMQ如何实现延时消息？](https://www.yuque.com/hollis666/fsn3og/vo0eif0x171805pt)
+- [✅RocketMQ有几种集群方式？](https://www.yuque.com/hollis666/fsn3og/ng01aagqxqmlvamm)
+- [✅RocketMQ消息堆积了怎么解决？](https://www.yuque.com/hollis666/fsn3og/ewfswph69g1n2u8c)
+- [✅介绍一下RocketMQ的工作流程？](https://www.yuque.com/hollis666/fsn3og/iagycgg9pxkt78rr)
+- [✅RocketMQ怎么实现消息分发的？](https://www.yuque.com/hollis666/fsn3og/qxu868f094az60aa)
+- [✅RocketMQ的消息是推还是拉？](https://www.yuque.com/hollis666/fsn3og/bzhy0q)
+- [✅用了RocketMQ一定能实现削峰的效果吗？](https://www.yuque.com/hollis666/fsn3og/gcvsygmab4u224e5)
+- [✅介绍下 RocketMQ 5.0中的 pop 模式](https://www.yuque.com/hollis666/fsn3og/mfut53gopeups27r)
+- [✅RocketMQ的事务消息和Kafka的事务消息有什么区别？](https://www.yuque.com/hollis666/fsn3og/gl4di6r98ps6rylc)
+- [✅RocketMQ和Kafka一样有重平衡的问题吗？](https://www.yuque.com/hollis666/fsn3og/nq5v40p6kn1ugg1z)
+- [✅RocketMQ如果丢消息了，可能的原因是什么？](https://www.yuque.com/hollis666/fsn3og/wf274r37vpf6qp5v)
+- [✅RocketMQ如果重复消费了，可能是什么原因导致的？](https://www.yuque.com/hollis666/fsn3og/co3hklu73y0y6684)
+- [✅普通消息、顺序消息的区别，在什么场景会用到？](https://www.yuque.com/hollis666/fsn3og/rzeq2tqwqhn4ebry)
+- [✅消息队列在使用的时候可能会遇到哪些坑？](https://www.yuque.com/hollis666/fsn3og/pct2ysl87k0fr1gm)
+
+## RabbitMQ
+
+- [✅rabbitMQ的整体架构是怎么样的？](https://www.yuque.com/hollis666/fsn3og/qh56y0u8fs2gom42)
+- [✅RabbitMQ是怎么做消息分发的？](https://www.yuque.com/hollis666/fsn3og/qdmqppwgypsifot5)
+- [✅rabbitMQ如何实现延迟消息？](https://www.yuque.com/hollis666/fsn3og/lllwvk)
+- [✅什么是RabbitMQ的死信队列？](https://www.yuque.com/hollis666/fsn3og/rd0ah4r97wevzmcw)
+- [✅RabbitMQ 是如何保证高可用的?](https://www.yuque.com/hollis666/fsn3og/tgfqeqhrintz1qmc)
+- [✅RabbitMQ如何实现消费端限流](https://www.yuque.com/hollis666/fsn3og/gd9ca2s6vtl3qziq)
+- [✅RabbitMQ如何防止重复消费](https://www.yuque.com/hollis666/fsn3og/epqupbq473z9mkew)
+- [✅如何保障消息一定能发送到RabbitMQ](https://www.yuque.com/hollis666/fsn3og/inmrfqk0qyvsdgg3)
+- [✅RabbitMQ如何保证消息不丢](https://www.yuque.com/hollis666/fsn3og/ku3fxiie005axgrz)
+- [✅介绍下RabbitMQ的事务机制](https://www.yuque.com/hollis666/fsn3og/alxsh6b98sck90fu)
+
+## 配置中心
+
+- [✅注册中心如何选型？](https://www.yuque.com/hollis666/fsn3og/yyyve0k3e7hgxg8g)
+- [✅什么是Nacos，主要用来作什么？](https://www.yuque.com/hollis666/fsn3og/pd9b5g79pi3ocg6l)
+- [✅Nacos是AP的还是CP的？](https://www.yuque.com/hollis666/fsn3og/ed9gu0mf5q4u1pw6)
+- [✅Nacos如何实现的配置变化客户端可以感知到？](https://www.yuque.com/hollis666/fsn3og/icbk1rndq13ku07o)
+- [✅Nacos能同时实现AP和CP的原理是什么？](https://www.yuque.com/hollis666/fsn3og/ei2bv6msb0egmkpi)
+- [✅Nacos 2.x为什么新增了RPC的通信方式？](https://www.yuque.com/hollis666/fsn3og/cp3zuisb11nsd2h8)
+- [✅Nacos的服务注册和服务发现的过程是怎么样的？](https://www.yuque.com/hollis666/fsn3og/ltuskw2pcxdns2i5)
+- [✅配置中心的作用是什么？如何选型？](https://www.yuque.com/hollis666/fsn3og/zn73h6l1vkbotyea)
+
+## ElasticSearch
+
+- [✅为什么要使用ElasticSearch？和传统关系数据库（如 MySQL）有什么不同？](https://www.yuque.com/hollis666/fsn3og/bvxs6urdwieo3uwi)
+- [✅ElasticSearch为什么快？](https://www.yuque.com/hollis666/fsn3og/tev5rkvkmnzk77ou)
+- [✅倒排索引是什么？](https://www.yuque.com/hollis666/fsn3og/odblb5rdxr4ec9vg)
+- [✅如何保证ES和数据库的数据一致性？](https://www.yuque.com/hollis666/fsn3og/tolveri2mylm8erm)
+- [✅什么是ElasticSearch的深度分页问题？如何解决？](https://www.yuque.com/hollis666/fsn3og/bydxffo5r2atzavl)
+- [✅如何优化 ElasticSearch 搜索性能？](https://www.yuque.com/hollis666/fsn3og/otwmst9mkkktrbyk)
+- [✅ES支持哪些数据类型，和MySQL之间的映射关系是怎么样的？](https://www.yuque.com/hollis666/fsn3og/neoehwlpx3yeeg7m)
+- [✅ES 不支持 decimal，如何避免丢失精度？](https://www.yuque.com/hollis666/fsn3og/ys1c3qvzygc32lv2)
+- [✅Elasticsearch支持事务吗？为什么？](https://www.yuque.com/hollis666/fsn3og/gxob48yzunyz6r6b)
+- [✅ES 支持乐观锁吗？如何实现的？](https://www.yuque.com/hollis666/fsn3og/ut9qm4xy8f3qpffo)
+- [✅Elasticsearch集群中的角色有哪些？](https://www.yuque.com/hollis666/fsn3og/bzfle37iaqpp8aym)
+- [✅介绍下ES的Hot-Warm-Cold架构](https://www.yuque.com/hollis666/fsn3og/oyew7lx74sysqwoo)
+- [✅什么是ILM（索引生命周期管理）？](https://www.yuque.com/hollis666/fsn3og/ivkaxhkxiusftbsl)
+
+## Zookeeper
+
+- [✅Zookeeper的典型应用场景有哪些？](https://www.yuque.com/hollis666/fsn3og/bxldoz3kvfpdsv1g)
+- [✅Zookeeper的数据结构是怎么样的？](https://www.yuque.com/hollis666/fsn3og/vwxvpehfhu0ppkhx)
+- [✅Zookeeper集群中的角色有哪些？有什么区别？](https://www.yuque.com/hollis666/fsn3og/iys96kx99vzf706m)
+- [✅Zookeeper是CP的还是AP的？](https://www.yuque.com/hollis666/fsn3og/lxznb86av97adwt6)
+- [✅Zookeeper是选举机制是怎样的？](https://www.yuque.com/hollis666/fsn3og/tsfqf463g4mbh41k)
+- [✅什么是脑裂？如何解决？](https://www.yuque.com/hollis666/fsn3og/xuxwgui3f8ti2a0y)
+- [✅如何用Zookeeper实现分布式锁？](https://www.yuque.com/hollis666/fsn3og/bdxuqt775i5zo9kz)
+- [✅Zookeeper的watch机制是如何工作的？](https://www.yuque.com/hollis666/fsn3og/zg9dr53s87a4knim)
+- [✅怎样使用Zookeeper实现服务发现？](https://www.yuque.com/hollis666/fsn3og/ddcuglghlxgf7zb3)
+- [✅Zookeeper是如何保证创建的节点是唯一的？](https://www.yuque.com/hollis666/fsn3og/bpbx3ste8amlehv8)
+- [✅Zookeeper的缺点有哪些？](https://www.yuque.com/hollis666/fsn3og/zs7rp6nih0nsub80)
+- [✅Zookeeper如何保证数据的一致性？](https://www.yuque.com/hollis666/fsn3og/ihxh5g1t20rkcl2x)
+
+## 高性能
+
+- [✅如何设计一个高性能的分布式系统](https://www.yuque.com/hollis666/fsn3og/th4in4q9oa15myup)
+- [✅什么是QPS，什么是RT？](https://www.yuque.com/hollis666/fsn3og/hr5913)
+- [✅服务端接口性能优化有哪些方案？](https://www.yuque.com/hollis666/fsn3og/ifuuagaqo3yd8vqb)
+- [✅什么是布隆过滤器，实现原理是什么？](https://www.yuque.com/hollis666/fsn3og/gp9ymie1n39uavah)
+- [✅什么是读写分离？如何实现？](https://www.yuque.com/hollis666/fsn3og/qdh6cgxyvvqrmkc8)
+- [✅读写分离遇到主从延迟怎么办？](https://www.yuque.com/hollis666/fsn3og/hhebmhl7td6da957)
+- [✅说下什么是p90，p95，P99？](https://www.yuque.com/hollis666/fsn3og/nz2cp6vbkexabpma)
+- [✅布隆过滤器有什么缺点，如何解决？](https://www.yuque.com/hollis666/fsn3og/xc9h84bumgh4v9s5)
+- [✅什么是布谷鸟过滤器，实现原理是什么？](https://www.yuque.com/hollis666/fsn3og/alka9q931e2069mu)
+- [✅布隆过滤器无法删除的问题如何解决？](https://www.yuque.com/hollis666/fsn3og/nylyqzbfk4f6xroq)
+- [✅如何进行线程池调优？](https://www.yuque.com/hollis666/fsn3og/vel432id3kylgwfo)
+
+## 高可用
+
+- [✅什么是SLA？](https://www.yuque.com/hollis666/fsn3og/axrowbs50bhxehao)
+- [✅什么是冷备、热备，暖备？](https://www.yuque.com/hollis666/fsn3og/rqvzen0gqsi5v7k2)
+- [✅如何设计一个高可用架构？](https://www.yuque.com/hollis666/fsn3og/esi6zlipz46v9qq0)
+- [✅什么是异地多活？](https://www.yuque.com/hollis666/fsn3og/nu68owhf7qdgdya8)
+- [✅什么是压测，怎么做压测？](https://www.yuque.com/hollis666/fsn3og/wrzi8qgk7ridgslp)
+- [✅什么是全链路压测？](https://www.yuque.com/hollis666/fsn3og/igx3g283upzhgpm4)
+- [✅压测如何避免影响线上用户？](https://www.yuque.com/hollis666/fsn3og/lqzkcwhe1qnw05r0)
+- [✅单机压测到300QPS，10台就能抗住3000QPS吗？](https://www.yuque.com/hollis666/fsn3og/ryamhgdgu42vmo4h)
+
+## 高并发
+
+- [✅如何设计一个能够支持高并发的系统？](https://www.yuque.com/hollis666/fsn3og/gfgqpua8gu3oag44)
+- [✅什么是服务降级？](https://www.yuque.com/hollis666/fsn3og/eukvb5)
+- [✅什么是熔断？](https://www.yuque.com/hollis666/fsn3og/fdequc)
+- [✅什么是预热？它有何作用？](https://www.yuque.com/hollis666/fsn3og/gr4z7dqg4evp5ubz)
+- [✅什么是限流？常见的限流算法有哪些？](https://www.yuque.com/hollis666/fsn3og/aw1zho)
+- [✅单机限流和集群限流的区别是什么？](https://www.yuque.com/hollis666/fsn3og/ig52vp8d6t54zqp1)
+- [✅什么是自适应限流？](https://www.yuque.com/hollis666/fsn3og/nib9v4ohubcfzi3c)
+- [✅什么是滑动窗口限流？](https://www.yuque.com/hollis666/fsn3og/hvuigwzxls4qd3sy)
+- [✅高并发场景中，乐观锁和悲观锁哪个更适合？](https://www.yuque.com/hollis666/fsn3og/kzkm89bnr0fzdeyi)
+- [✅漏桶和令牌桶有啥区别？](https://www.yuque.com/hollis666/fsn3og/pnv0aynzyongiuiz)
+
+## 本地缓存
+
+- [✅本地缓存和分布式缓存有什么区别？](https://www.yuque.com/hollis666/fsn3og/uos1kv2304qo6ax1)
+- [✅如何实现本地缓存？](https://www.yuque.com/hollis666/fsn3og/iy5loh8gvzlqolxo)
+- [✅你知道哪些缓存失效算法？](https://www.yuque.com/hollis666/fsn3og/gl3fivks74z4d10e)
+- [✅如何实现多级缓存？](https://www.yuque.com/hollis666/fsn3og/bqavbea1beb6nfud)
+- [✅如何保证本地缓存的一致性？](https://www.yuque.com/hollis666/fsn3og/ianhl677i5grnp0f)
+- [✅LRU 和 LFU 有啥区别？](https://www.yuque.com/hollis666/fsn3og/bqdgqba2ggyplgg7)
+- [✅如何实现多级缓存的一致性？](https://www.yuque.com/hollis666/fsn3og/fysclfmh5u76mudr)
+
+## 分库分表
+
+- [✅什么是分库？分表？分库分表？](https://www.yuque.com/hollis666/fsn3og/wpus0g)
+- [✅分区和分表有什么区别？](https://www.yuque.com/hollis666/fsn3og/fxbeuozlr7x7zaon)
+- [✅分表字段如何选择？](https://www.yuque.com/hollis666/fsn3og/mec4ust5rpfob78r)
+- [✅分表算法都有哪些？](https://www.yuque.com/hollis666/fsn3og/anpg4kfcb8p7egag)
+- [✅分表后全局ID如何生成？](https://www.yuque.com/hollis666/fsn3og/glyv4twwk6bfs6dr)
+- [✅分库分表后会带来哪些问题？](https://www.yuque.com/hollis666/fsn3og/yhseig)
+- [✅分库分表后如何进行分页查询？](https://www.yuque.com/hollis666/fsn3og/znu3byuscn503ags)
+- [✅分库分表后，表还不够怎么办？](https://www.yuque.com/hollis666/fsn3og/eczghpx140tsgtgv)
+- [✅什么是数据倾斜，会带来哪些问题？如何解决？](https://www.yuque.com/hollis666/fsn3og/fue0vmwupk5zps37)
+- [✅分库分表的取模算法策略如何避免数据倾斜](https://www.yuque.com/hollis666/fsn3og/arrlqs56tmxywy2h)
+- [✅分库分表之后的怎么进行join操作](https://www.yuque.com/hollis666/fsn3og/mhkzdo4r27oogyoe)
+- [✅分库分表的数量为什么一般选择2的幂？](https://www.yuque.com/hollis666/fsn3og/gy0gtl66vv1vmllq)
+- [✅ShardingJDBC有哪些分片策略，你用的哪个？](https://www.yuque.com/hollis666/fsn3og/lqateep6fkcxtz5z)
+- [✅ShardingJDBC 在查询的时候如果没有分表键，他怎么样？](https://www.yuque.com/hollis666/fsn3og/fz0atxiyv0obuwtd)
+- [✅分库分表后怎么设计可以降低数据迁移的难度？](https://www.yuque.com/hollis666/fsn3og/uaazc62zm0bey0qr)
+- [✅分库分表中，如何预估需要分多少个库？多少张表？](https://www.yuque.com/hollis666/fsn3og/uhl4wm5gsv9717z7)
+- [✅在分库分表时，如果遇到了对商品名称的模糊查询，要怎么处理？](https://www.yuque.com/hollis666/fsn3og/pgfcfpghylm6ccb9)
+- [✅为啥要全局分布式ID，每张表自增不行吗？](https://www.yuque.com/hollis666/fsn3og/itlstlc2a8n7mrny)
+- [✅订单号用了基因法之后，二次分表怎么办？](https://www.yuque.com/hollis666/fsn3og/pvwubagcky6h08oc)
+
+## 定时任务
+
+- [✅xxl-job如何保证一任务只会触发一次？](https://www.yuque.com/hollis666/fsn3og/kgrtbyygyu5wnsgx)
+- [✅为什么定时任务可以定时执行？](https://www.yuque.com/hollis666/fsn3og/nstxsetf5u7ps992)
+- [✅Java中实现定时任务的几种方式](https://www.yuque.com/hollis666/fsn3og/bps9gfhhvulhlbor)
+- [✅Java中Timer实现定时调度的原理是什么？](https://www.yuque.com/hollis666/fsn3og/gn6ap7qm2wwhtylk)
+- [✅什么是时间轮？](https://www.yuque.com/hollis666/fsn3og/vsrvc5hbu3falecp)
+- [✅实现一个定时任务，可以用什么数据结构及算法？](https://www.yuque.com/hollis666/fsn3og/tddggnxbque7tyxe)
+- [✅定时任务扫表的方案有什么缺点？](https://www.yuque.com/hollis666/fsn3og/bgr91vskph8odcsr)
+- [✅xxl-job 支持分片任务吗？实现原理是什么？](https://www.yuque.com/hollis666/fsn3og/vnzzza8v69078qc1)
+- [✅知道PowerJob吗，他和XXL-JOB有啥区别？](https://www.yuque.com/hollis666/fsn3og/ruks2yotdfcmx5li)
+- [✅知道MapReduce动态分片任务吗？好处是什么？原理是什么？](https://www.yuque.com/hollis666/fsn3og/gi90d6gcb0ul2b3p)
+- [✅你知道有哪些退避策略吗？](https://www.yuque.com/hollis666/fsn3og/pazm66bo3u2990ln)
+- [✅XXL-JOB相比Spring中的@Scheduled有啥优势？](https://www.yuque.com/hollis666/fsn3og/em731fmckl46h54q)
+
+## 文件处理
+
+- [✅什么是POI，为什么它会导致内存溢出？](https://www.yuque.com/hollis666/fsn3og/gcxwx1gnimfyamvw)
+- [✅POI的如何做大文件的写入](https://www.yuque.com/hollis666/fsn3og/kalmkdx5fukxt13q)
+- [✅为啥POI的SXSSFWorkbook占用内存更小?](https://www.yuque.com/hollis666/fsn3og/ivczis4gyskog9q2)
+- [✅如何针对大Excel做文件读取？](https://www.yuque.com/hollis666/fsn3og/fqevsshv4hxvtx69)
+- [✅EasyExcel为啥内存占用小？](https://www.yuque.com/hollis666/fsn3og/lwaomovww7yr4v7z)
+
+## DDD
+
+- [✅如何理解领域驱动设计？](https://www.yuque.com/hollis666/fsn3og/va4c30q96o2uy3f3)
+- [✅请详细描述DDD的实现流程？](https://www.yuque.com/hollis666/fsn3og/igwgahouv8gog5yx)
+- [✅什么是聚合，什么是聚合根？](https://www.yuque.com/hollis666/fsn3og/oh5lppn9gim96w67)
+- [✅什么是实体，什么是值对象？](https://www.yuque.com/hollis666/fsn3og/xuhiiqwhg173df8w)
+- [✅什么是充血模型和贫血模型？](https://www.yuque.com/hollis666/fsn3og/pwkg8x5x0vqoi7zg)
+- [✅什么是领域事件？](https://www.yuque.com/hollis666/fsn3og/mpz4ip5cxnqkpxfo)
+- [✅DDD的分层架构是怎么样的？](https://www.yuque.com/hollis666/fsn3og/mg5vy3rkg6on86m6)
+
+## Maven&Git
+
+- [✅Maven能解决什么问题？为什么要用？](https://www.yuque.com/hollis666/fsn3og/cgwokd)
+- [✅Maven如何解决jar包冲突的问题？](https://www.yuque.com/hollis666/fsn3og/vkkiva)
+- [✅Git和SVN有什么区别？](https://www.yuque.com/hollis666/fsn3og/an3yq5)
+- [✅Git如何回滚代码？reset和revert什么区别？](https://www.yuque.com/hollis666/fsn3og/oh1ocn2wd0ocxz00)
+- [✅jar包和war包有什么区别？](https://www.yuque.com/hollis666/fsn3og/zg0wysfan42siyxi)
+- [✅什么是fat jar？](https://www.yuque.com/hollis666/fsn3og/fxyiyg6l43egwe93)
+- [✅Git的merge和rebase有什么区别？](https://www.yuque.com/hollis666/fsn3og/lgsmdz60lxsni6v1)
+
+## IDEA
+
+- [✅IDEA如何做远程Debug？](https://www.yuque.com/hollis666/fsn3og/ly0b136ncfbam618)
+- [✅如何对多线程进行Debug?](https://www.yuque.com/hollis666/fsn3og/ceawgz0qykk89yi7)
+- [✅你平常用哪些idea插件？](https://www.yuque.com/hollis666/fsn3og/vxmblxpk6mmqesn4)
+
+## 日志
+
+- [✅为什么不能直接使用Log4j、Logback中的 API？](https://www.yuque.com/hollis666/fsn3og/tai6nceh3x9qf8m6)
+- [✅什么是分布式日志系统？](https://www.yuque.com/hollis666/fsn3og/uagpapwr3ags4m84)
+- [✅记录日志影响性能怎么办？](https://www.yuque.com/hollis666/fsn3og/hyi1ozevumzdn1ot)
+- [✅为什么logger.warn()之前要使用logger.isWarnEnabled()？](https://www.yuque.com/hollis666/fsn3og/zyfbnhr93gd3snz1)
+
+## 设计模式
+
+- [✅什么是设计模式？有什么好处？](https://www.yuque.com/hollis666/fsn3og/dfs5eap0vcg5xzpi)
+- [✅设计模式的7大基本原则有哪些？](https://www.yuque.com/hollis666/fsn3og/xzem6qp7pl2bson0)
+- [✅使用哪种设计模式可以提高代码可维护性？](https://www.yuque.com/hollis666/fsn3og/gk8q2rgfkwtok10z)
+- [✅使用哪种设计模式可以提高代码的复用性？](https://www.yuque.com/hollis666/fsn3og/uyaobsoph3dnqeft)
+- [✅你在工作中是如何使用设计模式的？](https://www.yuque.com/hollis666/fsn3og/kzq0dwtbtgps9oe1)
+- [✅请简述MVC模式的思想](https://www.yuque.com/hollis666/fsn3og/hq5t8ratxwi3sg9s)
+- [✅单例模式的多种写法](https://www.yuque.com/hollis666/fsn3og/ggh2h0)
+- [✅如何破坏单例模式？](https://www.yuque.com/hollis666/fsn3og/vqtp00)
+- [✅为什么说枚举是实现单例最好的方式？](https://www.yuque.com/hollis666/fsn3og/dt4dp5iq77akg00u)
+- [✅不使用锁如何实现线程安全的单例？](https://www.yuque.com/hollis666/fsn3og/zfwetw)
+- [✅三种工厂模式的区别和特点](https://www.yuque.com/hollis666/fsn3og/trigus)
+- [✅什么是不可变模式，有哪些应用？](https://www.yuque.com/hollis666/fsn3og/qlohhe)
+- [✅什么是享元模式，有哪些具体应用？](https://www.yuque.com/hollis666/fsn3og/gv681o)
+- [✅String的设计，用到了哪些设计模式？](https://www.yuque.com/hollis666/fsn3og/bxa45gl8rgg9slqw)
+- [✅什么是责任链模式，有哪些应用？](https://www.yuque.com/hollis666/fsn3og/yhmvq8)
+- [✅什么是状态模式，有哪些应用？](https://www.yuque.com/hollis666/fsn3og/ge6p4e)
+- [✅策略模式和if-else相比有什么好处？](https://www.yuque.com/hollis666/fsn3og/elzv4u)
+- [✅什么是观察者模式，有哪些应用？](https://www.yuque.com/hollis666/fsn3og/aihkq1)
+- [✅什么是代理模式，有哪些应用？](https://www.yuque.com/hollis666/fsn3og/qrdru5gf8gb7gfur)
+- [✅什么是模板方法模式，有哪些应用？](https://www.yuque.com/hollis666/fsn3og/xrldzr6lf0mey3aw)
+- [✅针对天气预报变化时触发用户通知和推荐行程用什么设计模式？](https://www.yuque.com/hollis666/fsn3og/fr7fg34u361im43u)
+
+## 单元测试
+
+- [✅什么是单元测试，和集成测试有什么区别？](https://www.yuque.com/hollis666/fsn3og/dmvcoyd0d6bx2v1a)
+- [✅什么是Mock？怎么做单测的Mock？](https://www.yuque.com/hollis666/fsn3og/ddqdt0ghhh6brxip)
+- [✅如何对JDBC这一层做单元测试？](https://www.yuque.com/hollis666/fsn3og/vdw6e9k12nch2ylt)
+- [✅单测覆盖率是如何统计的？原理是什么？](https://www.yuque.com/hollis666/fsn3og/df5wved1tx1wag6n)
+- [✅你平时是怎么做单元测试的？](https://www.yuque.com/hollis666/fsn3og/zsvpymvq46xryb9k)
+
+## 云计算
+
+- [✅什么是云计算？](https://www.yuque.com/hollis666/fsn3og/guoc6b35omklyrux)
+- [✅什么是公有云、私有云、混合云？](https://www.yuque.com/hollis666/fsn3og/aloiv3ha6tyb1awk)
+- [✅什么是IaaS、PaaS、SaaS？](https://www.yuque.com/hollis666/fsn3og/krggw3gqkn5fm6k7)
+- [✅什么是Serverless？](https://www.yuque.com/hollis666/fsn3og/lco3if6kdlrrd1pd)
+- [✅为什么云原生对应用的启动速度要求很高？](https://www.yuque.com/hollis666/fsn3og/gxlhg3tppov8q13r)
+- [✅啥是无状态，为啥说Serverless是无状态的?](https://www.yuque.com/hollis666/fsn3og/lg2w559sz9xwof7d)
+
+## 计算机网络
+
+- [✅介绍一下OSI七层模型？](https://www.yuque.com/hollis666/fsn3og/kymufaxbs2dhq87q)
+- [✅什么是TCP的粘包、拆包问题？](https://www.yuque.com/hollis666/fsn3og/qotkxkmmhwo0i5os)
+- [✅ARP 与 RARP 的区别是什么？](https://www.yuque.com/hollis666/fsn3og/ckw29kf6luwi1exb)
+- [✅路由器与交换机的区别是什么？](https://www.yuque.com/hollis666/fsn3og/hhoaexbhpls6tl7g)
+- [✅什么是TCP三次握手、四次挥手？](https://www.yuque.com/hollis666/fsn3og/gbsihwp8q22wc3cn)
+- [✅TCP是如何保证可靠传输的？](https://www.yuque.com/hollis666/fsn3og/gqb3is)
+- [✅什么是HTTP/3的QUIC协议？](https://www.yuque.com/hollis666/fsn3og/oa7mt1)
+- [✅为什么需要HTTP/2，他解决了什么问题？](https://www.yuque.com/hollis666/fsn3og/hiqe1d)
+- [✅HTTP/2存在什么问题，为什么需要HTTP/3？](https://www.yuque.com/hollis666/fsn3og/pg5ika)
+- [✅Cookie，Session，Token的区别是什么？](https://www.yuque.com/hollis666/fsn3og/chxc9y)
+- [✅HTTPS和HTTP的区别是什么？](https://www.yuque.com/hollis666/fsn3og/nixwqt)
+- [✅浏览器输入www.taobao.com回车之后发生了什么](https://www.yuque.com/hollis666/fsn3og/ggwmdo)
+- [✅对称加密和非对称加密有什么区别？](https://www.yuque.com/hollis666/fsn3og/reb5c7)
+- [✅简单介绍一下DNS？](https://www.yuque.com/hollis666/fsn3og/oa7q69)
+- [✅ping的原理是什么？](https://www.yuque.com/hollis666/fsn3og/ivry7a)
+- [✅什么是IPV6？和IPV4有什么区别？](https://www.yuque.com/hollis666/fsn3og/dmed6y)
+- [✅什么是正向代理和反向代理？](https://www.yuque.com/hollis666/fsn3og/lrlsklnaacsxoa9q)
+- [✅什么是跨域访问问题，如何解决？](https://www.yuque.com/hollis666/fsn3og/tlcl3cg1a161yzfk)
+- [✅什么是CDN，为什么他可以做缓存？](https://www.yuque.com/hollis666/fsn3og/bztzrb0lz77vfpxf)
+- [✅TCP和UDP的区别是什么？](https://www.yuque.com/hollis666/fsn3og/kfcgfo9oyinw2csf)
+- [✅如何做网络抓包？](https://www.yuque.com/hollis666/fsn3og/uv5yhtvvlff1np5q)
+- [✅什么是网络分区？](https://www.yuque.com/hollis666/fsn3og/spvzruncaiqr1kym)
+- [✅什么是TCP重传率，有什么用？如何查看？](https://www.yuque.com/hollis666/fsn3og/tk8w4sg1gw9cd0gg)
+- [✅ping为什么不需要端口？](https://www.yuque.com/hollis666/fsn3og/pfmnefsmxrwhzd81)
+- [✅介绍下TCP是如何实现拥塞控制的？](https://www.yuque.com/hollis666/fsn3og/hycerreua968mwip)
+- [✅什么是“墙”？“梯子”的原理是什么？](https://www.yuque.com/hollis666/fsn3og/uo6wunxmszswvaut)
+- [✅介绍下什么是长连接和短连接？](https://www.yuque.com/hollis666/fsn3og/qazwq4zhoxs8oow4)
+- [✅HTTPS建立连接的时候是几次握手？](https://www.yuque.com/hollis666/fsn3og/mkzzeex754d5w2fq)
+- [✅HTTP 301跳转和302跳转有什么区别？](https://www.yuque.com/hollis666/fsn3og/su1voagk2qnoutfn)
+- [✅HTTP不同版本之间的区别？](https://www.yuque.com/hollis666/fsn3og/pl7sgw2v9iu60dep)
+
+## 网络安全
+
+- [✅什么是DDoS攻击？如何防止被攻击？](https://www.yuque.com/hollis666/fsn3og/eyg3il)
+- [✅什么是CSRF攻击？XSS攻击？](https://www.yuque.com/hollis666/fsn3og/ut062n)
+- [✅什么是DNS污染？DNS劫持？](https://www.yuque.com/hollis666/fsn3og/htybk4tzdcg1xdnw)
+- [✅MD5是加密算法吗？绝对安全吗？](https://www.yuque.com/hollis666/fsn3og/nmo3mutxsll6ch8s)
+- [✅什么是水平越权？如何防止](https://www.yuque.com/hollis666/fsn3og/id1p8g)
+- [✅加密&解密、加签&验签做的事情一样吗？](https://www.yuque.com/hollis666/fsn3og/oq72da9rrpyt34g8)
+- [✅什么是中间人攻击？](https://www.yuque.com/hollis666/fsn3og/lmu1af6158paghs4)
+- [✅什么是SQL注入攻击？如何防止](https://www.yuque.com/hollis666/fsn3og/ez6yovxnwvf87xyr)
+- [✅什么是撞库、拖库和洗库？](https://www.yuque.com/hollis666/fsn3og/uwvad3nqeh233v2q)
+- [✅为什么预编译可以避免SQL注入？](https://www.yuque.com/hollis666/fsn3og/dqhumwe8iuvw7eka)
+- [✅什么是垂直越权，如何防止？](https://www.yuque.com/hollis666/fsn3og/izvfg47i48orurf2)
+- [✅什么是国密算法？SM2/SM4/SM3有什么区别？](https://www.yuque.com/hollis666/fsn3og/qu0c64lzgm12x91d)
+
+## 操作系统
+
+- [✅计算机打开电源操作系统做了什么?](https://www.yuque.com/hollis666/fsn3og/ugtoex9ufnvqsptw)
+- [✅同步、异步、阻塞、非阻塞怎么理解？](https://www.yuque.com/hollis666/fsn3og/bhoto944106qfong)
+- [✅操作系统的IO模型有哪些？](https://www.yuque.com/hollis666/fsn3og/rilxns8rh8gdxs78)
+- [✅如何理解select、poll、epoll？](https://www.yuque.com/hollis666/fsn3og/vlsvn2xykt68fdg3)
+- [✅什么是零拷贝？](https://www.yuque.com/hollis666/fsn3og/edxez2ggicn8thzq)
+- [✅什么是分段和分页？](https://www.yuque.com/hollis666/fsn3og/frgrhdunf6fghhg5)
+- [✅负载（Load）和CPU利用率之间有什么区别？](https://www.yuque.com/hollis666/fsn3og/do9dyvr0wdsw251o)
+- [✅进程，线程和协程的区别](https://www.yuque.com/hollis666/fsn3og/gnieul)
+- [✅什么是全双工和半双工](https://www.yuque.com/hollis666/fsn3og/mnq17i)
+- [✅进程间通信方式有哪些？](https://www.yuque.com/hollis666/fsn3og/yrgn3o0q1t1t0ph8)
+- [✅什么是用户态、内核态？如何切换的？](https://www.yuque.com/hollis666/fsn3og/vdvqi4elgrywqavz)
+- [✅正在持续写入的日志如何清理？](https://www.yuque.com/hollis666/fsn3og/iuhvpf)
+- [✅什么是Load（负载）？](https://www.yuque.com/hollis666/fsn3og/zmhkxcfgxc5ggz96)
+- [✅什么是CPU利用率？怎么算的？](https://www.yuque.com/hollis666/fsn3og/hhmxp4xri441moiq)
+- [✅什么是时间片](https://www.yuque.com/hollis666/fsn3og/vucgu8)
+- [✅你掌握哪些Linux常用命令？](https://www.yuque.com/hollis666/fsn3og/uy7orgvls6tbieso)
+- [✅什么是操作系统的多级缓存](https://www.yuque.com/hollis666/fsn3og/nm0sde8ek7ccfg1w)
+- [✅什么是MESI缓存一致性协议](https://www.yuque.com/hollis666/fsn3og/gg2n5fqckk442ouf)
+- [✅GPU和CPU区别？为什么挖矿、大模型都用GPU？](https://www.yuque.com/hollis666/fsn3og/dgu1mwxhton2npoi)
+- [✅线程的实现方式有哪些？](https://www.yuque.com/hollis666/fsn3og/mpap8c7gpr8iz1sh)
+- [✅IO多路复用和多线程有什么区别？](https://www.yuque.com/hollis666/fsn3og/gvef7o0dalfeu2zs)
+- [✅为什么按位与运算要比取模运算高效？](https://www.yuque.com/hollis666/fsn3og/rgo8x0s28bgg46kd)
+- [✅什么是Page Cache，他的读写过程是怎么样的？有什么优缺点？](https://www.yuque.com/hollis666/fsn3og/cfl80ptdn7r31s6f)
+- [✅什么是 IO 密集，什么是 CPU 密集？](https://www.yuque.com/hollis666/fsn3og/ifr8v9er0fc4bsdi)
+- [✅给你一个文本文件，每一行包含一个 QQ号码，请用linux命令进行去重？](https://www.yuque.com/hollis666/fsn3og/kecaf3dy10hhkcog)
+- [✅什么是“孤儿进程”，什么是“僵尸进程”？](https://www.yuque.com/hollis666/fsn3og/fu17cpgsce9yig8z)
+- [✅软链接和硬链接的区别？](https://www.yuque.com/hollis666/fsn3og/iumnqsawgyospilh)
+- [✅常见的进程调度算法有哪些？](https://www.yuque.com/hollis666/fsn3og/amenvb6xgzhgkui0)
+- [✅Linux下rm正在写入的文件会发生什么？](https://www.yuque.com/hollis666/fsn3og/gmiyw1c3p4i5il04)
+- [✅write和fsync的区别是什么？](https://www.yuque.com/hollis666/fsn3og/tepksitlo9sri5rd)
+
+## 数据结构
+
+- [✅数组和链表有何区别？](https://www.yuque.com/hollis666/fsn3og/feley4pfqbz6pkr0)
+- [✅栈和队列的区别](https://www.yuque.com/hollis666/fsn3og/szy3scp8dbucxd0m)
+- [✅什么是树？了解哪些树结构？](https://www.yuque.com/hollis666/fsn3og/ga0ea3auaoqrxnzq)
+- [✅二叉树的遍历有几种方式？](https://www.yuque.com/hollis666/fsn3og/ukadhqwk8gmp6aq2)
+- [✅什么是前缀树，有什么作用？](https://www.yuque.com/hollis666/fsn3og/waqku6qab64aow90)
+- [✅什么是堆？什么情况下要用堆？](https://www.yuque.com/hollis666/fsn3og/pxpbzenv0z8l47hb)
+- [✅什么是B+树，和B树有什么区别？](https://www.yuque.com/hollis666/fsn3og/bb5ldw8odm5gik4p)
+- [✅什么是红黑树？](https://www.yuque.com/hollis666/fsn3og/tat87b71c4v4fgfr)
+- [✅什么是图？有向图和无向图的区别是什么？](https://www.yuque.com/hollis666/fsn3og/pgw42tgb1ghcz1m6)
+- [✅什么是BitMap？有什么用？](https://www.yuque.com/hollis666/fsn3og/ntqpq5vzps1bs55z)
+- [✅什么是小顶堆，可以用在哪些场景？](https://www.yuque.com/hollis666/fsn3og/ukua4c5v1sf2rk7c)
+- [✅海量数据查找最大的 k 个值，用什么数据结构？](https://www.yuque.com/hollis666/fsn3og/shg3ez3kglge71o2)
+
+## 容器
+
+- [✅为什么要使用Docker？](https://www.yuque.com/hollis666/fsn3og/cg4e4ho5y0agkhu3)
+- [✅有了Docker为啥还需要k8s?](https://www.yuque.com/hollis666/fsn3og/ltdr1hnm9n1gpl7y)
+- [✅容器和虚拟机的区别是什么？](https://www.yuque.com/hollis666/fsn3og/sktt6r1oq9raewiu)
+- [✅Dockerfile 是什么？它通常包含哪些指令？](https://www.yuque.com/hollis666/fsn3og/kicy7xnzotves07g)
+- [✅Docker 的常用命令有哪些？](https://www.yuque.com/hollis666/fsn3og/whgfs364iq82m3qu)
+- [✅什么是 Docker Compose？](https://www.yuque.com/hollis666/fsn3og/wfbya5wx2fnf6kvz)
+
+## 架构设计
+
+- [✅常见的架构设计原则有哪些？](https://www.yuque.com/hollis666/fsn3og/uedwqv2xttnp2ze4)
+- [✅架构设计中最重要的三个要素是什么？](https://www.yuque.com/hollis666/fsn3og/impo4wc9yzn3mmu2)
+- [✅什么是技术债务？你怎么理解它？](https://www.yuque.com/hollis666/fsn3og/tzgq6x4ht8oyyun1)
+- [✅架构是设计出来的还是演进出来的？](https://www.yuque.com/hollis666/fsn3og/vg0gtvoxsrxu076f)
+- [✅什么样的架构才算是好的架构？](https://www.yuque.com/hollis666/fsn3og/dcnzrznwxzv9p6bv)
+- [✅为什么说做架构其实就是做权衡？](https://www.yuque.com/hollis666/fsn3og/zecw39tfylvlvxb4)
+- [✅亿级商品如何存储？](https://www.yuque.com/hollis666/fsn3og/uk0gem)
+- [✅如何做技术选型？](https://www.yuque.com/hollis666/fsn3og/nqso1dkxp2ywbohg)
+- [✅微服务的拆分有哪些原则？](https://www.yuque.com/hollis666/fsn3og/iucglo33fsbgf361)
+- [✅什么是单元化架构？](https://www.yuque.com/hollis666/fsn3og/eys76h45ig2g74o3)
+- [✅什么是银弹，什么叫做没有银弹？](https://www.yuque.com/hollis666/fsn3og/tm8ko8dwb2wui579)
+- [✅MVC和三层架构有什么区别？](https://www.yuque.com/hollis666/fsn3og/cgfbog294z86gbfz)
+- [✅能不能介绍下你项目的整体架构情况](https://www.yuque.com/hollis666/fsn3og/zcwk7wckub05rtxx)
+
+## 编程题
+
+- [✅如何用队列实现一个栈？](https://www.yuque.com/hollis666/fsn3og/nu9bn65b620v4gg7)
+- [✅如何用栈实现一个队列？](https://www.yuque.com/hollis666/fsn3og/uz4sam5iyt87ngcn)
+- [✅有一个包含N个整数的数组，请编写一个算法，找到其中的两个元素，使它们之差最小。时间复杂度必须为O(n)。](https://www.yuque.com/hollis666/fsn3og/oatsy6qimh1vxkyk)
+- [✅实现一个LRU缓存淘汰策略，支持get和put操作](https://www.yuque.com/hollis666/fsn3og/qk8y0w5wa0vpcyzp)
+- [✅判断101-200之间有多少个质数，并输出所有质数](https://www.yuque.com/hollis666/fsn3og/ube44r1vyc5w4kx4)
+- [✅请分别写出一个Java堆、栈、元空间溢出的代码](https://www.yuque.com/hollis666/fsn3og/qlzszvlm5siwrl2p)
+- [✅给定一个二叉搜索树，请找出其中第k小的元素](https://www.yuque.com/hollis666/fsn3og/imwa0dbaw3v1vrb1)
+- [✅并发调三个方法，实现只要有一个成功就立即成功，否则等都失败才失败](https://www.yuque.com/hollis666/fsn3og/uqg78mvgakgkg7r4)
+- [✅两个线程，一个打印奇数，一个打印偶数，然后顺序打印出1-100](https://www.yuque.com/hollis666/fsn3og/du59bprsiplax72p)
+- [✅两个线程，一个打印123，一个打印ABC，交替输出1A2B3C](https://www.yuque.com/hollis666/fsn3og/ms34tfgvblvw6hb4)
+- [✅10个线程模拟赛马，所有马就绪后才能开跑，所有马到达终点后裁判宣布赛马成绩](https://www.yuque.com/hollis666/fsn3og/fmxgv20sy2r8hs2v)
+- [✅线程池中怎么设置超时时间？一个线程如果要运行10s，怎么在1s就抛出异常](https://www.yuque.com/hollis666/fsn3og/wqng0a6lhodk4lug)
+- [✅五个线程abcde，想先执行a，在执行bcd，bcd执行完后执行e如何做？](https://www.yuque.com/hollis666/fsn3og/zm8xng5fp9fb6ipg)
+- [✅如果让你实现一个字符串的equals方法，你会如何实现？](https://www.yuque.com/hollis666/fsn3og/rzus4x1zv2gqem65)
+
+## 智商题
+
+- [✅村庄有个约定，生男孩就结束，生女孩就继续生，直到生出男孩为止，若干年后，这个村子男女比例是多少？](https://www.yuque.com/hollis666/fsn3og/qobaxqmr6f80n2gr)
+- [✅假设你有一个乒乓球盒子，里面有 3 个白球和 2 个黑球。从盒子中抽取一个球，放回后再抽取一个球。两次抽取得到的球颜色不同的概率是多少？](https://www.yuque.com/hollis666/fsn3og/yypht88g5wyqtnyf)
+- [✅有8个球，其中7个重量相同，另一个球比其他球重，现在只有一个天平，请问最少需要称几次一定能找到那个比其他球重的球？](https://www.yuque.com/hollis666/fsn3og/sl9n9ygb9qcqci5m)
+- [✅有两个水桶，容量分别为5升和3升，请问如何使用这两个桶得到4升的水？](https://www.yuque.com/hollis666/fsn3og/hs1f2xkxo6dpsh15)
+- [✅有一堆桃子，猴子第一天吃了一半加一个，第二天又吃了一半加一个，... ，到第10天时剩下一个桃子，问这原来有多少个？](https://www.yuque.com/hollis666/fsn3og/ah9x72sxk3krltag)
+- [✅1000瓶药水，1瓶有毒药，最少需要几只小白鼠一定能够找出？](https://www.yuque.com/hollis666/fsn3og/misbg0cmmboz5zaf)
+- [✅一个天平，7g和2g砝码各一个，将140g盐分成90g和50g，需要称多少次？](https://www.yuque.com/hollis666/fsn3og/xb8x6lsucusb7xpz)
+
+## 非技术问题
+
+- [✅你最近在看什么书？](https://www.yuque.com/hollis666/fsn3og/ax4p3vdfh5xuemo1)
+- [✅你觉得你有什么缺点？](https://www.yuque.com/hollis666/fsn3og/ytmfxyvl1uc7evd7)
+- [✅你还有什么想要反问我的吗？](https://www.yuque.com/hollis666/fsn3og/dpvsu38m1mbq2ave)
+- [✅你最近在学什么新技术吗？](https://www.yuque.com/hollis666/fsn3og/fxq8nbu3az4gcygp)
+- [✅对自己的未来发展有什么想法和计划](https://www.yuque.com/hollis666/fsn3og/rgv9tgv94kx6c63r)
+- [✅如何在团队合作中解决冲突和达成共识](https://www.yuque.com/hollis666/fsn3og/rp8ihumsz2hbzmgm)
+- [✅最有成就感的项目或工作经历](https://www.yuque.com/hollis666/fsn3og/gizif86k71i2ml0f)
+- [✅离职的原因是什么](https://www.yuque.com/hollis666/fsn3og/kwm0ghwkmpiup7w7)
+- [✅你对加班怎么看待？](https://www.yuque.com/hollis666/fsn3og/psd4i7g9z5ycy7ua)
+- [✅能不能说一下你对自己的评价](https://www.yuque.com/hollis666/fsn3og/zgkb4k5y4s3u8uhc)
+- [✅你作为项目组长，有制定过哪些规范吗？](https://www.yuque.com/hollis666/fsn3og/vnnouky9p0ak7e4b)
+- [✅有没有别的Offer？有没有别的面试？](https://www.yuque.com/hollis666/fsn3og/hz4r3m7d6fdwbgqx)
+
+## 其他
+
+- [✅你平常是怎么查看日志和做分析的？](https://www.yuque.com/hollis666/fsn3og/fr5h634v474sgo7q)
+- [✅DO、DTO、VO都是干什么的？](https://www.yuque.com/hollis666/fsn3og/qhd931crclc48pq5)
+- [✅CodeReview都会关注哪些问题？](https://www.yuque.com/hollis666/fsn3og/ec1u57ammlu6wb92)
+- [✅什么是状态机，能描述一下状态机的实现原理吗？](https://www.yuque.com/hollis666/fsn3og/cg7ymuivx7lyubcb)
+- [✅什么是Web 3.0？](https://www.yuque.com/hollis666/fsn3og/kv16ic14d29a4ik5)
+- [✅什么是闰秒？](https://www.yuque.com/hollis666/fsn3og/aix9onyo6vgvs8ii)
+- [✅Java中的随机是真随机吗？](https://www.yuque.com/hollis666/fsn3og/wcye6m29t8dgy5fe)
+- [✅什么是Java Dump，如何获取？](https://www.yuque.com/hollis666/fsn3og/tmcw0o39ws6vi6ug)
+- [✅jps命令的作用是什么？](https://www.yuque.com/hollis666/fsn3og/zqvswmpgrsr2x4lg)
+- [✅jstack命令的作用是什么？](https://www.yuque.com/hollis666/fsn3og/hc8uutqs3wnsenr9)
+- [✅jmap命令的作用是什么？](https://www.yuque.com/hollis666/fsn3og/inr6hifpadl24nao)
+- [✅jhat有什么用，如何用他分析堆dump](https://www.yuque.com/hollis666/fsn3og/nhd29y82stcf64bi)
+- [✅javap命令的作用是什么？](https://www.yuque.com/hollis666/fsn3og/xz23fep6vq62x5hm)
+- [✅jstat命令的作用是什么？](https://www.yuque.com/hollis666/fsn3og/nl7i1d66zs9g3lgb)
+- [✅什么是流程引擎，请问流程引擎有什么优缺点？](https://www.yuque.com/hollis666/fsn3og/uzi41t8m8ixcigb2)
+- [✅SaaS系统中，多租户如何实现？](https://www.yuque.com/hollis666/fsn3og/nzi06fs6bpco1mf5)
+
+## 其他专属内容
+
+- [2023网易技术分享](https://www.yuque.com/hollis666/fsn3og/winz5w4iy5pir6b3)
+- [大厂程序员能力模型](https://www.yuque.com/hollis666/fsn3og/ccf7gtn93t54uusg)
+- [大厂对学历的要求是什么？](https://www.yuque.com/hollis666/fsn3og/gf7z86z18dd3ag58)
+- [为啥我不建议使用@Transactional事务](https://www.yuque.com/hollis666/fsn3og/sscz8razzyxltzhe)
+- [阿里的简历多久可以投递一次？次数多了有没有影响？可以同时进行吗？](https://www.yuque.com/hollis666/fsn3og/clzwg0qfbw2gq6gh)
+- [为啥我觉得应该谨慎使用Lombok](https://www.yuque.com/hollis666/fsn3og/okuny3u1wdx86a5h)
+- [交易主链路提供风控决策要求RT 5ms的技术方案](https://www.yuque.com/hollis666/fsn3og/hpspveeinpub4o1t)
+- [什么是隐私计算？](https://www.yuque.com/hollis666/fsn3og/ofkapxgnuac0nh1h)
+
+## 面经实战
+
+- [✅6年经验，资产后台，汽车金融（贷款）SaaS](https://www.yuque.com/hollis666/fsn3og/gldhrgttfg4nzi3q)
+- [✅3年经验，2本，物流调度系统，mq，mysql](https://www.yuque.com/hollis666/fsn3og/ze4ivugqzyw0yc5g)
+- [✅工作1年，大数据开发平台，seata贡献者](https://www.yuque.com/hollis666/fsn3og/hoeig4lt49f1rwvg)
+- [✅26届，985，12306项目，redis，多线程](https://www.yuque.com/hollis666/fsn3og/bb2i4ihcdmsb70gs)
+- [✅工作8年，游戏中厂，Redis，分布式](https://www.yuque.com/hollis666/fsn3og/cngc34qdie1pidv7)
+- [✅工作3年，城市停车项目，保险理赔（财&人身）&电服业务](https://www.yuque.com/hollis666/fsn3og/nsggayt7xotiamsu)
+- [✅工作6年，211本，2手平台，卖家业务，结算](https://www.yuque.com/hollis666/fsn3og/go292otyic13eg5v)
+- [✅最强应届生，JVM，计算机网络](https://www.yuque.com/hollis666/fsn3og/zd24lrue0r193c6y)
+- [✅工作7年，2家大厂经验，下单&导购核心开发](https://www.yuque.com/hollis666/fsn3og/we4b6a0i2mogsk3g)
+- [24届，美团1-3面面经](https://www.yuque.com/hollis666/fsn3og/lxynpz113nxg96t5)
+- [✅22年毕业，培训了2个月Java，多线程，Spring](https://www.yuque.com/hollis666/fsn3og/ggufgg96cdgnyo95)
+- [✅5年经验，流计算引擎、配置中心、流程编排、RPA](https://www.yuque.com/hollis666/fsn3og/bg1sfnwpquztl1xk)
+- [✅工作3年，分布式项目，实时数据分析功能](https://www.yuque.com/hollis666/fsn3og/fcp5g7f42mofc9fm)
+- [✅7年后端技术专家，清结算，资损防控，架构设计](https://www.yuque.com/hollis666/fsn3og/gc4pi7z1uvhglrb2)
+- [✅985应届生，并发编程底层原理](https://www.yuque.com/hollis666/fsn3og/hg0igrzyrzy5nelw)
+- [✅工作2年，电商网站开发，负责购物车、详情页](https://www.yuque.com/hollis666/fsn3og/ha6d02eq5qrc20bb)
+- [✅工作7年，SaaS公司，架构师，技术负责人](https://www.yuque.com/hollis666/fsn3og/astb9s7ufgta73em)
+- [✅工作4年，自研流程引擎项目](https://www.yuque.com/hollis666/fsn3og/ydwnwnnu60a2alvm)
+- [✅工作5年，主要做计费项目](https://www.yuque.com/hollis666/fsn3og/kvd0gruenn6tctuy)
+- [✅字节支付1-2-3-hr面](https://www.yuque.com/hollis666/fsn3og/gs3yqpmg6d2l8lvv)
+- [✅23年毕业，电商运营平台，mysql，mq，redis](https://www.yuque.com/hollis666/fsn3og/zda2tr1k3ow25wvc)
+- [✅3年经验，智慧园区，mysql，Redis](https://www.yuque.com/hollis666/fsn3og/ffm5df11dtmpt7wx)
+- [✅菜鸟1-3面](https://www.yuque.com/hollis666/fsn3og/gv8c029lbqlhlspq)
+- [✅平安一面](https://www.yuque.com/hollis666/fsn3og/ypqogovxmeklym95)
+- [✅顺丰一面](https://www.yuque.com/hollis666/fsn3og/atqhng7q1dwapg0f)
+- [阿里二面](https://www.yuque.com/hollis666/fsn3og/eyemfgv28ki56eh6)
+- [✅阿里一面](https://www.yuque.com/hollis666/fsn3og/uighyxsyn5rzc6vf)
+- [✅百度二面](https://www.yuque.com/hollis666/fsn3og/sn0463pt2qca1gh2)
+- [✅百度一面](https://www.yuque.com/hollis666/fsn3og/mk5go5w1wy5e6paw)
+- [滴滴二面](https://www.yuque.com/hollis666/fsn3og/hcq72gsogesy6gkn)
+- [滴滴一面](https://www.yuque.com/hollis666/fsn3og/hebqztav3uymtk76)
+- [拼多多二面](https://www.yuque.com/hollis666/fsn3og/sgng1dlfnrlqen21)
+- [拼多多一面](https://www.yuque.com/hollis666/fsn3og/ctebbexdu46tsnfw)
+- [猿辅导一面](https://www.yuque.com/hollis666/fsn3og/nclc9i2prxh9r3qn)
+- [✅白龙马科技2面](https://www.yuque.com/hollis666/fsn3og/tr5tz0egy8z8a5um)
+- [✅字节本地生活](https://www.yuque.com/hollis666/fsn3og/dbugfcvzhhy41h74)
+- [阿里本地生活一面](https://www.yuque.com/hollis666/fsn3og/kg42b0lmt764iteb)
+- [✅白龙马科技一面](https://www.yuque.com/hollis666/fsn3og/uouk68fdmnmommmr)
+- [✅PDD海外用增一面](https://www.yuque.com/hollis666/fsn3og/pkdcovzw0i1fgqr1)
+- [✅PDD海外用增二面](https://www.yuque.com/hollis666/fsn3og/zvru1kbywi8lrobh)
+- [✅工作4年，供应链相关，分库分表、分布式锁](https://www.yuque.com/hollis666/fsn3og/iqg2k1i464ewuq4l)
+- [新增面经](https://www.yuque.com/hollis666/fsn3og/ufh9o2s5n1xr9xno)
+- [✅2年985硕，直播业务，redis，kafka，](https://www.yuque.com/hollis666/fsn3og/ta3cg5d7k16ypsxp)
+- [✅2本，9年经验（6-7年服务端），停车管理系统](https://www.yuque.com/hollis666/fsn3og/insbagdrt5ts4x8o)
+- [✅10年，深圳证券公司，系统架构组架构师，监控平台、电商平台，秒杀](https://www.yuque.com/hollis666/fsn3og/sei9q1u9ggw2b3nk)
+- [✅4年经验，上海某跨境电商，千万级大表经验](https://www.yuque.com/hollis666/fsn3og/ky3kl3ccn9q0wn8z)
+- [✅3年经验，985本科，电商财务相关业务](https://www.yuque.com/hollis666/fsn3og/hgufe9b8tqgvezyy)
+- [✅26届，双一流硕士，2段大厂实习](https://www.yuque.com/hollis666/fsn3og/xiy0qy3y583louy7)
+- [✅26届，百度一面&二面 美团一面](https://www.yuque.com/hollis666/fsn3og/haflby8ubbo8ubqx)
+- [✅26届，阿里后端2面](https://www.yuque.com/hollis666/fsn3og/lgeme65sn4ty8nx3)
+- [✅6年经验，电商平台，分布式事务，分布式](https://www.yuque.com/hollis666/fsn3og/qxoyz15uaddn2mek)
+- [✅8年，双非一本，车企区块链项目（溯源、NFT商城-订单）](https://www.yuque.com/hollis666/fsn3og/qn9g43g1mru7r57d)
+- [✅27届，数藏项目，交易链路开发，秒杀](https://www.yuque.com/hollis666/fsn3og/txyl12tcvagcn4ew)
+- [大模型应用开发，RAG客服](https://www.yuque.com/hollis666/fsn3og/zl4uviibq08xh2yv)
+- [✅1年经验，数字藏品&电商项目](https://www.yuque.com/hollis666/fsn3og/hf9eq0pqzvzpzwda)
+- [✅27届，数藏项目（订单、交易、用户模块）](https://www.yuque.com/hollis666/fsn3og/torotv1aw0xwaeuw)
+- [24届，LLM应用开发，SpringAI](https://www.yuque.com/hollis666/fsn3og/gv0swre78f5z93dh)
+
+## 大厂实践
+
+- [✅阿里的数据库能抗秒杀的原理](https://www.yuque.com/hollis666/fsn3og/nkzgdr7lgi14g9e3)
+- [✅阿里的库存秒杀是如何实现的？](https://www.yuque.com/hollis666/fsn3og/ov1u9td0rpqb67dc)
+- [✅小红书靠MySQL抗秒杀的方案](https://www.yuque.com/hollis666/fsn3og/ggpskz2wtr26foe3)
+
+## AI&大模型
+
+- [✅怎么理解大模型？](https://www.yuque.com/hollis666/fsn3og/xe7gqx3855uxk4il)
+- [✅大模型擅长做什么，不擅长做什么？](https://www.yuque.com/hollis666/fsn3og/kg46w941q2z5y7dx)
+- [✅大模型产生幻觉的原因，如何解决？](https://www.yuque.com/hollis666/fsn3og/zuz5sgub45c0skp9)
+- [✅如何看待DeepSeek，他能爆火的主要原因是什么？](https://www.yuque.com/hollis666/fsn3og/gtqibybwrgvlmsyk)
+- [✅你平时用过哪些AI工具？](https://www.yuque.com/hollis666/fsn3og/iyra527vlkcgfiqq)
+- [✅DeepSeek为什么训练成本低？](https://www.yuque.com/hollis666/fsn3og/zou4rq6mr6q664ng)
+- [✅对RAG了解吗？谈谈什么是RAG？](https://www.yuque.com/hollis666/fsn3og/ptlwuz4zxliwmea8)
+- [✅什么是Function Calling？](https://www.yuque.com/hollis666/fsn3og/evlxyxnnbsnibpnn)
+- [✅什么是MCP？](https://www.yuque.com/hollis666/fsn3og/klg5hggdi82kc813)
+- [✅什么是大模型的微调，和预训练有什么区别？](https://www.yuque.com/hollis666/fsn3og/teq683qdog0q1m71)
+- [✅了解Spring AI吗，他都能干什么？](https://www.yuque.com/hollis666/fsn3og/to8uvnk19z7tfhms)
+- [✅什么是AI Agent？](https://www.yuque.com/hollis666/fsn3og/ofpuwpprlw5owppa)
+- [✅什么是向量数据库？](https://www.yuque.com/hollis666/fsn3og/qs1v7hzgx8l7h9i5)
+- [✅什么是A2A，和MCP有什么区别？](https://www.yuque.com/hollis666/fsn3og/gckrf8u0hfsizppl)
+- [✅什么是ReAct Agent](https://www.yuque.com/hollis666/fsn3og/ormv3dayfbthyrty)
+- [✅在Java项目中集成大模型，用什么框架？](https://www.yuque.com/hollis666/fsn3og/vmwh69ou77uyrmwo)
+- [✅什么是Agent Skill？](https://www.yuque.com/hollis666/fsn3og/vs5mhn65t55d50gx)
+- [✅Skill和MCP有什么区别？](https://www.yuque.com/hollis666/fsn3og/nmq083h7agg769b8)
+- [✅对接大模型的API哪些参数了解么？](https://www.yuque.com/hollis666/fsn3og/gi42i4ed7eh3aegc)
+- [✅SpringAI中ChatModel和ChatClient有啥区别？](https://www.yuque.com/hollis666/fsn3og/ofxtrtihtyrdluly)
+- [✅Spring AI中的advisor机制了解吗？](https://www.yuque.com/hollis666/fsn3og/ptmllrpmsqbwg4bp)
+- [✅Claude Code国内不能用，你是怎么用的？](https://www.yuque.com/hollis666/fsn3og/bxgqgcwwn8r5cqtb)
+- [✅你平时用过哪些AI Coding的工具吗？](https://www.yuque.com/hollis666/fsn3og/hpmw4g6afntbupg4)
+- [✅你认为Cursor编程体验好的主要原因是什么？](https://www.yuque.com/hollis666/fsn3og/maif69ur0zks5797)
+- [✅什么是Vibe Coding（氛围编程）](https://www.yuque.com/hollis666/fsn3og/coedwyfzloedy1wl)
+
+## 新增面试题
+

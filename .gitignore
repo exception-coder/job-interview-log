@@ -1,0 +1,10 @@
+# IDE / IntelliJ
+*.iml
+.idea/
+
+# 嵌套备份目录（旧版结构快照）
+/job-interview-log/
+
+# Python
+__pycache__/
+*.pyc

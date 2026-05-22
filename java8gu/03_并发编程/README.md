@@ -1,0 +1,104 @@
+# 03_并发编程
+
+共 98 题。
+
+| 题号 | 标题 | 文件 |
+|---|---|---|
+| 0006 | ✅怎么停止一个线程，为什么不推荐 stop？ | [0006_怎么停止一个线程_为什么不推荐_stop.md](0006_怎么停止一个线程_为什么不推荐_stop.md) |
+| 0036 | ✅有了InheritableThreadLocal为啥还需要TransmittableThreadLocal？ | [0036_有了InheritableThreadLocal为啥还需要TransmittableThreadLocal.md](0036_有了InheritableThreadLocal为啥还需要TransmittableThreadLocal.md) |
+| 0044 | ✅什么是AQS的独占模式和共享模式？ | [0044_什么是AQS的独占模式和共享模式.md](0044_什么是AQS的独占模式和共享模式.md) |
+| 0073 | ✅什么是线程池，如何实现的？ | [0073_什么是线程池_如何实现的.md](0073_什么是线程池_如何实现的.md) |
+| 0074 | ✅线程数设定成多少更合适？ | [0074_线程数设定成多少更合适.md](0074_线程数设定成多少更合适.md) |
+| 0094 | ✅synchronized是如何保证原子性、可见性、有序性的？ | [0094_synchronized是如何保证原子性_可见性_有序性的.md](0094_synchronized是如何保证原子性_可见性_有序性的.md) |
+| 0108 | ✅线程池有哪些核心参数？ | [0108_线程池有哪些核心参数.md](0108_线程池有哪些核心参数.md) |
+| 0115 | ✅ConcurrentHashMap在哪些地方做了并发控制 | [0115_ConcurrentHashMap在哪些地方做了并发控制.md](0115_ConcurrentHashMap在哪些地方做了并发控制.md) |
+| 0119 | ✅如何进行线程池调优？ | [0119_如何进行线程池调优.md](0119_如何进行线程池调优.md) |
+| 0135 | ✅线程池中使用ThreadLocal会有哪些潜在风险？ | [0135_线程池中使用ThreadLocal会有哪些潜在风险.md](0135_线程池中使用ThreadLocal会有哪些潜在风险.md) |
+| 0136 | ✅JDK25的ScopedValue是什么？为什么可以替代ThreadLocal？ | [0136_JDK25的ScopedValue是什么为什么可以替代ThreadLocal.md](0136_JDK25的ScopedValue是什么为什么可以替代ThreadLocal.md) |
+| 0181 | ✅synchronized的锁升级过程是怎样的？ | [0181_synchronized的锁升级过程是怎样的.md](0181_synchronized的锁升级过程是怎样的.md) |
+| 0183 | ✅ForkJoinPool和ThreadPoolExecutor区别是什么？ | [0183_ForkJoinPool和ThreadPoolExecutor区别是什么.md](0183_ForkJoinPool和ThreadPoolExecutor区别是什么.md) |
+| 0202 | ✅ConcurrentHashMap是如何保证线程安全的？ | [0202_ConcurrentHashMap是如何保证线程安全的.md](0202_ConcurrentHashMap是如何保证线程安全的.md) |
+| 0215 | ✅什么是活锁，和死锁有什么区别？ | [0215_什么是活锁_和死锁有什么区别.md](0215_什么是活锁_和死锁有什么区别.md) |
+| 0216 | ✅介绍下JUC，都有哪些工具类？ | [0216_介绍下JUC_都有哪些工具类.md](0216_介绍下JUC_都有哪些工具类.md) |
+| 0226 | ✅什么是fail-fast？什么是fail-safe？ | [0226_什么是fail-fast什么是fail-safe.md](0226_什么是fail-fast什么是fail-safe.md) |
+| 0234 | ✅HashMap、Hashtable和ConcurrentHashMap的区别？ | [0234_HashMap_Hashtable和ConcurrentHashMap的区别.md](0234_HashMap_Hashtable和ConcurrentHashMap的区别.md) |
+| 0238 | ✅什么是伪共享，如何解决伪共享？ | [0238_什么是伪共享_如何解决伪共享.md](0238_什么是伪共享_如何解决伪共享.md) |
+| 0277 | ✅动态线程池的原理是什么？ | [0277_动态线程池的原理是什么.md](0277_动态线程池的原理是什么.md) |
+| 0279 | ✅能不能谈谈你对线程安全的理解？ | [0279_能不能谈谈你对线程安全的理解.md](0279_能不能谈谈你对线程安全的理解.md) |
+| 0290 | ✅synchronized是怎么实现的？ | [0290_synchronized是怎么实现的.md](0290_synchronized是怎么实现的.md) |
+| 0299 | ✅什么是CAS？存在什么问题？ | [0299_什么是CAS存在什么问题.md](0299_什么是CAS存在什么问题.md) |
+| 0300 | ✅什么是死锁，如何解决？ | [0300_什么是死锁_如何解决.md](0300_什么是死锁_如何解决.md) |
+| 0319 | ✅synchronized的锁优化是怎样的？ | [0319_synchronized的锁优化是怎样的.md](0319_synchronized的锁优化是怎样的.md) |
+| 0362 | ✅有三个线程T1,T2,T3如何保证顺序执行？ | [0362_有三个线程T1,T2,T3如何保证顺序执行.md](0362_有三个线程T1,T2,T3如何保证顺序执行.md) |
+| 0364 | ✅SimpleDateFormat是线程安全的吗？使用时应该注意什么？ | [0364_SimpleDateFormat是线程安全的吗使用时应该注意什么.md](0364_SimpleDateFormat是线程安全的吗使用时应该注意什么.md) |
+| 0368 | ✅父子线程之间怎么共享/传递数据？ | [0368_父子线程之间怎么共享_传递数据.md](0368_父子线程之间怎么共享_传递数据.md) |
+| 0369 | ✅CountDownLatch、CyclicBarrier、Semaphore区别？ | [0369_CountDownLatch_CyclicBarrier_Semaphore区别.md](0369_CountDownLatch_CyclicBarrier_Semaphore区别.md) |
+| 0374 | ✅LongAdder和AtomicLong的区别？ | [0374_LongAdder和AtomicLong的区别.md](0374_LongAdder和AtomicLong的区别.md) |
+| 0381 | ✅公平锁和非公平锁的区别？ | [0381_公平锁和非公平锁的区别.md](0381_公平锁和非公平锁的区别.md) |
+| 0393 | ✅synchronized和reentrantLock区别？ | [0393_synchronized和reentrantLock区别.md](0393_synchronized和reentrantLock区别.md) |
+| 0403 | ✅什么是Unsafe？ | [0403_什么是Unsafe.md](0403_什么是Unsafe.md) |
+| 0412 | ✅不使用锁如何实现线程安全的单例？ | [0412_不使用锁如何实现线程安全的单例.md](0412_不使用锁如何实现线程安全的单例.md) |
+| 0413 | ✅CAS一定有自旋吗？ | [0413_CAS一定有自旋吗.md](0413_CAS一定有自旋吗.md) |
+| 0420 | ✅如何理解AQS？ | [0420_如何理解AQS.md](0420_如何理解AQS.md) |
+| 0443 | ✅volatile是如何保证可见性和有序性的？ | [0443_volatile是如何保证可见性和有序性的.md](0443_volatile是如何保证可见性和有序性的.md) |
+| 0470 | ✅volatile能保证原子性吗？为什么？ | [0470_volatile能保证原子性吗为什么.md](0470_volatile能保证原子性吗为什么.md) |
+| 0471 | ✅while(true)和for(;;)哪个性能好？ | [0471_while(true)和for(;;)哪个性能好.md](0471_while(true)和for(;;)哪个性能好.md) |
+| 0482 | ✅synchronized的重量级锁很慢，为什么还需要重量级锁？ | [0482_synchronized的重量级锁很慢_为什么还需要重量级锁.md](0482_synchronized的重量级锁很慢_为什么还需要重量级锁.md) |
+| 0512 | ✅synchronized锁的是什么？ | [0512_synchronized锁的是什么.md](0512_synchronized锁的是什么.md) |
+| 0534 | ✅如何对多线程进行Debug? | [0534_如何对多线程进行Debug.md](0534_如何对多线程进行Debug.md) |
+| 0537 | ✅并发编程中的原子性和数据库ACID的原子性一样吗？ | [0537_并发编程中的原子性和数据库ACID的原子性一样吗.md](0537_并发编程中的原子性和数据库ACID的原子性一样吗.md) |
+| 0553 | ✅什么是Java内存模型（JMM）？ | [0553_什么是Java内存模型_JMM.md](0553_什么是Java内存模型_JMM.md) |
+| 0578 | ✅线程同步的方式有哪些？ | [0578_线程同步的方式有哪些.md](0578_线程同步的方式有哪些.md) |
+| 0579 | ✅什么是ThreadLocal，如何实现的？ | [0579_什么是ThreadLocal_如何实现的.md](0579_什么是ThreadLocal_如何实现的.md) |
+| 0623 | ✅run/start、wait/sleep、notify/notifyAll区别? | [0623_run_start_wait_sleep_notify_notifyAll区别.md](0623_run_start_wait_sleep_notify_notifyAll区别.md) |
+| 0624 | ✅创建线程有几种方式？ | [0624_创建线程有几种方式.md](0624_创建线程有几种方式.md) |
+| 0638 | ✅JDK21 中的虚拟线程是怎么回事？ | [0638_JDK21_中的虚拟线程是怎么回事.md](0638_JDK21_中的虚拟线程是怎么回事.md) |
+| 0653 | ✅线程有几种状态，状态之间的流转是怎样的？ | [0653_线程有几种状态_状态之间的流转是怎样的.md](0653_线程有几种状态_状态之间的流转是怎样的.md) |
+| 0681 | ✅Java线程出现异常，进程为啥不会退出？ | [0681_Java线程出现异常_进程为啥不会退出.md](0681_Java线程出现异常_进程为啥不会退出.md) |
+| 0682 | ✅什么是多线程中的上下文切换？ | [0682_什么是多线程中的上下文切换.md](0682_什么是多线程中的上下文切换.md) |
+| 0684 | ✅使用CompletableFuture完成并发编排，提升接口性能 | [0684_使用CompletableFuture完成并发编排_提升接口性能.md](0684_使用CompletableFuture完成并发编排_提升接口性能.md) |
+| 0706 | ✅如何实现主线程捕获子线程异常 | [0706_如何实现主线程捕获子线程异常.md](0706_如何实现主线程捕获子线程异常.md) |
+| 0707 | ✅什么是可重入锁，怎么实现可重入锁？ | [0707_什么是可重入锁_怎么实现可重入锁.md](0707_什么是可重入锁_怎么实现可重入锁.md) |
+| 0718 | ✅线程的实现方式有哪些？ | [0718_线程的实现方式有哪些.md](0718_线程的实现方式有哪些.md) |
+| 0719 | ✅如何实现无锁化编程？ | [0719_如何实现无锁化编程.md](0719_如何实现无锁化编程.md) |
+| 0721 | ✅Java是如何判断一个线程是否存活的？ | [0721_Java是如何判断一个线程是否存活的.md](0721_Java是如何判断一个线程是否存活的.md) |
+| 0734 | ✅sychronized是非公平锁吗，那么是如何体现的？ | [0734_sychronized是非公平锁吗_那么是如何体现的.md](0734_sychronized是非公平锁吗_那么是如何体现的.md) |
+| 0736 | ✅线程是如何被调度的？ | [0736_线程是如何被调度的.md](0736_线程是如何被调度的.md) |
+| 0748 | ✅ConcurrentHashMap为什么在JDK1.8中使用synchronized而不是ReentrantLock | [0748_ConcurrentHashMap为什么在JDK1.8中使用synchronized而不是ReentrantLock.md](0748_ConcurrentHashMap为什么在JDK1.8中使用synchronized而不是ReentrantLock.md) |
+| 0751 | ✅为什么虚拟线程尽量避免使用ThreadLocal | [0751_为什么虚拟线程尽量避免使用ThreadLocal.md](0751_为什么虚拟线程尽量避免使用ThreadLocal.md) |
+| 0752 | ✅为什么虚拟线程不要和线程池一起用？ | [0752_为什么虚拟线程不要和线程池一起用.md](0752_为什么虚拟线程不要和线程池一起用.md) |
+| 0753 | ✅线程池的拒绝策略有哪些？ | [0753_线程池的拒绝策略有哪些.md](0753_线程池的拒绝策略有哪些.md) |
+| 0766 | ✅为什么虚拟线程不能用synchronized？ | [0766_为什么虚拟线程不能用synchronized.md](0766_为什么虚拟线程不能用synchronized.md) |
+| 0767 | ✅为什么不建议通过Executors构建线程池 | [0767_为什么不建议通过Executors构建线程池.md](0767_为什么不建议通过Executors构建线程池.md) |
+| 0768 | ✅死锁会导致CPU使用率升高吗？为什么？ | [0768_死锁会导致CPU使用率升高吗为什么.md](0768_死锁会导致CPU使用率升高吗为什么.md) |
+| 0779 | ✅为什么ConcurrentHashMap不允许null值？ | [0779_为什么ConcurrentHashMap不允许null值.md](0779_为什么ConcurrentHashMap不允许null值.md) |
+| 0782 | ✅AQS为什么采用双向链表？ | [0782_AQS为什么采用双向链表.md](0782_AQS为什么采用双向链表.md) |
+| 0783 | ✅有了MESI为啥还需要JMM？ | [0783_有了MESI为啥还需要JMM.md](0783_有了MESI为啥还需要JMM.md) |
+| 0784 | ✅有哪些实现线程安全的方案? | [0784_有哪些实现线程安全的方案.md](0784_有哪些实现线程安全的方案.md) |
+| 0792 | ✅什么是COW，如何保证的线程安全？ | [0792_什么是COW_如何保证的线程安全.md](0792_什么是COW_如何保证的线程安全.md) |
+| 0794 | ✅如何保证多线程下 i++ 结果正确？ | [0794_如何保证多线程下_i++_结果正确.md](0794_如何保证多线程下_i++_结果正确.md) |
+| 0805 | ✅如何将集合变成线程安全的？ | [0805_如何将集合变成线程安全的.md](0805_如何将集合变成线程安全的.md) |
+| 0808 | ✅AQS的同步队列和条件队列原理？ | [0808_AQS的同步队列和条件队列原理.md](0808_AQS的同步队列和条件队列原理.md) |
+| 0809 | ✅AQS是如何实现线程的等待和唤醒的？ | [0809_AQS是如何实现线程的等待和唤醒的.md](0809_AQS是如何实现线程的等待和唤醒的.md) |
+| 0815 | ✅不使用synchronized和Lock如何设计一个线程安全的单例？ | [0815_不使用synchronized和Lock如何设计一个线程安全的单例.md](0815_不使用synchronized和Lock如何设计一个线程安全的单例.md) |
+| 0820 | ✅ConcurrentHashMap是如何保证fail-safe的？ | [0820_ConcurrentHashMap是如何保证fail-safe的.md](0820_ConcurrentHashMap是如何保证fail-safe的.md) |
+| 0822 | ✅有了CAS为啥还需要volatile？ | [0822_有了CAS为啥还需要volatile.md](0822_有了CAS为啥还需要volatile.md) |
+| 0835 | ✅到底啥是内存屏障？到底怎么加的？ | [0835_到底啥是内存屏障到底怎么加的.md](0835_到底啥是内存屏障到底怎么加的.md) |
+| 0836 | ✅CompletableFuture的底层是如何实现的？ | [0836_CompletableFuture的底层是如何实现的.md](0836_CompletableFuture的底层是如何实现的.md) |
+| 0837 | ✅如何使用jstack分析死锁 | [0837_如何使用jstack分析死锁.md](0837_如何使用jstack分析死锁.md) |
+| 0846 | ✅ThreadLocal的应用场景有哪些？ | [0846_ThreadLocal的应用场景有哪些.md](0846_ThreadLocal的应用场景有哪些.md) |
+| 0847 | ✅什么是总线嗅探和总线风暴，和JMM有什么关系？ | [0847_什么是总线嗅探和总线风暴_和JMM有什么关系.md](0847_什么是总线嗅探和总线风暴_和JMM有什么关系.md) |
+| 0860 | ✅如何让Java的线程池顺序执行任务？ | [0860_如何让Java的线程池顺序执行任务.md](0860_如何让Java的线程池顺序执行任务.md) |
+| 0861 | ✅三个线程分别顺序打印0-100 | [0861_三个线程分别顺序打印0-100.md](0861_三个线程分别顺序打印0-100.md) |
+| 0862 | ✅如何对多线程进行编排 | [0862_如何对多线程进行编排.md](0862_如何对多线程进行编排.md) |
+| 0869 | ✅同步容器（如Vector）的所有操作一定是线程安全的吗？ | [0869_同步容器_如Vector_的所有操作一定是线程安全的吗.md](0869_同步容器_如Vector_的所有操作一定是线程安全的吗.md) |
+| 0870 | ✅happens-before和as-if-serial有啥区别和联系？ | [0870_happens-before和as-if-serial有啥区别和联系.md](0870_happens-before和as-if-serial有啥区别和联系.md) |
+| 0884 | ✅什么是happens-before原则？ | [0884_什么是happens-before原则.md](0884_什么是happens-before原则.md) |
+| 0921 | ✅乐观锁与悲观锁如何实现？ | [0921_乐观锁与悲观锁如何实现.md](0921_乐观锁与悲观锁如何实现.md) |
+| 1099 | ✅线程池中怎么设置超时时间？一个线程如果要运行10s，怎么在1s就抛出异常 | [1099_线程池中怎么设置超时时间一个线程如果要运行10s_怎么在1s就抛出异常.md](1099_线程池中怎么设置超时时间一个线程如果要运行10s_怎么在1s就抛出异常.md) |
+| 1114 | ✅两个线程，一个打印123，一个打印ABC，交替输出1A2B3C | [1114_两个线程_一个打印123_一个打印ABC_交替输出1A2B3C.md](1114_两个线程_一个打印123_一个打印ABC_交替输出1A2B3C.md) |
+| 1125 | ✅两个线程，一个打印奇数，一个打印偶数，然后顺序打印出1-100 | [1125_两个线程_一个打印奇数_一个打印偶数_然后顺序打印出1-100.md](1125_两个线程_一个打印奇数_一个打印偶数_然后顺序打印出1-100.md) |
+| 1137 | ✅并发调三个方法，实现只要有一个成功就立即成功，否则等都失败才失败 | [1137_并发调三个方法_实现只要有一个成功就立即成功_否则等都失败才失败.md](1137_并发调三个方法_实现只要有一个成功就立即成功_否则等都失败才失败.md) |
+| 1139 | ✅基于TTL 解决线程池中 ThreadLocal 线程无法共享的问题 | [1139_基于TTL_解决线程池中_ThreadLocal_线程无法共享的问题.md](1139_基于TTL_解决线程池中_ThreadLocal_线程无法共享的问题.md) |
+| 1248 | ✅JVM如何保证给对象分配内存过程的线程安全？ | [1248_JVM如何保证给对象分配内存过程的线程安全.md](1248_JVM如何保证给对象分配内存过程的线程安全.md) |
+| 1264 | ✅高并发场景中，乐观锁和悲观锁哪个更适合？ | [1264_高并发场景中_乐观锁和悲观锁哪个更适合.md](1264_高并发场景中_乐观锁和悲观锁哪个更适合.md) |

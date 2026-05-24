@@ -2,6 +2,10 @@
 *.iml
 .idea/
 
+# drawio 锁/备份文件
+.$*.drawio.bkp
+.$*.drawio.dtmp
+
 # 嵌套备份目录（旧版结构快照）
 /job-interview-log/
 
